@@ -1,0 +1,189 @@
+#:kivy 1.9.1
+
+<WelcomeScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text:'Welcome'
+        Button:
+            text:'Next'
+            on_press: root.manager.current = 'system_type'
+        Button:
+            text:'Quit'
+            on_press: exit()
+
+<SelectSystem>:
+    GridLayout:
+        cols: 2
+        Label:
+            text:'Basic Roleplaying (BGB)'
+        CheckBox:
+            group: 'system_group'
+            on_active: root.brp_system(*args)
+        Label:
+            text:'Magic World'
+        CheckBox:
+            group: 'system_group'
+            on_active: root.mw_system(*args)
+        Label:
+            text:'Mythras Imperative'
+        CheckBox:
+            group: 'system_group'
+            on_active: root.mi_system(*args)
+        Label:
+            text:'Call of Cthulhu'
+        CheckBox:
+            group: 'system_group'
+            on_active: root.coc_system(*args)
+        Button:
+            text:'Back'
+            on_press: root.manager.current = 'welcome'
+        Button:
+            text:'Next'
+            on_press: root.manager.current = 'genre'
+
+<SelectGenre>:
+    GridLayout:
+        cols: 2
+        Label:
+            text:'Fantasy'
+        CheckBox:
+            group: 'genre_group'
+            on_active: root.fantasy_genre(*args)
+        Label:
+            text:'Sci-Fi'
+        CheckBox:
+            group: 'genre_group'
+            on_active: root.scifi_genre(*args)
+        Label:
+            text:'Cyberpunk'
+        CheckBox:
+            group: 'genre_group'
+            on_active: root.cyberpunk_genre(*args)
+        Label:
+            text:'Wild West'
+        CheckBox:
+            group: 'genre_group'
+            on_active: root.wildwest_genre(*args)
+        Label:
+            text:'Horror'
+        CheckBox:
+            group: 'genre_group'
+            on_active: root.horror_genre(*args)
+        Button:
+            text:'Back'
+            on_press: root.manager.current = 'welcome'
+        Button:
+            text:'Next'
+            on_press: root.manager.current = 'race'
+
+<SelectRace>:
+    GridLayout:
+        cols: 2
+        Label:
+            text:'Human'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.human(*args)
+        Label:
+            text:'Elf'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.elf(*args)
+        Label:
+            text:'Dwarf'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.dwarf(*args)
+        Label:
+            text:'Orc'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.orc(*args)
+        Label:
+            text:'Goblin'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.goblin(*args)
+        Button:
+            text:'Back'
+            on_press: root.manager.current = 'welcome'
+        Button:
+            text:'Next'
+            on_press: root.manager.current = 'profession'
+
+<SelectProfession>:
+    GridLayout:
+        cols: 2
+        Label:
+            text:'Warrior'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.warrior(*args)
+        Label:
+            text:'Rogue'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.rogue(*args)
+        Label:
+            text:'Wizard'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.wizard(*args)
+        Label:
+            text:'Priest'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.priest(*args)
+        Button:
+            text:'Back'
+            on_press: root.manager.current = 'welcome'
+        Button:
+            text:'Next'
+            on_press: root.manager.current = 'character_sheet'
+
+<CharacterSheet>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'System Type'
+        Label:
+            text: root.ruleset
+        Label:
+            text: 'Genre'
+        Label:
+            text: root.genre
+        Label:
+            text: 'Race'
+        Label:
+            text: root.race
+        Label:
+            text: 'profession'
+        Label:
+            text: root.profession
+        Label:
+            text:'Stats'
+        Label:
+            text: root.mysb
+        Label:
+            text:'Rolls'
+        Label:
+            text: root.mycr
+        Label:
+            text:'SCM'
+        Label:
+            text: root.myscm
+        Label:
+            text:'SCB'
+        Label:
+            text: root.myscb
+        Label:
+            text:'Skills'
+        Label:
+            text: root.skills
+        Button:
+            text:'Quit'
+            on_press: exit()
+        Button:
+            text:'Back to Start'
+            on_press: root.manager.current = 'welcome'
