@@ -9,6 +9,8 @@ from kivy.uix.widget import Widget
 from kivy.uix.gridlayout import GridLayout
 from kivy.properties import StringProperty, ListProperty
 from brp_stats import *
+#from brp_skills import *
+from brp_professions import *
 from dice_roller import *
 
 Builder.load_file("gui_brp.kv")
@@ -127,25 +129,25 @@ class SelectProfession(Screen):
 
     def warrior(self,*args):
         prof = 'Warrior'
-        skills_list = ['Melee Weapon', 'Missile Weapon', 'Shield', 'Ride', 'Brawl', 'Throw', 'Wrestle']
+        skills_list = warrior_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def rogue(self,*args):
         prof = 'Rogue'
-        skills_list = ['Melee Weapon', 'Dagger', 'Hide', 'Move Quietly', 'Brawl']
+        skills_list = rogue_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def wizard(self,*args):
         prof = 'Wizard'
-        skills_list = ['Quarterstaff', 'Magic Spell 1', 'Magic Spell 2', 'Spell Lore', 'Summon Elemental']
+        skills_list = rogue_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def priest(self,*args):
         prof = 'Priest'
-        skills_list = ['Mace', 'Repel Undead', 'Shield', 'Theology', 'Divine Spell']
+        skills_list = rogue_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
@@ -232,11 +234,8 @@ class CharacterSheet(Screen):
 
     def printskills(self,p):
         skills_string = ''
-        print (len(p))
-        for s in p:
-            skills_string = s + ". " + skills_string
-        skills = skills_string
-        self.skills = skills_string
+        skills = p
+        self.skills = p
         return skills
 
 sm = ScreenManager()
