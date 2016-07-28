@@ -77,42 +77,182 @@
             text:'Next'
             on_press: root.manager.current = 'race'
 
-<SelectRace>:
+<SelectRaceFantasy>:
     GridLayout:
         cols: 2
         Label:
             text:'Human'
         CheckBox:
             group: 'race_group'
-            on_active: root.human(*args)
+            on_active: root.fantasy_human(*args)
         Label:
             text:'Elf'
         CheckBox:
             group: 'race_group'
-            on_active: root.elf(*args)
+            on_active: root.fantasy_elf(*args)
         Label:
             text:'Dwarf'
         CheckBox:
             group: 'race_group'
-            on_active: root.dwarf(*args)
+            on_active: root.fantasy_dwarf(*args)
         Label:
             text:'Orc'
         CheckBox:
             group: 'race_group'
-            on_active: root.orc(*args)
+            on_active: root.fantasy_orc(*args)
         Label:
             text:'Goblin'
         CheckBox:
             group: 'race_group'
-            on_active: root.goblin(*args)
+            on_active: root.fantasy_goblin(*args)
         Button:
             text:'Back'
             on_press: root.manager.current = 'welcome'
         Button:
             text:'Next'
-            on_press: root.manager.current = 'profession'
+            on_press: root.manager.current = 'profession_fantasy'
 
-<SelectProfession>:
+<SelectRaceSciFi>:
+    GridLayout:
+        cols: 2
+        Label:
+            text:'Human'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.scifi_human(*args)
+        Label:
+            text:'Eldar'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.scifi_eldar(*args)
+        Label:
+            text:'Squat'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.scifi_squat(*args)
+        Label:
+            text:'Ork'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.scifi_ork(*args)
+        Label:
+            text:'Gretchin'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.scifi_gretchin(*args)
+        Button:
+            text:'Back'
+            on_press: root.manager.current = 'welcome'
+        Button:
+            text:'Next'
+            on_press: root.manager.current = 'profession_fantasy'
+
+<SelectRaceWildWest>:
+    GridLayout:
+        cols: 2
+        Label:
+            text:'Human'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.wildwest_human(*args)
+        Label:
+            text:'Elf'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.wildwest_elf(*args)
+        Label:
+            text:'Dwarf'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.wildwest_dwarf(*args)
+        Label:
+            text:'Orc Tribe'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.wildwest_orc(*args)
+        Label:
+            text:'Goblin Tribe'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.wildwest_goblin(*args)
+        Button:
+            text:'Back'
+            on_press: root.manager.current = 'welcome'
+        Button:
+            text:'Next'
+            on_press: root.manager.current = 'profession_fantasy'
+
+<SelectRaceHorror>:
+    GridLayout:
+        cols: 2
+        Label:
+            text:'Horror Human'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.horror_human(*args)
+        Label:
+            text:'Horror Elf'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.horror_elf(*args)
+        Label:
+            text:'Horror Dwarf'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.horror_dwarf(*args)
+        Label:
+            text:'Horror Orc'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.horror_orc(*args)
+        Label:
+            text:'Horror Goblin'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.horror_goblin(*args)
+        Button:
+            text:'Back'
+            on_press: root.manager.current = 'welcome'
+        Button:
+            text:'Next'
+            on_press: root.manager.current = 'profession_fantasy'
+
+<SelectRaceCyberpunk>:
+    GridLayout:
+        cols: 2
+        Label:
+            text:'Cyber Human'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.cyber_human(*args)
+        Label:
+            text:'Cyber Elf'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.cyber_elf(*args)
+        Label:
+            text:'Cyber Dwarf'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.cyber_dwarf(*args)
+        Label:
+            text:'Cyber Orc'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.cyber_orc(*args)
+        Label:
+            text:'Cyber Goblin'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.cyber_goblin(*args)
+        Button:
+            text:'Back'
+            on_press: root.manager.current = 'welcome'
+        Button:
+            text:'Next'
+            on_press: root.manager.current = 'profession_fantasy'
+
+<SelectProfessionFantasy>:
     GridLayout:
         cols: 2
         Label:
@@ -135,6 +275,126 @@
         CheckBox:
             group: 'profession_group'
             on_active: root.priest(*args)
+        Button:
+            text:'Back'
+            on_press: root.manager.current = 'welcome'
+        Button:
+            text:'Next'
+            on_press: root.manager.current = 'character_sheet'
+
+<SelectProfessionSciFi>:
+    GridLayout:
+        cols: 2
+        Label:
+            text:'Soldier'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.soldier(*args)
+        Label:
+            text:'Smuggler'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.smuggler(*args)
+        Label:
+            text:'Psyker'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.psyker(*args)
+        Label:
+            text:'Marine'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.marine(*args)
+        Button:
+            text:'Back'
+            on_press: root.manager.current = 'welcome'
+        Button:
+            text:'Next'
+            on_press: root.manager.current = 'character_sheet'
+
+<SelectProfessionWildWest>:
+    GridLayout:
+        cols: 2
+        Label:
+            text:'Cavalry'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.cavalry(*args)
+        Label:
+            text:'Gambler'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.gambler(*args)
+        Label:
+            text:'Mad Scientist'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.madscientist(*args)
+        Label:
+            text:'Brave'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.brave(*args)
+        Button:
+            text:'Back'
+            on_press: root.manager.current = 'welcome'
+        Button:
+            text:'Next'
+            on_press: root.manager.current = 'character_sheet'
+
+<SelectProfessionHorror>:
+    GridLayout:
+        cols: 2
+        Label:
+            text:'Doctor'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.doctor(*args)
+        Label:
+            text:'Detective'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.detective(*args)
+        Label:
+            text:'Sorcerer'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.sorcerer(*args)
+        Label:
+            text:'Adventurer'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.adventurer(*args)
+        Button:
+            text:'Back'
+            on_press: root.manager.current = 'welcome'
+        Button:
+            text:'Next'
+            on_press: root.manager.current = 'character_sheet'
+
+<SelectProfessionCyberpunk>:
+    GridLayout:
+        cols: 2
+        Label:
+            text:'Solo'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.solo(*args)
+        Label:
+            text:'Fixer'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.fixer(*args)
+        Label:
+            text:'Rocker'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.rocker(*args)
+        Label:
+            text:'Marine'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.techie(*args)
         Button:
             text:'Back'
             on_press: root.manager.current = 'welcome'
