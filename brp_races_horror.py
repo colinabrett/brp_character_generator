@@ -38,25 +38,38 @@ def horror_human_stats():
     }
     return stats
 
-def horror_elf_stats():
+def horror_ghoul_stats():
     stats = {
-       'STR':straight_dice(2,6,2),\
+       'STR':straight_dice(4,6,0),\
        'CON':straight_dice(3,6,0),\
-       'SIZ':straight_dice(2,4,4),\
-       'INT':straight_dice(3,6,6),\
+       'SIZ':straight_dice(2,6,6),\
+       'INT':straight_dice(3,6,0),\
        'POW':straight_dice(2,6,6),\
-       'DEX':straight_dice(3,6,3),\
+       'DEX':straight_dice(3,6,0),\
+       'APP':straight_dice(2,6,0),\
+       'EDU':straight_dice(2,6,0)
+    }
+    return stats
+
+def horror_vampire_stats():
+    stats = {
+       'STR':straight_dice(3,6,0) * 2,\
+       'CON':straight_dice(3,6,0) * 2,\
+       'SIZ':straight_dice(3,6,0),\
+       'INT':straight_dice(2,6,6),\
+       'POW':straight_dice(2,6,6),\
+       'DEX':straight_dice(3,6,0),\
        'APP':straight_dice(3,6,0),\
        'EDU':straight_dice(3,6,0)
     }
     return stats
 
-def horror_dwarf_stats():
+def horror_brawn_stats():
     stats = {
-       'STR':straight_dice(4,6,0),\
-       'CON':straight_dice(1,6,12),\
-       'SIZ':straight_dice(1,4,4),\
-       'INT':straight_dice(2,6,6),\
+       'STR':straight_dice(3,6,3),\
+       'CON':straight_dice(3,6,3),\
+       'SIZ':straight_dice(2,6,6),\
+       'INT':straight_dice(2,6,3),\
        'POW':straight_dice(3,6,0),\
        'DEX':straight_dice(3,6,0),\
        'APP':straight_dice(3,6,0),\
@@ -64,29 +77,28 @@ def horror_dwarf_stats():
     }
     return stats
 
-def horror_orc_stats():
+def horror_brains_stats():
     stats = {
-       'STR':straight_dice(4,6,0),\
+       'STR':straight_dice(3,6,0),\
        'CON':straight_dice(3,6,0),\
-       'SIZ':straight_dice(2,6,2),\
-       'INT':straight_dice(3,6,0),\
-       'POW':straight_dice(2,6,3),\
-       'DEX':straight_dice(4,6,0),\
-       'APP':straight_dice(2,6,0),\
-       'EDU':straight_dice(2,6,0)
+       'SIZ':straight_dice(2,6,6),\
+       'INT':straight_dice(2,6,6),\
+       'POW':straight_dice(3,6,0),\
+       'DEX':straight_dice(3,6,0),\
+       'APP':straight_dice(3,6,0),\
+       'EDU':straight_dice(3,6,3)
     }
     return stats
 
-def horror_goblin_stats():
+def horror_lowlife_stats():
     stats = {
-       'STR':straight_dice(2,6,0),\
-       'CON':straight_dice(3,6,0),\
-       'SIZ':straight_dice(2,6,0),\
-       'INT':straight_dice(3,6,0),\
-       'POW':straight_dice(2,6,3),\
-       'DEX':straight_dice(4,6,0),\
-       'APP':straight_dice(2,6,0),\
-       'EDU':straight_dice(2,6,0)
+       'STR':straight_dice(2,6,3),\
+       'CON':straight_dice(2,6,3),\
+       'SIZ':straight_dice(2,6,6),\
+       'INT':straight_dice(2,6,3),\
+       'POW':straight_dice(3,6,0),\
+       'DEX':straight_dice(3,6,0),\
+       'APP':straight_dice(3,6,0),\
+       'EDU':straight_dice(2,6,3)
     }
     return stats
-

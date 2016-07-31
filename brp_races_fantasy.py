@@ -89,3 +89,16 @@ def fantasy_goblin_stats():
     }
     return stats
 
+def fantasy_halfling_stats():
+    stats = {
+       'STR':straight_dice(2,6,0),\
+       'CON':straight_dice(2,6,12),\
+       'SIZ':straight_dice(1,3,3),\
+       'INT':straight_dice(3,6,0),\
+       'POW':straight_dice(2,6,3),\
+       'DEX':straight_dice(2,6,10),\
+       'APP':straight_dice(2,6,0),\
+       'EDU':straight_dice(3,6,0)
+    }
+    return stats
+

@@ -89,3 +89,55 @@ def scifi_gretchin_stats():
     }
     return stats
 
+def scifi_wookiee_stats():
+    stats = {
+       'STR':straight_dice(3,6,6),\
+       'CON':straight_dice(3,6,3),\
+       'SIZ':straight_dice(3,6,8),\
+       'INT':straight_dice(3,6,0),\
+       'POW':straight_dice(3,6,0),\
+       'DEX':straight_dice(3,6,0),\
+       'APP':straight_dice(2,6,3),\
+       'EDU':straight_dice(2,6,6)
+    }
+    return stats
+
+def scifi_grey_stats():
+    stats = {
+       'STR':straight_dice(1,6,3),\
+       'CON':straight_dice(2,6,0),\
+       'SIZ':straight_dice(1,6,3),\
+       'INT':straight_dice(2,6,12),\
+       'POW':straight_dice(3,6,0),\
+       'DEX':straight_dice(3,6,3),\
+       'APP':straight_dice(1,6,1),\
+       'EDU':straight_dice(2,6,6)
+    }
+    return stats
+
+def scifi_gungan_stats():
+    stats = {
+       'STR':straight_dice(3,6,0),\
+       'CON':straight_dice(3,6,3),\
+       'SIZ':straight_dice(3,6,3),\
+       'INT':straight_dice(3,6,0),\
+       'POW':straight_dice(3,6,0),\
+       'DEX':straight_dice(3,6,0),\
+       'APP':straight_dice(3,6,0),\
+       'EDU':straight_dice(2,6,6)
+    }
+    return stats
+
+def scifi_zabrak_stats():
+    stats = {
+       'STR':straight_dice(3,6,0),\
+       'CON':straight_dice(3,6,0),\
+       'SIZ':straight_dice(2,6,6),\
+       'INT':straight_dice(2,6,6),\
+       'POW':straight_dice(3,6,0),\
+       'DEX':straight_dice(3,6,0),\
+       'APP':straight_dice(3,6,0),\
+       'EDU':straight_dice(2,6,6)
+    }
+    return stats
+

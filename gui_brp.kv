@@ -105,6 +105,11 @@
         CheckBox:
             group: 'race_group'
             on_active: root.fantasy_goblin(*args)
+        Label:
+            text:'Halfling'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.fantasy_halfling(*args)
         Button:
             text:'Back'
             on_press: root.manager.current = 'welcome'
@@ -140,6 +145,26 @@
         CheckBox:
             group: 'race_group'
             on_active: root.scifi_gretchin(*args)
+        Label:
+            text:'Wookiee'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.scifi_wookiee(*args)
+        Label:
+            text:'Grey'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.scifi_grey(*args)
+        Label:
+            text:'Gungan'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.scifi_gungan(*args)
+        Label:
+            text:'Zabrak'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.scifi_zabrak(*args)
         Button:
             text:'Back'
             on_press: root.manager.current = 'welcome'
@@ -156,25 +181,25 @@
             group: 'race_group'
             on_active: root.wildwest_human(*args)
         Label:
-            text:'Elf'
+            text:'American Indian'
         CheckBox:
             group: 'race_group'
-            on_active: root.wildwest_elf(*args)
+            on_active: root.wildwest_amerindian(*args)
         Label:
-            text:'Dwarf'
+            text:'Brawn Over Brains'
         CheckBox:
             group: 'race_group'
-            on_active: root.wildwest_dwarf(*args)
+            on_active: root.wildwest_brawn(*args)
         Label:
-            text:'Orc Tribe'
+            text:'Brains Over Brawn'
         CheckBox:
             group: 'race_group'
-            on_active: root.wildwest_orc(*args)
+            on_active: root.wildwest_brains(*args)
         Label:
-            text:'Goblin Tribe'
+            text:'Lowlife Scum'
         CheckBox:
             group: 'race_group'
-            on_active: root.wildwest_goblin(*args)
+            on_active: root.wildwest_lowlife(*args)
         Button:
             text:'Back'
             on_press: root.manager.current = 'welcome'
@@ -191,25 +216,30 @@
             group: 'race_group'
             on_active: root.horror_human(*args)
         Label:
-            text:'Horror Elf'
+            text:'Ghoul'
         CheckBox:
             group: 'race_group'
-            on_active: root.horror_elf(*args)
+            on_active: root.horror_ghoul(*args)
         Label:
-            text:'Horror Dwarf'
+            text:'Vampire'
         CheckBox:
             group: 'race_group'
-            on_active: root.horror_dwarf(*args)
+            on_active: root.horror_vampire(*args)
         Label:
-            text:'Horror Orc'
+            text:'Brawn Over Brains'
         CheckBox:
             group: 'race_group'
-            on_active: root.horror_orc(*args)
+            on_active: root.horror_brawn(*args)
         Label:
-            text:'Horror Goblin'
+            text:'Brains Over Brawn'
         CheckBox:
             group: 'race_group'
-            on_active: root.horror_goblin(*args)
+            on_active: root.horror_brains(*args)
+        Label:
+            text:'Lowlife Scum'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.horror_lowlife(*args)
         Button:
             text:'Back'
             on_press: root.manager.current = 'welcome'
@@ -275,6 +305,46 @@
         CheckBox:
             group: 'profession_group'
             on_active: root.priest(*args)
+        Label:
+            text:'Explorer'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.explorer(*args)
+        Label:
+            text:'Noble'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.noble(*args)
+        Label:
+            text:'Assassin'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.assassin(*args)
+        Label:
+            text:'Beggar'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.beggar(*args)
+        Label:
+            text:'Artisan'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.artisan(*args)
+        Label:
+            text:'Merchant'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.merchant(*args)
+        Label:
+            text:'Shaman'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.shaman(*args)
+        Label:
+            text:'Hunter'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.hunter(*args)
         Button:
             text:'Back'
             on_press: root.manager.current = 'welcome'
@@ -286,25 +356,60 @@
     GridLayout:
         cols: 2
         Label:
-            text:'Soldier'
+            text:'Warrior'
         CheckBox:
             group: 'profession_group'
-            on_active: root.soldier(*args)
-        Label:
-            text:'Smuggler'
-        CheckBox:
-            group: 'profession_group'
-            on_active: root.smuggler(*args)
+            on_active: root.warrior(*args)
         Label:
             text:'Psyker'
         CheckBox:
             group: 'profession_group'
             on_active: root.psyker(*args)
         Label:
+            text:'Jedi'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.jedi(*args)
+        Label:
+            text:'Rogue'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.rogue(*args)
+        Label:
+            text:'Smuggler'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.smuggler(*args)
+        Label:
+            text:'Noble'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.noble(*args)
+        Label:
+            text:'Technician'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.technician(*args)
+        Label:
+            text:'Agent'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.agent(*args)
+        Label:
             text:'Marine'
         CheckBox:
             group: 'profession_group'
             on_active: root.marine(*args)
+        Label:
+            text:'Gambler'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.gambler(*args)
+        Label:
+            text:'Trader'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.trader(*args)
         Button:
             text:'Back'
             on_press: root.manager.current = 'welcome'
@@ -316,25 +421,55 @@
     GridLayout:
         cols: 2
         Label:
-            text:'Cavalry'
+            text:'Soldier'
         CheckBox:
             group: 'profession_group'
-            on_active: root.cavalry(*args)
+            on_active: root.soldier(*args)
         Label:
-            text:'Gambler'
+            text:'Occultist'
         CheckBox:
             group: 'profession_group'
-            on_active: root.gambler(*args)
+            on_active: root.occultist(*args)
+        Label:
+            text:'Preacher'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.preacher(*args)
+        Label:
+            text:'Criminal'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.criminal(*args)
         Label:
             text:'Mad Scientist'
         CheckBox:
             group: 'profession_group'
             on_active: root.madscientist(*args)
         Label:
-            text:'Brave'
+            text:'Gambler'
         CheckBox:
             group: 'profession_group'
-            on_active: root.brave(*args)
+            on_active: root.gambler(*args)
+        Label:
+            text:'Sheriff'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.sheriff(*args)
+        Label:
+            text:'Doctor'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.doctor(*args)
+        Label:
+            text:'Tribesman'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.tribesman(*args)
+        Label:
+            text:'Frontiersman'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.frontiersman(*args)
         Button:
             text:'Back'
             on_press: root.manager.current = 'welcome'
@@ -346,25 +481,55 @@
     GridLayout:
         cols: 2
         Label:
-            text:'Doctor'
+            text:'Mercenary'
         CheckBox:
             group: 'profession_group'
-            on_active: root.doctor(*args)
+            on_active: root.mercenary(*args)
+        Label:
+            text:'Occultist'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.occultist(*args)
+        Label:
+            text:'Priest'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.priest(*args)
+        Label:
+            text:'Criminal'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.criminal(*args)
+        Label:
+            text:'Journalist'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.journalist(*args)
+        Label:
+            text:'Spy'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.spy(*args)
+        Label:
+            text:'Scientist'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.scientist(*args)
+        Label:
+            text:'Gambler'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.gambler(*args)
         Label:
             text:'Detective'
         CheckBox:
             group: 'profession_group'
             on_active: root.detective(*args)
         Label:
-            text:'Sorcerer'
+            text:'Doctor'
         CheckBox:
             group: 'profession_group'
-            on_active: root.sorcerer(*args)
-        Label:
-            text:'Adventurer'
-        CheckBox:
-            group: 'profession_group'
-            on_active: root.adventurer(*args)
+            on_active: root.doctor(*args)
         Button:
             text:'Back'
             on_press: root.manager.current = 'welcome'
@@ -391,10 +556,40 @@
             group: 'profession_group'
             on_active: root.rocker(*args)
         Label:
-            text:'Marine'
+            text:'Techie'
         CheckBox:
             group: 'profession_group'
             on_active: root.techie(*args)
+        Label:
+            text:'Corporate'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.corporate(*args)
+        Label:
+            text:'Cop'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.cop(*args)
+        Label:
+            text:'Nomad'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.nomad(*args)
+        Label:
+            text:'MedTech'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.medtech(*args)
+        Label:
+            text:'Netrunner'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.netrunner(*args)
+        Label:
+            text:'Media'
+        CheckBox:
+            group: 'profession_group'
+            on_active: root.media(*args)
         Button:
             text:'Back'
             on_press: root.manager.current = 'welcome'

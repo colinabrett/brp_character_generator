@@ -31,6 +31,10 @@ from brp_races_wildwest import *
 from brp_races_horror import *
 from dice_roller import *
 
+#
+# Import KV file
+#
+
 Builder.load_file("gui_brp.kv")
 
 class WelcomeScreen(Screen):
@@ -150,6 +154,17 @@ class SelectRaceFantasy(Screen):
             sm.get_screen("character_sheet").printrace(race)
             sm.current = 'profession_fantasy'
 
+    def fantasy_halfling(self,a,b):
+        if b==True:
+            race="Halfling"
+            statblock = fantasy_halfling_stats()
+            characteristic_rolls = rolls(statblock)
+            skill_category_modifiers = scm(statblock)
+            skill_category_bonuses = scb(statblock)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
+            sm.get_screen("character_sheet").printrace(race)
+            sm.current = 'profession_fantasy'
+
 class SelectRaceSciFi(Screen):
 
     def scifi_human(self,a,b):
@@ -207,6 +222,49 @@ class SelectRaceSciFi(Screen):
             sm.get_screen("character_sheet").printrace(race)
             sm.current = 'profession_scifi'
 
+    def scifi_wookiee(self,a,b):
+        if b==True:
+            race="Wookiee"
+            statblock = scifi_wookiee_stats()
+            characteristic_rolls = rolls(statblock)
+            skill_category_modifiers = scm(statblock)
+            skill_category_bonuses = scb(statblock)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
+            sm.get_screen("character_sheet").printrace(race)
+            sm.current = 'profession_scifi'
+
+    def scifi_grey(self,a,b):
+        if b==True:
+            race="Grey"
+            statblock = scifi_grey_stats()
+            characteristic_rolls = rolls(statblock)
+            skill_category_modifiers = scm(statblock)
+            skill_category_bonuses = scb(statblock)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
+            sm.get_screen("character_sheet").printrace(race)
+            sm.current = 'profession_scifi'
+
+    def scifi_gungan(self,a,b):
+        if b==True:
+            race="Gungan"
+            statblock = scifi_gungan_stats()
+            characteristic_rolls = rolls(statblock)
+            skill_category_modifiers = scm(statblock)
+            skill_category_bonuses = scb(statblock)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
+            sm.get_screen("character_sheet").printrace(race)
+            sm.current = 'profession_scifi'
+
+    def scifi_zabrak(self,a,b):
+        if b==True:
+            race="Zabrak"
+            statblock = scifi_zabrak_stats()
+            characteristic_rolls = rolls(statblock)
+            skill_category_modifiers = scm(statblock)
+            skill_category_bonuses = scb(statblock)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
+            sm.get_screen("character_sheet").printrace(race)
+            sm.current = 'profession_scifi'
 
 class SelectRaceWildWest(Screen):
 
@@ -221,10 +279,10 @@ class SelectRaceWildWest(Screen):
             sm.get_screen("character_sheet").printrace(race)
             sm.current = 'profession_wildwest'
 
-    def wildwest_elf(self,a,b):
+    def wildwest_amerindian(self,a,b):
         if b==True:
-            race="Elf"
-            statblock = wildwest_elf_stats()
+            race="American Indian"
+            statblock = wildwest_amerindian_stats()
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
@@ -232,10 +290,10 @@ class SelectRaceWildWest(Screen):
             sm.get_screen("character_sheet").printrace(race)
             sm.current = 'profession_wildwest'
 
-    def wildwest_dwarf(self,a,b):
+    def wildwest_brawn(self,a,b):
         if b==True:
-            race="Dwarf"
-            statblock = wildwest_dwarf_stats()
+            race="Brawn Over Brains"
+            statblock = wildwest_brawn_stats()
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
@@ -243,10 +301,10 @@ class SelectRaceWildWest(Screen):
             sm.get_screen("character_sheet").printrace(race)
             sm.current = 'profession_wildwest'
 
-    def wildwest_orc(self,a,b):
+    def wildwest_brains(self,a,b):
         if b==True:
-            race="Orc Tribe"
-            statblock = wildwest_orc_stats()
+            race="Brains Over Brawn"
+            statblock = wildwest_brains_stats()
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
@@ -254,10 +312,10 @@ class SelectRaceWildWest(Screen):
             sm.get_screen("character_sheet").printrace(race)
             sm.current = 'profession_wildwest'
 
-    def wildwest_goblin(self,a,b):
+    def wildwest_lowlife(self,a,b):
         if b==True:
-            race="Goblin Tribe"
-            statblock = wildwest_goblin_stats()
+            race="Lowlife Scum"
+            statblock = wildwest_lowlife_stats()
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
@@ -279,10 +337,10 @@ class SelectRaceHorror(Screen):
             sm.get_screen("character_sheet").printrace(race)
             sm.current = 'profession_horror'
 
-    def horror_elf(self,a,b):
+    def horror_ghoul(self,a,b):
         if b==True:
-            race="Horror Elf"
-            statblock = horror_elf_stats()
+            race="Ghoul"
+            statblock = horror_ghoul_stats()
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
@@ -290,10 +348,10 @@ class SelectRaceHorror(Screen):
             sm.get_screen("character_sheet").printrace(race)
             sm.current = 'profession_horror'
 
-    def horror_dwarf(self,a,b):
+    def horror_vampire(self,a,b):
         if b==True:
-            race="Horror Dwarf"
-            statblock = horror_dwarf_stats()
+            race="Vampire"
+            statblock = horror_vampire_stats()
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
@@ -301,10 +359,10 @@ class SelectRaceHorror(Screen):
             sm.get_screen("character_sheet").printrace(race)
             sm.current = 'profession_horror'
 
-    def horror_orc(self,a,b):
+    def horror_brawn(self,a,b):
         if b==True:
-            race="Horror Orc"
-            statblock = horror_orc_stats()
+            race="Brawn Over Brains"
+            statblock = horror_brawn_stats()
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
@@ -312,10 +370,21 @@ class SelectRaceHorror(Screen):
             sm.get_screen("character_sheet").printrace(race)
             sm.current = 'profession_horror'
 
-    def horror_goblin(self,a,b):
+    def horror_brains(self,a,b):
         if b==True:
-            race="Horror Goblin"
-            statblock = horror_goblin_stats()
+            race="Brains Over Brawn"
+            statblock = horror_brains_stats()
+            characteristic_rolls = rolls(statblock)
+            skill_category_modifiers = scm(statblock)
+            skill_category_bonuses = scb(statblock)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
+            sm.get_screen("character_sheet").printrace(race)
+            sm.current = 'profession_horror'
+
+    def horror_lowlife(self,a,b):
+        if b==True:
+            race="Lowlife Scum"
+            statblock = horror_lowlife_stats()
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
@@ -404,24 +473,60 @@ class SelectProfessionFantasy(Screen):
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
-    def priest(self,*args):
-        prof = 'Priest'
-        skills_list = priest_skillset()
+    def explorer(self,*args):
+        prof = 'Explorer'
+        skills_list = explorer_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def noble(self,*args):
+        prof = 'Noble'
+        skills_list = noble_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def assassin(self,*args):
+        prof = 'Assassin'
+        skills_list = assassin_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def beggar(self,*args):
+        prof = 'Beggar'
+        skills_list = beggar_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def artisan(self,*args):
+        prof = 'Artisan'
+        skills_list = artisan_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def merchant(self,*args):
+        prof = 'Merchant'
+        skills_list = merchant_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def shaman(self,*args):
+        prof = 'Shaman'
+        skills_list = shaman_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def hunter(self,*args):
+        prof = 'Hunter'
+        skills_list = hunter_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
 class SelectProfessionSciFi(Screen):
 #   pass
 
-    def soldier(self,*args):
-        prof = 'Soldier'
+    def warrior(self,*args):
+        prof = 'Warrior'
         skills_list = warrior_skillset()
-        sm.get_screen("character_sheet").printprofession(prof)
-        sm.get_screen("character_sheet").printskills(skills_list)
-
-    def smuggler(self,*args):
-        prof = 'Smuggler'
-        skills_list = smuggler_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
@@ -431,9 +536,51 @@ class SelectProfessionSciFi(Screen):
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
-    def marine(self,*args):
-        prof = 'Marine'
-        skills_list = marine_skillset()
+    def jedi(self,*args):
+        prof = 'Jedi'
+        skills_list = jedi_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def rogue(self,*args):
+        prof = 'Rogue'
+        skills_list = rogue_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def smuggler(self,*args):
+        prof = 'Smuggler'
+        skills_list = smuggler_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def noble(self,*args):
+        prof = 'Noble'
+        skills_list = noble_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def technician(self,*args):
+        prof = 'Technician'
+        skills_list = technician_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def agent(self,*args):
+        prof = 'Agent'
+        skills_list = agent_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def gambler(self,*args):
+        prof = 'Gambler'
+        skills_list = gambler_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def trader(self,*args):
+        prof = 'Trader'
+        skills_list = trader_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
@@ -464,18 +611,66 @@ class SelectProfessionCyberpunk(Screen):
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
-class SelectProfessionWildWest(Screen):
-#   pass
-
-    def cavalry(self,*args):
-        prof = 'Cavalry'
-        skills_list = cavalry_skillset()
+    def corporate(self,*args):
+        prof = 'Corporate'
+        skills_list = corporate_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
-    def gambler(self,*args):
-        prof = 'Gambler'
-        skills_list = gambler_skillset()
+    def cop(self,*args):
+        prof = 'Cop'
+        skills_list = cop_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def nomad(self,*args):
+        prof = 'Nomad'
+        skills_list = nomad_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def medtech(self,*args):
+        prof = 'Medtech'
+        skills_list = medtech_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def netrunner(self,*args):
+        prof = 'Netrunner'
+        skills_list = netrunner_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def media(self,*args):
+        prof = 'Media'
+        skills_list = media_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+class SelectProfessionWildWest(Screen):
+#   pass
+
+    def soldier(self,*args):
+        prof = 'Soldier'
+        skills_list = soldier_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def occultist(self,*args):
+        prof = 'Occultist'
+        skills_list = occultist_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def preacher(self,*args):
+        prof = 'Preacher'
+        skills_list = preacher_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def criminal(self,*args):
+        prof = 'Criminal'
+        skills_list = criminal_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
@@ -485,18 +680,78 @@ class SelectProfessionWildWest(Screen):
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
-    def brave(self,*args):
-        prof = 'Brave'
-        skills_list = brave_skillset()
+    def gambler(self,*args):
+        prof = 'Gambler'
+        skills_list = gambler_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def sheriff(self,*args):
+        prof = 'Sheriff'
+        skills_list = sheriff_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def doctor(self,*args):
+        prof = 'Doctor'
+        skills_list = doctor_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def tribesman(self,*args):
+        prof = 'Tribesman'
+        skills_list = tribesman_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
 class SelectProfessionHorror(Screen):
 #   pass
 
-    def doctor(self,*args):
-        prof = 'Doctor'
-        skills_list = doctor_skillset()
+    def mercenary(self,*args):
+        prof = 'Mercenary'
+        skills_list = mercenary_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def occultist(self,*args):
+        prof = 'Occultist'
+        skills_list = occultist_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def priest(self,*args):
+        prof = 'Priest'
+        skills_list = priest_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def criminal(self,*args):
+        prof = 'Criminal'
+        skills_list = criminal_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def journalist(self,*args):
+        prof = 'Journalist'
+        skills_list = journalist_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def spy(self,*args):
+        prof = 'Spy'
+        skills_list = spy_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def scientist(self,*args):
+        prof = 'Scientist'
+        skills_list = scientist_skillset()
+        sm.get_screen("character_sheet").printprofession(prof)
+        sm.get_screen("character_sheet").printskills(skills_list)
+
+    def gambler(self,*args):
+        prof = 'Gambler'
+        skills_list = gambler_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
@@ -506,15 +761,9 @@ class SelectProfessionHorror(Screen):
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
-    def sorcerer(self,*args):
-        prof = 'Sorcerer'
-        skills_list = sorcerer_skillset()
-        sm.get_screen("character_sheet").printprofession(prof)
-        sm.get_screen("character_sheet").printskills(skills_list)
-
-    def adventurer(self,*args):
-        prof = 'Adventurer'
-        skills_list = adventurer_skillset()
+    def doctor(self,*args):
+        prof = 'Doctor'
+        skills_list = doctor_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
@@ -525,7 +774,6 @@ class CharacterSheet(Screen):
     myscm = StringProperty()
     myscb = StringProperty()
     ruleset = StringProperty()
-#   game = StringProperty()
     race = StringProperty()
     genre = StringProperty()
     profession = StringProperty()
@@ -569,7 +817,7 @@ class CharacterSheet(Screen):
         return scb_string
 
     def printcharacter(self,my_sb,my_cr,my_scm,my_scb):
-#       print(game)
+
         self.mysb = self.print_stats(my_sb)
         self.mycr = self.print_rolls(my_cr)
         self.myscm = self.print_scm(my_scm)

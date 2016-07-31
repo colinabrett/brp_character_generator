@@ -37,25 +37,25 @@ def wildwest_human_stats():
     }
     return stats
 
-def wildwest_elf_stats():
+def wildwest_amerindian_stats():
     stats = {
-       'STR':straight_dice(2,6,2),\
-       'CON':straight_dice(3,6,0),\
-       'SIZ':straight_dice(2,4,4),\
-       'INT':straight_dice(3,6,6),\
-       'POW':straight_dice(2,6,6),\
+       'STR':straight_dice(3,6,3),\
+       'CON':straight_dice(3,6,3),\
+       'SIZ':straight_dice(2,6,6),\
+       'INT':straight_dice(2,6,6),\
+       'POW':straight_dice(3,6,0),\
        'DEX':straight_dice(3,6,3),\
        'APP':straight_dice(3,6,0),\
        'EDU':straight_dice(3,6,0)
     }
     return stats
 
-def wildwest_dwarf_stats():
+def wildwest_brawn_stats():
     stats = {
-       'STR':straight_dice(4,6,0),\
-       'CON':straight_dice(1,6,12),\
-       'SIZ':straight_dice(1,4,4),\
-       'INT':straight_dice(2,6,6),\
+       'STR':straight_dice(3,6,3),\
+       'CON':straight_dice(3,6,3),\
+       'SIZ':straight_dice(2,6,6),\
+       'INT':straight_dice(2,6,3),\
        'POW':straight_dice(3,6,0),\
        'DEX':straight_dice(3,6,0),\
        'APP':straight_dice(3,6,0),\
@@ -63,29 +63,28 @@ def wildwest_dwarf_stats():
     }
     return stats
 
-def wildwest_orc_stats():
+def wildwest_brains_stats():
     stats = {
-       'STR':straight_dice(4,6,0),\
+       'STR':straight_dice(3,6,0),\
        'CON':straight_dice(3,6,0),\
-       'SIZ':straight_dice(2,6,2),\
-       'INT':straight_dice(3,6,0),\
-       'POW':straight_dice(2,6,3),\
-       'DEX':straight_dice(4,6,0),\
-       'APP':straight_dice(2,6,0),\
-       'EDU':straight_dice(2,6,0)
+       'SIZ':straight_dice(2,6,6),\
+       'INT':straight_dice(2,6,6),\
+       'POW':straight_dice(3,6,0),\
+       'DEX':straight_dice(3,6,0),\
+       'APP':straight_dice(3,6,0),\
+       'EDU':straight_dice(3,6,3)
     }
     return stats
 
-def wildwest_goblin_stats():
+def wildwest_lowlife_stats():
     stats = {
-       'STR':straight_dice(2,6,0),\
-       'CON':straight_dice(3,6,0),\
-       'SIZ':straight_dice(2,6,0),\
-       'INT':straight_dice(3,6,0),\
-       'POW':straight_dice(2,6,3),\
-       'DEX':straight_dice(4,6,0),\
-       'APP':straight_dice(2,6,0),\
-       'EDU':straight_dice(2,6,0)
+       'STR':straight_dice(2,6,3),\
+       'CON':straight_dice(2,6,3),\
+       'SIZ':straight_dice(2,6,6),\
+       'INT':straight_dice(2,6,3),\
+       'POW':straight_dice(3,6,0),\
+       'DEX':straight_dice(3,6,0),\
+       'APP':straight_dice(3,6,0),\
+       'EDU':straight_dice(2,6,3)
     }
     return stats
-
