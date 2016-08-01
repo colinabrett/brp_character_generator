@@ -83,4 +83,21 @@ def drop_high(number_of_dice = 1, number_of_sides = 6 , modifiers = 0, verbose =
         print ("Total with highest roll dropped = ", roll_total - max)
     return roll_total - max
 
-
+# converts a string like '3d6+0' into a list suitable for the dice rolling functions above
+# will work with any of the following:
+# 2d6+2 -- [ 2, 6, +2]
+# 3d8-4 -- [ 3, 8, -4]
+# 3D6 -- [ 3, 6, 0 ]
+# These values can be fed into the dice roller functions above
+import re
+def parseDiceString(diceString):
+    nodice = [0,0,0]
+    p = re.compile('(\d+)[dD](\d+)([+-](\d+))?')
+    match = p.match(diceString)
+    if match is not None:
+        if len(match.groups()) == 4:
+            nodice[0] = match.group(1)
+            nodice[1] = match.group(2)
+            if match.group(3) is not None:
+                nodice[2] = match.group(3)
+    return nodice
