@@ -9,7 +9,7 @@ def skills_and_scores(skills,scores):
         skills_string = skills_string + s + " " + ss + "% "
     return skills_string
 
-def warrior_skillset():
+def scifi_warrior_skillset():
     skill_list = ['Melee Weapon', 'Energy Weapon', 'Heavy Weapon', 'Brawl', 'Dodge', 
                   'Hide', 'Spot', 'First Aid', 'Martial Art (Style)', 'Repair (Mechanical)']
     base_skill_scores = {
@@ -27,7 +27,7 @@ def warrior_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def psyker_skillset():
+def scifi_psyker_skillset():
     skill_list = ['Projection', 'Knowledge (Psionics)', 'Knowledge (Galactic)', 'Sense', 'Language (Alien)',
                   'Research', 'Insight', 'Psychotherapy', 'Spot', 'Listen']
     base_skill_scores = {
@@ -45,7 +45,7 @@ def psyker_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def jedi_skillset():
+def scifi_jedi_skillset():
     skill_list = ['Melee Weapon (Energy Sword)', 'Command', 'Dodge', 'Jump', 'Knowledge (Galactic)',
                   'Pilot (Starfighter)', 'Navigate', 'Language (Alien)', 'Insight', 'Spot']
     base_skill_scores = {
@@ -63,7 +63,7 @@ def jedi_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def rogue_skillset():
+def scifi_rogue_skillset():
     skill_list = ['Energy Weapon', 'Spot', 'Etiquette (Street)', 'Brawl', 'Hide',
                   'Fast Talk', 'Melee Weapon', 'Knowledge (Law)', 'Technical Skill (Electronic Security)', 'Insight']
     base_skill_scores = {
@@ -78,10 +78,10 @@ def rogue_skillset():
         'Technical Skill (Electronic Security)': 30,
         'Insight': 30
     }
-    dskill_set = skills_and_scores(skill_list,base_skill_scores)
+    skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def smuggler_skillset():
+def scifi_smuggler_skillset():
     skill_list = ['Pilot (Starship)', 'Hide', 'Navigate', 'Brawl', 'Knowledge (Galactic)',
                   'Fast Talk', 'Energy Weapon', 'Melee Weapon', 'Knowledge (Law)', 'Technical Skill (Electronic Security)']
     base_skill_scores = {
@@ -99,7 +99,7 @@ def smuggler_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def noble_skillset():
+def scifi_noble_skillset():
     skill_list = ['Etiquette', 'Language (Alien)', 'Status', 'Technical Skill (Computer Use)', 'Bargain',
                   'Command', 'Knowledge (Politics)', 'Knowledge (Galactic)', 'Appraise', 'Persuade']
     base_skill_scores = {
@@ -117,7 +117,7 @@ def noble_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def technician_skillset():
+def scifi_technician_skillset():
     skill_list = ['Repair (Electrical)', 'Repair (Mechanical)', 'Technical Skill (Electronics)', 'Technical Skill (Computer Use)',
                   'Science (Planetology)', 'Science (Quantum)', 'Teach', 'Fine Manipulation', 'Research', 'Heavy Machinery']
     base_skill_scores = {
@@ -135,7 +135,7 @@ def technician_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def agent_skillset():
+def scifi_agent_skillset():
     skill_list = ['Energy Weapon', 'Knowledge (Espionage)', 'Pilot (Any)', 'Listen', 'Research',
                   'Spot', 'Stealth', 'Brawl', 'Disguise', 'Technical Skill (Electronic Security)']
     base_skill_scores = {
@@ -153,7 +153,7 @@ def agent_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def gambler_skillset():
+def scifi_gambler_skillset():
     skill_list = ['Gaming', 'Fast Talk', 'Sleight of Hand', 'Bargain', 'Brawl',
                   'Dodge', 'Insight', 'Persuade', 'Science (Mathematics)', 'Spot']
     base_skill_scores = {
@@ -171,7 +171,7 @@ def gambler_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def trader_skillset():
+def scifi_trader_skillset():
     skill_list = ['Appraise', 'Bargain', 'Fast Talk', 'Knowledge (Galactic)', 'Knowledge (Business)',
                   'Persuade', 'Research', 'Navigate', 'Insight', 'Pilot (Freighter)']
     base_skill_scores = {

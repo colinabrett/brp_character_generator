@@ -613,28 +613,32 @@
         Label:
             text: root.race
         Label:
-            text: 'profession'
+            text: 'Profession'
         Label:
             text: root.profession
         Label:
-            text:'Stats'
+            text:'Characteristics'
         Label:
             text: root.mysb
         Label:
-            text:'Rolls'
+            text:'Characteristic Rolls'
         Label:
             text: root.mycr
         Label:
-            text:'SCM'
+            text:'Skill Category Modifiers'
         Label:
             text: root.myscm
         Label:
-            text:'SCB'
+            text:'Skill Category Bonuses'
         Label:
             text: root.myscb
         Label:
             text:'Skills'
+# CB Added text wrapping
         Label:
+            size_hint_y: None
+            text_size: self.width, None
+            height: self.texture_size[1]
             text: root.skills
         Button:
             text:'Quit'

@@ -9,7 +9,7 @@ def skills_and_scores(skills,scores):
         skills_string = skills_string + s + " " + ss + "% "
     return skills_string
 
-def soldier_skillset():
+def wildwest_soldier_skillset():
     skill_list = [ 'Firearms (Rifle)', 'Brawl', 'Dodge', 'Spot', 'Navigate',
                    'First Aid', 'Hide', 'Repair (Mechanical)', 'Heavy Weapon', 'Demolition']
     base_skill_scores = {
@@ -27,7 +27,7 @@ def soldier_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def occultist_skillset():
+def wildwest_occultist_skillset():
     skill_list = [ 'Knowledge (Occult)', 'Perform (Rituals)', 'Fast Talk', 'Insight', 'Language (Other)',
                    'Knowledge (Folklore)', 'Research', 'Art (Any)', 'Craft (Any)', 'Knowledge (Blasphemous)']
     base_skill_scores = {
@@ -45,7 +45,7 @@ def occultist_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def preacher_skillset():
+def wildwest_preacher_skillset():
     skill_list = [ 'Knowledge (Religion)', 'Perform (Rituals)', 'Insight', 'Fast Talk', 'Knowledge (History)',
                    'Persuade', 'Perform (Oratory)', 'Teach', 'Research', 'Knowledge (Philosophy)']
     base_skill_scores = {
@@ -63,7 +63,7 @@ def preacher_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def criminal_skillset():
+def wildwest_criminal_skillset():
     skill_list = [ 'Bargain', 'Brawl', 'Melee Weapon', 'Appraise', 'Hide',
                    'Stealth', 'Drive (Car)', 'Persuade', 'Spot', 'Fine Manipulation']
     base_skill_scores = {
@@ -81,7 +81,7 @@ def criminal_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def madscientist_skillset():
+def wildwest_madscientist_skillset():
     skill_list = [ 'Science 1', 'Science 2', 'Technical Skill 1', 'Fine Manipulation', 'Persuade', 
                    'Research', 'Technical Skill (Computer Use)', 'Technical Skill 2', 'Science 3', 'Status']
     base_skill_scores = {
@@ -99,7 +99,7 @@ def madscientist_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def gambler_skillset():
+def wildwest_gambler_skillset():
     skill_list = [ 'Gaming', 'Fast Talk', 'Sleight of Hand', 'Bargain', 'Brawl',
                    'Spot', 'Insight', 'Persuade', 'Knowledge (Accounting)', 'Dodge']
     base_skill_scores = {
@@ -117,7 +117,7 @@ def gambler_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def sheriff_skillset():
+def wildwest_sheriff_skillset():
     skill_list = [ 'Firearms (Pistol)', 'Knowledge (Law)', 'Listen', 'Persuade', 'Spot', 
                    'Brawl', 'Drive (Car)', 'Insight', 'Research', 'Etiquette (Street)']
     base_skill_scores = {
@@ -135,7 +135,7 @@ def sheriff_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def doctor_skillset():
+def wildwest_doctor_skillset():
     skill_list = [ 'First Aid', 'Medicine', 'Persuade', 'Research', 'Spot', 
                    'Science (Pharmacy)', 'Science (Psychology)', 'Psychotherapy', 'Status', 'Language (Other)']
     base_skill_scores = {
@@ -153,7 +153,7 @@ def doctor_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def tribesman_skillset():
+def wildwest_tribesman_skillset():
     skill_list = [ 'Craft (Any)', 'Dodge', 'Grapple', 'Hide', 'Knowledge (Natural History)', 
                    'Spot', 'Throw', 'Track', 'Melee Weapon', 'Missile Weapon']
     base_skill_scores = {
@@ -171,7 +171,7 @@ def tribesman_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def frontiersman_skillset():
+def wildwest_frontiersman_skillset():
     skill_list = [ 'Track',  'Hide',  'Spot',  'Listen',  'Climb',  'Navigate',  'Stealth',
                    'Firearms (Rifle)',  'Melee Weapon',  'Knowledge (Region)']
     base_skill_scores = {

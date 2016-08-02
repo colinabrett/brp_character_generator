@@ -457,67 +457,67 @@ class SelectProfessionFantasy(Screen):
 
     def warrior(self,*args):
         prof = 'Warrior'
-        skills_list = warrior_skillset()
+        skills_list = fantasy_warrior_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def rogue(self,*args):
         prof = 'Rogue'
-        skills_list = rogue_skillset()
+        skills_list = fantasy_rogue_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def wizard(self,*args):
         prof = 'Wizard'
-        skills_list = wizard_skillset()
+        skills_list = fantasy_wizard_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def explorer(self,*args):
         prof = 'Explorer'
-        skills_list = explorer_skillset()
+        skills_list = fantasy_explorer_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def noble(self,*args):
         prof = 'Noble'
-        skills_list = noble_skillset()
+        skills_list = fantasy_noble_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def assassin(self,*args):
         prof = 'Assassin'
-        skills_list = assassin_skillset()
+        skills_list = fantasy_assassin_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def beggar(self,*args):
         prof = 'Beggar'
-        skills_list = beggar_skillset()
+        skills_list = fantasy_beggar_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def artisan(self,*args):
         prof = 'Artisan'
-        skills_list = artisan_skillset()
+        skills_list = fantasy_artisan_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def merchant(self,*args):
         prof = 'Merchant'
-        skills_list = merchant_skillset()
+        skills_list = fantasy_merchant_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def shaman(self,*args):
         prof = 'Shaman'
-        skills_list = shaman_skillset()
+        skills_list = fantasy_shaman_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def hunter(self,*args):
         prof = 'Hunter'
-        skills_list = hunter_skillset()
+        skills_list = fantasy_hunter_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
@@ -526,61 +526,61 @@ class SelectProfessionSciFi(Screen):
 
     def warrior(self,*args):
         prof = 'Warrior'
-        skills_list = warrior_skillset()
+        skills_list = scifi_warrior_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def psyker(self,*args):
         prof = 'Psyker'
-        skills_list = psyker_skillset()
+        skills_list = scifi_psyker_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def jedi(self,*args):
         prof = 'Jedi'
-        skills_list = jedi_skillset()
+        skills_list = scifi_jedi_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def rogue(self,*args):
         prof = 'Rogue'
-        skills_list = rogue_skillset()
+        skills_list = scifi_rogue_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def smuggler(self,*args):
         prof = 'Smuggler'
-        skills_list = smuggler_skillset()
+        skills_list = scifi_smuggler_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def noble(self,*args):
         prof = 'Noble'
-        skills_list = noble_skillset()
+        skills_list = scifi_noble_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def technician(self,*args):
         prof = 'Technician'
-        skills_list = technician_skillset()
+        skills_list = scifi_technician_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def agent(self,*args):
         prof = 'Agent'
-        skills_list = agent_skillset()
+        skills_list = scifi_agent_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def gambler(self,*args):
         prof = 'Gambler'
-        skills_list = gambler_skillset()
+        skills_list = scifi_gambler_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def trader(self,*args):
         prof = 'Trader'
-        skills_list = trader_skillset()
+        skills_list = scifi_trader_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
@@ -589,61 +589,61 @@ class SelectProfessionCyberpunk(Screen):
 
     def solo(self,*args):
         prof = 'Solo'
-        skills_list = solo_skillset()
+        skills_list = cyber_solo_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def fixer(self,*args):
         prof = 'Fixer'
-        skills_list = fixer_skillset()
+        skills_list = cyber_fixer_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def rocker(self,*args):
         prof = 'Rocker'
-        skills_list = rocker_skillset()
+        skills_list = cyber_rocker_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def techie(self,*args):
         prof = 'Techie'
-        skills_list = techie_skillset()
+        skills_list = cyber_techie_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def corporate(self,*args):
         prof = 'Corporate'
-        skills_list = corporate_skillset()
+        skills_list = cyber_corporate_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def cop(self,*args):
         prof = 'Cop'
-        skills_list = cop_skillset()
+        skills_list = cyber_cop_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def nomad(self,*args):
         prof = 'Nomad'
-        skills_list = nomad_skillset()
+        skills_list = cyber_nomad_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def medtech(self,*args):
         prof = 'Medtech'
-        skills_list = medtech_skillset()
+        skills_list = cyber_medtech_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def netrunner(self,*args):
         prof = 'Netrunner'
-        skills_list = netrunner_skillset()
+        skills_list = cyber_netrunner_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def media(self,*args):
         prof = 'Media'
-        skills_list = media_skillset()
+        skills_list = cyber_media_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
@@ -652,55 +652,55 @@ class SelectProfessionWildWest(Screen):
 
     def soldier(self,*args):
         prof = 'Soldier'
-        skills_list = soldier_skillset()
+        skills_list = wildwest_soldier_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def occultist(self,*args):
         prof = 'Occultist'
-        skills_list = occultist_skillset()
+        skills_list = wildwest_occultist_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def preacher(self,*args):
         prof = 'Preacher'
-        skills_list = preacher_skillset()
+        skills_list = wildwest_preacher_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def criminal(self,*args):
         prof = 'Criminal'
-        skills_list = criminal_skillset()
+        skills_list = wildwest_criminal_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def madscientist(self,*args):
         prof = 'Mad Scientist'
-        skills_list = madscientist_skillset()
+        skills_list = wildwest_madscientist_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def gambler(self,*args):
         prof = 'Gambler'
-        skills_list = gambler_skillset()
+        skills_list = wildwest_gambler_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def sheriff(self,*args):
         prof = 'Sheriff'
-        skills_list = sheriff_skillset()
+        skills_list = wildwest_sheriff_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def doctor(self,*args):
         prof = 'Doctor'
-        skills_list = doctor_skillset()
+        skills_list = wildwest_doctor_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def tribesman(self,*args):
         prof = 'Tribesman'
-        skills_list = tribesman_skillset()
+        skills_list = wildwest_tribesman_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
@@ -709,61 +709,61 @@ class SelectProfessionHorror(Screen):
 
     def mercenary(self,*args):
         prof = 'Mercenary'
-        skills_list = mercenary_skillset()
+        skills_list = horror_mercenary_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def occultist(self,*args):
         prof = 'Occultist'
-        skills_list = occultist_skillset()
+        skills_list = horror_occultist_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def priest(self,*args):
         prof = 'Priest'
-        skills_list = priest_skillset()
+        skills_list = horror_priest_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def criminal(self,*args):
         prof = 'Criminal'
-        skills_list = criminal_skillset()
+        skills_list = horror_criminal_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def journalist(self,*args):
         prof = 'Journalist'
-        skills_list = journalist_skillset()
+        skills_list = horror_journalist_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def spy(self,*args):
         prof = 'Spy'
-        skills_list = spy_skillset()
+        skills_list = horror_spy_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def scientist(self,*args):
         prof = 'Scientist'
-        skills_list = scientist_skillset()
+        skills_list = horror_scientist_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def gambler(self,*args):
         prof = 'Gambler'
-        skills_list = gambler_skillset()
+        skills_list = horror_gambler_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def detective(self,*args):
         prof = 'Detective'
-        skills_list = detective_skillset()
+        skills_list = horror_detective_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 
     def doctor(self,*args):
         prof = 'Doctor'
-        skills_list = doctor_skillset()
+        skills_list = horror_doctor_skillset()
         sm.get_screen("character_sheet").printprofession(prof)
         sm.get_screen("character_sheet").printskills(skills_list)
 

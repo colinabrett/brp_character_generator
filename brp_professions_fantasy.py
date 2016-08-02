@@ -9,7 +9,7 @@ def skills_and_scores(skills,scores):
         skills_string = skills_string + s + " " + ss + "% "
     return skills_string
 
-def warrior_skillset():
+def fantasy_warrior_skillset():
     skill_list = ['First Melee Weapon', 'Second Melee Weapon', 'Missile Weapon', 'Brawl', 'Throw',
                   'Grapple', 'Parry', 'Shield', 'Stealth', 'Ride']
     base_skill_scores = {
@@ -27,7 +27,7 @@ def warrior_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def rogue_skillset():
+def fantasy_rogue_skillset():
     skill_list = [ 'Stealth', 'Hide', 'Fine Manipulation', 'Dodge', 'Fast Talk', 'Appraise',
                    'Listen', 'Spot', 'Brawl', 'Melee Weapon' ]
     base_skill_scores = {
@@ -45,7 +45,7 @@ def rogue_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def wizard_skillset():
+def fantasy_wizard_skillset():
     skill_list = [ 'Knowledge (Occult)', 'Perform (Rituals)', 'Language (Other)', 'Craft (Any)', 'Knowledge 1',
                    'Knowledge 2', 'Insight', 'Persuade', 'Research', 'Literacy' ]
     base_skill_scores = {
@@ -63,7 +63,7 @@ def wizard_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def priest_skillset():
+def fantasy_priest_skillset():
     skill_list = [ 'Knowledge (Religion)', 'Perform (Rituals)', 'Perform (Oratory)', 'Insight',
                    'Research', 'Knowledge (History)', 'Persuade', 'Teach', 'Fast Talk', 'Literacy' ]
     base_skill_scores = {
@@ -81,7 +81,7 @@ def priest_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def explorer_skillset():
+def fantasy_explorer_skillset():
     skill_list = [ 'Track',  'Hide',  'Spot',  'Listen',  'Climb',
                    'Navigate',  'Stealth',  'Missile Weapon',  'Melee Weapon',  'Knowledge (Region)']
     base_skill_scores = {
@@ -99,7 +99,7 @@ def explorer_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def noble_skillset():
+def fantasy_noble_skillset():
     skill_list = [ 'Status',  'Etiquette',  'Knowledge (Region)',  'Literacy',  'Melee Weapon', 
                    'Language (Other)',  'Bargain',  'Ride',  'Insight',  'Craft (Any)']
     base_skill_scores = {
@@ -117,7 +117,7 @@ def noble_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def assassin_skillset():
+def fantasy_assassin_skillset():
     skill_list = [ 'Stealth',  'Hide',  'Dodge',  'Listen',  'Spot',
                    'Missile Weapon',  'Melee Weapon',  'Disguise',  'Knowledge (Poisons)',  'Track']
     base_skill_scores = {
@@ -135,7 +135,7 @@ def assassin_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def beggar_skillset():
+def fantasy_beggar_skillset():
     skill_list = [ 'Bargain',  'Fast Talk',  'Hide',  'Insight',  'Knowledge (Local Area)',
                    'Listen',  'Persuade',  'Sleight of Hand',  'Spot',  'Stealth']
     base_skill_scores = {
@@ -153,7 +153,7 @@ def beggar_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def artisan_skillset():
+def fantasy_artisan_skillset():
     skill_list = [ 'Craft Skill 1',  'Craft Skill 2',  'Repair (Mechanical)',  'Appraise',  'Art (Any)',
                    'Bargain',  'Spot',  'Research',  'Status',  'Fine Manipulation']
     base_skill_scores = {
@@ -171,7 +171,7 @@ def artisan_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def merchant_skillset():
+def fantasy_merchant_skillset():
     skill_list = [ 'Bargain',  'Appraise',  'Fast Talk',  'Knowledge (Accounting)',  'Knowledge (Business)',
                    'Persuade',  'Research',  'Status',  'Insight',  'Literacy']
     base_skill_scores = {
@@ -189,7 +189,7 @@ def merchant_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def shaman_skillset():
+def fantasy_shaman_skillset():
     skill_list = [ 'Perform (Rituals)',  'Knowledge (Occult)',  'First Aid',  'Art (Any)',  'Knowledge (Folklore)',
                    'Insight',  'Language (Own)',  'Listen',  'Craft (Any)',  'Science (Natural History)']
     base_skill_scores = {
@@ -207,7 +207,7 @@ def shaman_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def hunter_skillset():
+def fantasy_hunter_skillset():
     skill_list = [ 'Track',  'Hide',  'Spot',  'Listen',  'Climb',  'Navigate',  'Stealth',
                    'Missile Weapon',  'Melee Weapon',  'Knowledge (Region)']
     base_skill_scores = {
@@ -224,21 +224,4 @@ def hunter_skillset():
     }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
-
-#def skeleton_skillset():
-#    skill_list = [ '',  '',  '',  '',  '',  '',  '',  '',  '',  '']
-#    base_skill_scores = {
-#        '': 30,
-#        '': 50,
-#        '': 30,
-#        '': 40,
-#        '': 40,
-#        '': 40,
-#        '': 40,
-#        '': 40,
-#        '': 40,
-#        '': 50
-#    }
-#    skill_set = skills_and_scores(skill_list,base_skill_scores)
-#    return skill_set
 

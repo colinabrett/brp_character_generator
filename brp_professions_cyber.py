@@ -9,7 +9,7 @@ def skills_and_scores(skills,scores):
         skills_string = skills_string + s + " " + ss + "% "
     return skills_string
 
-def solo_skillset():
+def cyber_solo_skillset():
     skill_list = ['Firearms (Pistol)', 'Firearms (SMG)', 'Firearms (Rifle)', 
                   'Spot', 'Martial Arts', 'Melee Weapon', 'Brawl', 'Stealth',
                   'Listen', 'Technical Skill (WeaponsTech)']
@@ -28,7 +28,7 @@ def solo_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def fixer_skillset():
+def cyber_fixer_skillset():
     skill_list = [ 'Etiquette (Street)', 'Bargain', 'Persuade', 'Spot', 'Stealth',
                    'Technical Skill (Forgery)', 'Sleight of Hand', 'Brawl', 'Fine Manipulation', 'Firearms (Pistol)']
     base_skill_scores = {
@@ -46,7 +46,7 @@ def fixer_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def rocker_skillset():
+def cyber_rocker_skillset():
     skill_list = [ 'Perform (Play Instrument)', 'Perform (Sing)', 'Art (Musical Composition)', 'Etiquette (Street)', 'Brawl', 'Fast Talk', 'Spot', 'Status', 'Disguise', 'Persuade' ]
     base_skill_scores = {
         'Perform (Play Instrument)': 20,
@@ -63,7 +63,7 @@ def rocker_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def techie_skillset():
+def cyber_techie_skillset():
     skill_list = [ 'Repair (Electrical)', 'Repair (Mechanical)', 'Technical Skill (Electronics)', 'Technical Skill (Cybernetics)', 
                    'Science (Physics)', 'Science (Chemistry)', 'Teach', 'Fine Manipulation', 'Research', 'Heavy Machinery' ]
                   
@@ -82,9 +82,7 @@ def techie_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-#######################
-
-def corporate_skillset():
+def cyber_corporate_skillset():
     skill_list = [ 'Status', 'Knowledge (Stock Market)', 'Research', 'Insight', 'Persuade', 'Command',
                    'Knowledge (Accounting)', 'Etiquette (Corporate)', 'Knowledge (Business)' 'Drive (Car)']
     base_skill_scores = {
@@ -102,7 +100,7 @@ def corporate_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def cop_skillset():
+def cyber_cop_skillset():
     skill_list = [ 'Spot', 'Status', 'Firearms (Pistol)', 'Brawl', 'Melee Weapon (Baton)',
                    'Etiquette (Street)', 'Insight', 'Command', 'Persuade', 'Drive (Car)' ]
     base_skill_scores = {
@@ -120,7 +118,7 @@ def cop_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def nomad_skillset():
+def cyber_nomad_skillset():
     skill_list = [ 'Drive (Car)', 'Ride (Motorcycle)', 'Spot', 'Firearms (Rifle)', 'Melee Weapon',
                    'Brawl', 'Repair (Mechanical)', 'Track', 'Navigate', 'Knowledge (Survival)' ] 
     base_skill_scores = {
@@ -138,7 +136,7 @@ def nomad_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def medtech_skillset():
+def cyber_medtech_skillset():
     skill_list = [ 'Medicine', 'First Aid', 'Technical Skill (Cryotank Operation)', 'Technical Skill (Cybernetics)', 'Insight',
                    'Science (Pharmacy)', 'Science (Zoology)', 'Spot', 'Persuade', 'Research' ]
                   
@@ -157,7 +155,7 @@ def medtech_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def netrunner_skillset():
+def cyber_netrunner_skillset():
     skill_list = [ 'Technical Skill (Computer Use)', 'Technical Skill (Computer Programming)', 'Technical Skill (Cyberdecks)',
                    'Technical Skill (Cybernetics)', 'Technical Skill (Electronic Security)', 'Research', 'Knowledge (The NET)',
                    'Fine Manipulation', 'Spot', 'Persuade' ]
@@ -178,7 +176,7 @@ def netrunner_skillset():
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
-def media_skillset():
+def cyber_media_skillset():
     skill_list = [ 'Persuade', 'Perform (Orate)', 'Research', 'Spot', 'Listen', 'Insight',
                    'Etiquette (Corporate)', 'Etiquette (Street)', 'Technical Skill (Photo and Film)', 'Status' ]
     base_skill_scores = {
@@ -195,23 +193,3 @@ def media_skillset():
     }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
-
-#def skeleton_skillset():
-#    skill_list = [ 'Skill 1', 'Skill 2', 'Skill 3', 'Skill 4', 
-#                   'Skill 5', 'Skill 6', 'Skill 7', 'Skill 8', 'Skill 9', 'Skill 10' ]
-#                  
-#    base_skill_scores = {
-#        'Skill 1': 30,
-#        'Skill 2': 50,
-#        'Skill 3': 30,
-#        'Skill 4': 40,
-#        'Skill 5': 40,
-#        'Skill 6': 40,
-#        'Skill 7': 40,
-#        'Skill 8': 40,
-#        'Skill 9': 40,
-#        'Skill 10': 50
-#    }
-#    skill_set = skills_and_scores(skill_list,base_skill_scores)
-#    return skill_set
-
