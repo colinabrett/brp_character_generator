@@ -141,7 +141,7 @@ def scifi_agent_skillset():
     base_skill_scores = {
         'Energy Weapon': 50,
         'Knowledge (Espionage)': 40,
-        'Pilot': 40,
+        'Pilot (Any)': 40,
         'Listen': 30,
         'Research': 30,
         'Spot': 30,

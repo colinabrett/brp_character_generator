@@ -67,6 +67,7 @@ class SelectSystem(Screen):
 
 class SelectGenre(Screen):
 #   pass
+
     def fantasy_genre(self,*args):
         genre_type='Fantasy'
 #       print(genre_type)
