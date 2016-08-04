@@ -3,6 +3,7 @@
 # defines the basics of the character sheet
 #
 from dice_roller import *
+from brp_stats import *
 
 class GameSystem():
         def __init__(self):
@@ -11,15 +12,21 @@ class GameSystem():
                 self.skills = {}
                 self.supressed_skills = {}
                 self.supressed_stats = {}
+                self.bonuses = {}
 
         def calculateStats(self, statslist):
                 "modify STATS if they exist in the statblock eg. statslist {'STR':'2d6', 'EDU':'2d8'}"
                 for attribute, value in statslist.items():
-                        newValue = parseDiceString(value)
+                        if attribute in self.statblock:
+                                self.statblock[attribute] = straight_dice(*parseDiceString(value))
                 return
 
         def calculateDerived(self) :
                 "calculate the derived stats from the game system"
+                return
+
+        def calculateBonuses(self) :
+                "calculate skill bonuses"
                 return
 
         def modifySkill(self, skill, modifier) :
@@ -114,6 +121,35 @@ class Brp(GameSystem):
                                'Technical Skill Common' :  5,\
                                'Throw' : 25,\
                                'Track' : 10 }
+                self.bonuses = {}
+
+        def calculateBonuses(self):
+                "calculate BRP skill category bonuses"
+                skill_groups = {
+                'Combat' : {'prime' : ['DEX'], 'sec' : ['INT','STR'], 'neg' : []},\
+                'Communication' : {'prime' : ['INT'], 'sec' : ['POW','APP'], 'neg' : []},\
+                'Manipulation': {'prime' : ['DEX'], 'sec' : ['INT','STR'], 'neg' : []},\
+                'Mental': {'prime' : [], 'sec' : [], 'neg' : []},\
+                'Perception': {'prime' : ['INT'], 'sec' : ['POW','CON'], 'neg' : []},\
+                'Physical': {'prim' : ['DEX'], 'sec' : ['STR','CON'], 'neg' : ['SIZ']}
+                }
+                for category in skill_groups.items():
+                        bonus = 0
+                        primary = skill_groups[category]["prime"]
+                        secondary = skill_groups[category]["sec"]
+                        negative = skill_groups[category]["neg"]
+                        for stat in primary:
+                                bonus += calculate_primary_bonus(self.statblock[stat])
+                        for stat in secondary:
+                                bonus += calculate_secondary_bonus(self.statblock[stat])
+                        for stat in negative:
+                                bonus -= calculate_primary_bonus(self.statblock[stat])
+                        
+                        self.bonuses[category] = bonus
+
+     
+        
+                                
 
     
     
