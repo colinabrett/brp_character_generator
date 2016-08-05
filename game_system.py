@@ -129,22 +129,21 @@ class Brp(GameSystem):
                 'Combat' : {'prime' : ['DEX'], 'sec' : ['INT','STR'], 'neg' : []},\
                 'Communication' : {'prime' : ['INT'], 'sec' : ['POW','APP'], 'neg' : []},\
                 'Manipulation': {'prime' : ['DEX'], 'sec' : ['INT','STR'], 'neg' : []},\
-                'Mental': {'prime' : [], 'sec' : [], 'neg' : []},\
+                'Mental': {'prime' : ['INT'], 'sec' : ['POW','EDU'], 'neg' : []},\
                 'Perception': {'prime' : ['INT'], 'sec' : ['POW','CON'], 'neg' : []},\
-                'Physical': {'prim' : ['DEX'], 'sec' : ['STR','CON'], 'neg' : ['SIZ']}
+                'Physical': {'prime' : ['DEX'], 'sec' : ['STR','CON'], 'neg' : ['SIZ']}
                 }
-                for category in skill_groups.items():
+                for category,modifiers in skill_groups.items():
                         bonus = 0
-                        primary = skill_groups[category]["prime"]
-                        secondary = skill_groups[category]["sec"]
-                        negative = skill_groups[category]["neg"]
+                        primary = modifiers['prime']
+                        secondary = modifiers['sec']
+                        negative = modifiers['neg']
                         for stat in primary:
                                 bonus += calculate_primary_bonus(self.statblock[stat])
                         for stat in secondary:
                                 bonus += calculate_secondary_bonus(self.statblock[stat])
                         for stat in negative:
                                 bonus -= calculate_primary_bonus(self.statblock[stat])
-                        
                         self.bonuses[category] = bonus
 
      
