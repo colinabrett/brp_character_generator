@@ -15,35 +15,35 @@ class GameSystem():
                 self.bonuses = {}
 
         def calculateStats(self, statslist):
-                "modify STATS if they exist in the statblock eg. statslist {'STR':'2d6', 'EDU':'2d8'}"
+                """modify STATS if they exist in the statblock eg. statslist {'STR':'2d6', 'EDU':'2d8'}"""
                 for attribute, value in statslist.items():
                         if attribute in self.statblock:
                                 self.statblock[attribute] = straight_dice(*parseDiceString(value))
                 return
 
         def calculateDerived(self) :
-                "calculate the derived stats from the game system"
+                """calculate the derived stats from the game system"""
                 return
 
         def calculateBonuses(self) :
-                "calculate skill bonuses"
+                """calculate skill bonuses"""
                 return
 
         def modifySkill(self, skill, modifier) :
-                "change the value of a known skill, or add a new skill and base value to the list"
+                """change the value of a known skill, or add a new skill and base value to the list"""
                 return
 
         def supressSkill(self, skill):
-                "remove a skill from the base list for a particular genre"
+                """remove a skill from the base list for a particular genre"""
                 return
 
         def supressStat(self, skill):
-                "remove a stat from the base list for a particular genre eg. no EDU in a fantasy game"
+                """remove a stat from the base list for a particular genre eg. no EDU in a fantasy game"""
                 return
 
 class Brp(GameSystem):
         def __init__(self):
-                "constructor for BRP character"
+                """constructor for BRP character"""
                 self.statblock = {
                         'STR':0,\
                         'CON':0,\
@@ -124,20 +124,20 @@ class Brp(GameSystem):
                 self.bonuses = {}
 
         def calculateBonuses(self):
-                "calculate BRP skill category bonuses"
+                """calculate BRP skill category bonuses"""
                 skill_groups = {
-                'Combat' : {'prime' : ['DEX'], 'sec' : ['INT','STR'], 'neg' : []},\
-                'Communication' : {'prime' : ['INT'], 'sec' : ['POW','APP'], 'neg' : []},\
-                'Manipulation': {'prime' : ['DEX'], 'sec' : ['INT','STR'], 'neg' : []},\
-                'Mental': {'prime' : ['INT'], 'sec' : ['POW','EDU'], 'neg' : []},\
-                'Perception': {'prime' : ['INT'], 'sec' : ['POW','CON'], 'neg' : []},\
-                'Physical': {'prime' : ['DEX'], 'sec' : ['STR','CON'], 'neg' : ['SIZ']}
+                'Combat' : {'primary' : ['DEX'], 'secondary' : ['INT','STR'], 'negative' : []},\
+                'Communication' : {'primary' : ['INT'], 'secondary' : ['POW','APP'], 'negative' : []},\
+                'Manipulation': {'primary' : ['DEX'], 'secondary' : ['INT','STR'], 'negative' : []},\
+                'Mental': {'primary' : ['INT'], 'secondary' : ['POW','EDU'], 'negative' : []},\
+                'Perception': {'primary' : ['INT'], 'secondary' : ['POW','CON'], 'negative' : []},\
+                'Physical': {'primary' : ['DEX'], 'secondary' : ['STR','CON'], 'negative' : ['SIZ']}
                 }
                 for category,modifiers in skill_groups.items():
                         bonus = 0
-                        primary = modifiers['prime']
-                        secondary = modifiers['sec']
-                        negative = modifiers['neg']
+                        primary = modifiers['primary']
+                        secondary = modifiers['secondary']
+                        negative = modifiers['negative']
                         for stat in primary:
                                 bonus += calculate_primary_bonus(self.statblock[stat])
                         for stat in secondary:
