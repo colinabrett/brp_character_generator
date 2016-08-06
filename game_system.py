@@ -11,8 +11,8 @@ class GameSystem():
                 self.statblock = {}
                 self.derived = {}
                 self.skills = {}
-                self.supressed_skills = []
-                self.supressed_stats = {}
+                self.suppressed_skills = []
+                self.suppressed_stats = {}
                 self.bonuses = {}
 
         def calculateStats(self, statslist):
@@ -37,16 +37,16 @@ class GameSystem():
                 """change the value of a known skill, or add a new skill and base value to the list"""
                 return
 
-        def supressSkill(self, skill):
+        def suppressSkill(self, skill):
                 """remove a skill from the base list for a particular genre"""
                 return
 
-        def supressStat(self, stat):
+        def suppressStat(self, stat):
                 """remove a stat from the base list for a particular genre eg. no EDU in a fantasy game"""
                 # for a stat to be added it should be in the statblock and not in the suppressed_stats list
                 ustat = stat.upper()
-                if ustat in self.statblock and ustat not in self.supressed_stats:
-                        self.supressed_stats.append(ustat)
+                if ustat in self.statblock and ustat not in self.suppressed_stats:
+                        self.suppressed_stats.append(ustat)
                 return
 
 class Brp(GameSystem):
@@ -129,7 +129,7 @@ class Brp(GameSystem):
                                'Technical Skill Common' :  5,\
                                'Throw' : 25,\
                                'Track' : 10 }
-                self.supressed_stats = []
+                self.suppressed_stats = []
                 self.bonuses = {}
 
         def calculateBonuses(self):
@@ -142,7 +142,7 @@ class Brp(GameSystem):
                 'Perception': {'primary' : ['INT'], 'secondary' : ['POW','CON'], 'negative' : []},\
                 'Physical': {'primary' : ['DEX'], 'secondary' : ['STR','CON'], 'negative' : ['SIZ']}
                 }
-                if 'EDU' not in self.supressed_stats:
+                if 'EDU' not in self.suppressed_stats:
                         skill_groups['Mental']['secondary'].append('EDU')
                         
                 for category,modifiers in skill_groups.items():
@@ -172,7 +172,7 @@ class Brp(GameSystem):
                         'Charisma Roll' : self.statblock['APP'] *5\
                         }
                 self.derived['Major Wound level'] = int(Decimal(self.derived['Hit Points']/2).quantize(0, ROUND_HALF_UP))
-                if 'EDU' not in self.supressed_stats:
+                if 'EDU' not in self.suppressed_stats:
                                 self.derived['Know Roll'] = self.statblock['EDU'] * 5
 
     
