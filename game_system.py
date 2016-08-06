@@ -159,7 +159,7 @@ class Brp(GameSystem):
                         self.bonuses[category] = bonus
                         
         def calculateDerived(self):
-                """calculate rolls and stats derived from attributes"""
+                """calculate rolls and stats derived from attributes. Supercedes rolls() in brp_stats"""
                 self.derived = {
                         'Damage Bonus': damage_bonus(self.statblock['STR'], self.statblock['SIZ']),\
                         'Hit Points' : int(Decimal((self.statblock['CON'] + self.statblock['SIZ'])/2).quantize(0, ROUND_HALF_UP)),\

@@ -49,33 +49,33 @@
             text:'Fantasy'
         CheckBox:
             group: 'genre_group'
-            on_active: root.fantasy_genre(*args)
+            on_active: root.genre = 'fantasy'
         Label:
             text:'Sci-Fi'
         CheckBox:
             group: 'genre_group'
-            on_active: root.scifi_genre(*args)
+            on_active: root.genre = 'scifi'
         Label:
             text:'Cyberpunk'
         CheckBox:
             group: 'genre_group'
-            on_active: root.cyberpunk_genre(*args)
+            on_active: root.genre = 'cyberpunk'
         Label:
             text:'Wild West'
         CheckBox:
             group: 'genre_group'
-            on_active: root.wildwest_genre(*args)
+            on_active: root.genre = 'wildwest'
         Label:
             text:'Horror'
         CheckBox:
             group: 'genre_group'
-            on_active: root.horror_genre(*args)
+            on_active: root.genre = 'horror'
         Button:
             text:'Back'
             on_press: root.manager.current = 'welcome'
         Button:
             text:'Next'
-            on_press: root.manager.current = 'race'
+            on_press: root.choose_race_screen()
 
 <SelectRaceFantasy>:
     GridLayout:
@@ -596,44 +596,88 @@
     BoxLayout:
         orientation: 'vertical'
         Label:
-            text: 'System Type'
+            text_size: self.size
+            halign: 'left'
+            markup: True
+            text: '[b]System Type[/b]'
         Label:
+            text_size: self.size
+            halign: 'left'
             text: root.ruleset
         Label:
-            text: 'Genre'
+            text_size: self.size
+            halign: 'left'
+            markup: True
+            text: '[b]Genre[/b]'
         Label:
+            text_size: self.size
+            halign: 'left'
             text: root.genre
         Label:
-            text: 'Race'
+            text_size: self.size
+            halign: 'left'
+            markup: True
+            text: '[b]Race[/b]'
         Label:
+            text_size: self.size
+            halign: 'left'
             text: root.race
         Label:
-            text: 'Profession'
+            text_size: self.size
+            halign: 'left'
+            markup: True
+            text: '[b]Profession[/b]'
         Label:
+            text_size: self.size
+            halign: 'left'
             text: root.profession
         Label:
-            text:'Characteristics'
+            text_size: self.size
+            halign: 'left'
+            markup: True
+            text:'[b]Characteristics[/b]'
         Label:
+            text_size: self.size
+            halign: 'left'
             text: root.mysb
         Label:
-            text:'Characteristic Rolls'
+            text_size: self.size
+            halign: 'left'
+            markup: True
+            text:'[b]Characteristic Rolls[/b]'
         Label:
+            text_size: self.size
+            halign: 'left'
             text: root.mycr
         Label:
-            text:'Skill Category Modifiers'
+            text_size: self.size
+            halign: 'left'
+            markup: True
+            text:'[b]MW Skill Category Modifiers[/b]'
         Label:
+            text_size: self.size
+            halign: 'left'
             text: root.myscm
         Label:
-            text:'Skill Category Bonuses'
+            text_size: self.size
+            halign: 'left'
+            markup: True
+            text:'[b]BRP Skill Category Bonuses[/b]'
         Label:
+            text_size: self.size
+            halign: 'left'
             text: root.myscb
         Label:
-            text:'Skills'
+            text_size: self.size
+            halign: 'left'
+            markup: True
+            text:'[b]Skills[/b]'
 # CB Added text wrapping
         Label:
             size_hint_y: None
             text_size: self.width, None
             height: self.texture_size[1]
+            halign: 'left'
             text: root.skills
         Button:
             text:'Quit'

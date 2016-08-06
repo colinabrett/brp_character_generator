@@ -10,9 +10,17 @@ def skills_and_scores(skills,scores):
     return skills_string
 
 def cyber_solo_skillset():
-    skill_list = ['Firearms (Pistol)', 'Firearms (SMG)', 'Firearms (Rifle)', 
-                  'Spot', 'Martial Arts', 'Melee Weapon', 'Brawl', 'Stealth',
-                  'Listen', 'Technical Skill (WeaponsTech)']
+    skill_list = [
+        'Firearms (Pistol)', 
+        'Firearms (SMG)', 
+        'Firearms (Rifle)', 
+        'Spot', 
+        'Martial Arts', 
+        'Melee Weapon', 
+        'Brawl', 
+        'Stealth',
+        'Listen', 
+        'Technical Skill (WeaponsTech)' ]
     base_skill_scores = {
         'Firearms (Pistol)': 50,
         'Firearms (SMG)': 40,
@@ -23,14 +31,22 @@ def cyber_solo_skillset():
         'Brawl': 30,
         'Stealth': 30,
         'Listen': 30,
-        'Technical Skill (WeaponsTech)': 30,
-    }
+        'Technical Skill (WeaponsTech)': 30 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
 def cyber_fixer_skillset():
-    skill_list = [ 'Etiquette (Street)', 'Bargain', 'Persuade', 'Spot', 'Stealth',
-                   'Technical Skill (Forgery)', 'Sleight of Hand', 'Brawl', 'Fine Manipulation', 'Firearms (Pistol)']
+    skill_list = [ 
+        'Etiquette (Street)', 
+        'Bargain', 
+        'Persuade', 
+        'Spot', 
+        'Stealth', 
+        'Technical Skill (Forgery)', 
+        'Sleight of Hand', 
+        'Brawl', 
+        'Fine Manipulation', 
+        'Firearms (Pistol)' ]
     base_skill_scores = {
         'Etiquette (Street)': 30,
         'Bargain': 50,
@@ -41,13 +57,22 @@ def cyber_fixer_skillset():
         'Sleight of Hand': 50,
         'Brawl': 50,
         'Fine Manipulation': 50,
-        'Firearms (Pistol)': 30
-    }
+        'Firearms (Pistol)': 30 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
 def cyber_rocker_skillset():
-    skill_list = [ 'Perform (Play Instrument)', 'Perform (Sing)', 'Art (Musical Composition)', 'Etiquette (Street)', 'Brawl', 'Fast Talk', 'Spot', 'Status', 'Disguise', 'Persuade' ]
+    skill_list = [ 
+        'Perform (Play Instrument)', 
+        'Perform (Sing)', 
+        'Art (Musical Composition)', 
+        'Etiquette (Street)', 
+        'Brawl', 
+        'Fast Talk', 
+        'Spot', 
+        'Status', 
+        'Disguise', 
+        'Persuade' ]
     base_skill_scores = {
         'Perform (Play Instrument)': 20,
         'Perform (Sing)': 50,
@@ -58,15 +83,22 @@ def cyber_rocker_skillset():
         'Spot': 30,
         'Status': 30,
         'Disguise': 30,
-        'Persuade': 30
-    }
+        'Persuade': 30 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
 def cyber_techie_skillset():
-    skill_list = [ 'Repair (Electrical)', 'Repair (Mechanical)', 'Technical Skill (Electronics)', 'Technical Skill (Cybernetics)', 
-                   'Science (Physics)', 'Science (Chemistry)', 'Teach', 'Fine Manipulation', 'Research', 'Heavy Machinery' ]
-                  
+    skill_list = [ 
+        'Repair (Electrical)', 
+        'Repair (Mechanical)', 
+        'Technical Skill (Electronics)', 
+        'Technical Skill (Cybernetics)', 
+        'Science (Physics)', 
+        'Science (Chemistry)', 
+        'Teach', 
+        'Fine Manipulation', 
+        'Research', 
+        'Heavy Machinery' ]
     base_skill_scores = {
         'Repair (Electrical)': 30,
         'Repair (Mechanical)': 50,
@@ -77,14 +109,22 @@ def cyber_techie_skillset():
         'Teach': 40,
         'Fine Manipulation': 40,
         'Research': 40,
-        'Heavy Machinery': 50
-    }
+        'Heavy Machinery': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
 def cyber_corporate_skillset():
-    skill_list = [ 'Status', 'Knowledge (Stock Market)', 'Research', 'Insight', 'Persuade', 'Command',
-                   'Knowledge (Accounting)', 'Etiquette (Corporate)', 'Knowledge (Business)' 'Drive (Car)']
+    skill_list = [ 
+        'Status', 
+        'Knowledge (Stock Market)', 
+        'Research', 
+        'Insight', 
+        'Persuade', 
+        'Command', 
+        'Knowledge (Accounting)', 
+        'Etiquette (Corporate)', 
+        'Knowledge (Business)', 
+        'Drive (Car)' ]
     base_skill_scores = {
         'Status': 30,
         'Knowledge (Stock Market)': 50,
@@ -95,14 +135,22 @@ def cyber_corporate_skillset():
         'Knowledge (Accounting)': 40,
         'Etiquette (Corporate)': 40,
         'Knowledge (Business)': 40,
-        'Drive (Car)': 50
-    }
+        'Drive (Car)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
 def cyber_cop_skillset():
-    skill_list = [ 'Spot', 'Status', 'Firearms (Pistol)', 'Brawl', 'Melee Weapon (Baton)',
-                   'Etiquette (Street)', 'Insight', 'Command', 'Persuade', 'Drive (Car)' ]
+    skill_list = [ 
+        'Spot', 
+        'Status', 
+        'Firearms (Pistol)', 
+        'Brawl', 
+        'Melee Weapon (Baton)', 
+        'Etiquette (Street)', 
+        'Insight', 
+        'Command', 
+        'Persuade', 
+        'Drive (Car)' ]
     base_skill_scores = {
         'Spot': 30,
         'Status': 50,
@@ -113,14 +161,22 @@ def cyber_cop_skillset():
         'Insight': 40,
         'Command': 40,
         'Persuade': 40,
-        'Drive (Car)': 50
-    }
+        'Drive (Car)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
 def cyber_nomad_skillset():
-    skill_list = [ 'Drive (Car)', 'Ride (Motorcycle)', 'Spot', 'Firearms (Rifle)', 'Melee Weapon',
-                   'Brawl', 'Repair (Mechanical)', 'Track', 'Navigate', 'Knowledge (Survival)' ] 
+    skill_list = [ 
+        'Drive (Car)', 
+        'Ride (Motorcycle)', 
+        'Spot', 
+        'Firearms (Rifle)', 
+        'Melee Weapon', 
+        'Brawl', 
+        'Repair (Mechanical)', 
+        'Track', 
+        'Navigate', 
+        'Knowledge (Survival)' ] 
     base_skill_scores = {
         'Drive (Car)': 30,
         'Ride (Motorcycle)': 50,
@@ -131,15 +187,22 @@ def cyber_nomad_skillset():
         'Repair (Mechanical)': 40,
         'Track': 40,
         'Navigate': 40,
-        'Knowledge (Survival)': 50
-    }
+        'Knowledge (Survival)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
 def cyber_medtech_skillset():
-    skill_list = [ 'Medicine', 'First Aid', 'Technical Skill (Cryotank Operation)', 'Technical Skill (Cybernetics)', 'Insight',
-                   'Science (Pharmacy)', 'Science (Zoology)', 'Spot', 'Persuade', 'Research' ]
-                  
+    skill_list = [ 
+        'Medicine', 
+        'First Aid', 
+        'Technical Skill (Cryotank Operation)', 
+        'Technical Skill (Cybernetics)', 
+        'Insight', 
+        'Science (Pharmacy)', 
+        'Science (Zoology)', 
+        'Spot', 
+        'Persuade', 
+        'Research' ]
     base_skill_scores = {
         'Medicine': 30,
         'First Aid': 50,
@@ -150,17 +213,22 @@ def cyber_medtech_skillset():
         'Science (Zoology)': 40,
         'Spot': 40,
         'Persuade': 40,
-        'Research': 50
-    }
+        'Research': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
 def cyber_netrunner_skillset():
-    skill_list = [ 'Technical Skill (Computer Use)', 'Technical Skill (Computer Programming)', 'Technical Skill (Cyberdecks)',
-                   'Technical Skill (Cybernetics)', 'Technical Skill (Electronic Security)', 'Research', 'Knowledge (The NET)',
-                   'Fine Manipulation', 'Spot', 'Persuade' ]
-                  
-                  
+    skill_list = [ 
+        'Technical Skill (Computer Use)', 
+        'Technical Skill (Computer Programming)', 
+        'Technical Skill (Cyberdecks)', 
+        'Technical Skill (Cybernetics)', 
+        'Technical Skill (Electronic Security)', 
+        'Research', 
+        'Knowledge (The NET)',
+        'Fine Manipulation', 
+        'Spot', 
+        'Persuade' ]
     base_skill_scores = {
         'Technical Skill (Computer Use)': 30,
         'Technical Skill (Computer Programming)': 50,
@@ -171,14 +239,22 @@ def cyber_netrunner_skillset():
         'Knowledge (The NET)': 40,
         'Fine Manipulation': 40,
         'Spot': 40,
-        'Persuade': 50
-    }
+        'Persuade': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
 def cyber_media_skillset():
-    skill_list = [ 'Persuade', 'Perform (Orate)', 'Research', 'Spot', 'Listen', 'Insight',
-                   'Etiquette (Corporate)', 'Etiquette (Street)', 'Technical Skill (Photo and Film)', 'Status' ]
+    skill_list = [ 
+        'Persuade', 
+        'Perform (Orate)', 
+        'Research', 
+        'Spot', 
+        'Listen', 
+        'Insight',
+        'Etiquette (Corporate)', 
+        'Etiquette (Street)', 
+        'Technical Skill (Photo and Film)', 
+        'Status' ]
     base_skill_scores = {
         'Persuade': 30,
         'Perform (Orate)': 50,
@@ -189,7 +265,6 @@ def cyber_media_skillset():
         'Etiquette (Corporate)': 40,
         'Etiquette (Street)': 40,
         'Technical Skill (Photo and Film)': 40,
-        'Status': 50
-    }
+        'Status': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set

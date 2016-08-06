@@ -10,8 +10,17 @@ def skills_and_scores(skills,scores):
     return skills_string
 
 def horror_mercenary_skillset():
-    skill_list = [ 'Firearms (Rifle)', 'Brawl', 'Dodge', 'Spot', 'Navigate',
-                   'First Aid', 'Hide', 'Repair (Mechanical)', 'Heavy Weapon', 'Demolition']
+    skill_list = [ 
+        'Firearms (Rifle)', 
+        'Brawl', 
+        'Dodge', 
+        'Spot', 
+        'Navigate',
+        'First Aid', 
+        'Hide', 
+        'Repair (Mechanical)', 
+        'Heavy Weapon', 
+        'Demolition' ]
     base_skill_scores = {
         'Firearms (Rifle)': 30,
         'Brawl': 50,
@@ -22,14 +31,22 @@ def horror_mercenary_skillset():
         'Hide': 40,
         'Repair (Mechanical)': 40,
         'Heavy Weapon': 40,
-        'Demolition': 50
-    }
+        'Demolition': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
 def horror_occultist_skillset():
-    skill_list = [ 'Knowledge (Occult)', 'Perform (Rituals)', 'Fast Talk', 'Insight', 'Language (Other)',
-                   'Knowledge (Folklore)', 'Research', 'Art (Any)', 'Craft (Any)', 'Knowledge (Blasphemous)']
+    skill_list = [ 
+        'Knowledge (Occult)', 
+        'Perform (Rituals)', 
+        'Fast Talk', 
+        'Insight', 
+        'Language (Other)',
+        'Knowledge (Folklore)', 
+        'Research', 
+        'Art (Any)', 
+        'Craft (Any)', 
+        'Knowledge (Blasphemous)' ]
     base_skill_scores = {
         'Knowledge (Occult)': 30,
         'Perform (Rituals)': 50,
@@ -40,14 +57,22 @@ def horror_occultist_skillset():
         'Research': 40,
         'Art (Any)': 40,
         'Craft (Any)': 40,
-        'Knowledge (Blasphemous)': 50
-    }
+        'Knowledge (Blasphemous)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
 def horror_priest_skillset():
-    skill_list = [ 'Knowledge (Religion)', 'Perform (Rituals)', 'Insight', 'Fast Talk', 'Knowledge (History)',
-                   'Persuade', 'Perform (Oratory)', 'Teach', 'Research', 'Knowledge (Philosophy)']
+    skill_list = [ 
+        'Knowledge (Religion)', 
+        'Perform (Rituals)', 
+        'Insight', 
+        'Fast Talk', 
+        'Knowledge (History)',
+        'Persuade', 
+        'Perform (Oratory)', 
+        'Teach', 
+        'Research', 
+        'Knowledge (Philosophy)' ]
     base_skill_scores = {
         'Knowledge (Religion)': 30,
         'Perform (Rituals)': 50,
@@ -58,14 +83,22 @@ def horror_priest_skillset():
         'Perform (Oratory)': 40,
         'Teach': 40,
         'Research': 40,
-        'Knowledge (Philosophy)': 50
-    }
+        'Knowledge (Philosophy)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
 def horror_criminal_skillset():
-    skill_list = [ 'Bargain', 'Brawl', 'Melee Weapon', 'Appraise', 'Hide',
-                   'Stealth', 'Drive (Car)', 'Persuade', 'Spot', 'Fine Manipulation']
+    skill_list = [ 
+        'Bargain', 
+        'Brawl', 
+        'Melee Weapon', 
+        'Appraise', 
+        'Hide',
+        'Stealth', 
+        'Drive (Car)', 
+        'Persuade', 
+        'Spot', 
+        'Fine Manipulation' ]
     base_skill_scores = {
         'Bargain': 30,
         'Brawl': 50,
@@ -76,14 +109,22 @@ def horror_criminal_skillset():
         'Drive (Car)': 40,
         'Persuade': 40,
         'Spot': 40,
-        'Fine Manipulation': 50
-    }
+        'Fine Manipulation': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
 def horror_journalist_skillset():
-    skill_list = [ 'Persuade', 'Research', 'Fast Talk', 'Insight', 'Listen', 'Spot',
-                   'Knowledge (Any)', 'Technical Skill (Photo and Film)', 'Disguise', 'Language (Other)']
+    skill_list = [ 
+        'Persuade', 
+        'Research', 
+        'Fast Talk', 
+        'Insight', 
+        'Listen', 
+        'Spot',
+        'Knowledge (Any)', 
+        'Technical Skill (Photo and Film)', 
+        'Disguise', 
+        'Language (Other)' ]
     base_skill_scores = {
         'Persuade': 30,
         'Research': 50,
@@ -94,14 +135,22 @@ def horror_journalist_skillset():
         'Knowledge (Any)': 40,
         'Technical Skill (Photo and Film)': 40,
         'Disguise': 40,
-        'Language (Other)': 50
-    }
+        'Language (Other)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
 def horror_spy_skillset():
-    skill_list = [ 'Knowledge (Espionage)', 'Research', 'Firearms (Pistol)', 'Listen', 
-                   'Hide', 'Spot', 'Stealth', 'Brawl', 'Disguise', 'Technical Skill (Electronic Security)']
+    skill_list = [ 
+        'Knowledge (Espionage)', 
+        'Research', 
+        'Firearms (Pistol)', 
+        'Listen', 
+        'Hide', 
+        'Spot', 
+        'Stealth', 
+        'Brawl', 
+        'Disguise', 
+        'Technical Skill (Electronic Security)' ]
     base_skill_scores = {
         'Knowledge (Espionage)': 30,
         'Research': 50,
@@ -112,8 +161,7 @@ def horror_spy_skillset():
         'Stealth': 40,
         'Brawl': 40,
         'Disguise': 40,
-        'Technical Skill (Electronic Security)': 50
-    }
+        'Technical Skill (Electronic Security)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
@@ -130,14 +178,22 @@ def horror_scientist_skillset():
         'Technical Skill (Computer Use)': 40,
         'Technical Skill 2': 40,
         'Science 3': 40,
-        'Status': 50
-    }
+        'Status': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
 def horror_gambler_skillset():
-    skill_list = [ 'Gaming', 'Fast Talk', 'Sleight of Hand', 'Bargain', 'Brawl',
-                   'Spot', 'Insight', 'Persuade', 'Knowledge (Accounting)', 'Dodge']
+    skill_list = [ 
+        'Gaming', 
+        'Fast Talk', 
+        'Sleight of Hand', 
+        'Bargain', 
+        'Brawl',
+        'Spot', 
+        'Insight', 
+        'Persuade', 
+        'Knowledge (Accounting)', 
+        'Dodge' ]
     base_skill_scores = {
         'Gaming': 30,
         'Fast Talk': 50,
@@ -148,14 +204,22 @@ def horror_gambler_skillset():
         'Insight': 40,
         'Persuade': 40,
         'Knowledge (Accounting)': 40,
-        'Dodge': 50
-    }
+        'Dodge': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
 def horror_detective_skillset():
-    skill_list = [ 'Firearms (Pistol)', 'Knowledge (Law)', 'Listen', 'Persuade', 'Spot', 
-                   'Brawl', 'Drive (Car)', 'Insight', 'Research', 'Etiquette (Street)']
+    skill_list = [ 
+        'Firearms (Pistol)', 
+        'Knowledge (Law)', 
+        'Listen', 
+        'Persuade', 
+        'Spot', 
+        'Brawl', 
+        'Drive (Car)', 
+        'Insight', 
+        'Research', 
+        'Etiquette (Street)' ]
     base_skill_scores = {
         'Firearms (Pistol)': 30,
         'Knowledge (Law)': 50,
@@ -166,14 +230,22 @@ def horror_detective_skillset():
         'Drive (Car)': 40,
         'Insight': 40,
         'Research': 40,
-        'Etiquette (Street)': 50
-    }
+        'Etiquette (Street)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
 
 def horror_doctor_skillset():
-    skill_list = [ 'First Aid', 'Medicine', 'Persuade', 'Research', 'Spot', 
-                   'Science (Pharmacy)', 'Science (Psychology)', 'Psychotherapy', 'Status', 'Language (Other)']
+    skill_list = [ 
+        'First Aid', 
+        'Medicine', 
+        'Persuade', 
+        'Research', 
+        'Spot', 
+        'Science (Pharmacy)', 
+        'Science (Psychology)', 
+        'Psychotherapy', 
+        'Status', 
+        'Language (Other)' ]
     base_skill_scores = {
         'First Aid': 30,
         'Medicine': 50,
@@ -184,7 +256,6 @@ def horror_doctor_skillset():
         'Science (Psychology)': 40,
         'Psychotherapy': 40,
         'Status': 40,
-        'Language (Other)': 50
-    }
+        'Language (Other)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
     return skill_set
