@@ -4,10 +4,22 @@
     BoxLayout:
         orientation: 'vertical'
         Label:
-            text:'Welcome'
+            text_size: self.size
+            halign: 'center'
+            valign: 'top'
+            markup: True
+            text:'[b]Welcome To The BRP/D100 Character Generator[/b]'
+        Label:
+            text_size: self.size
+            halign: 'center'
+            valign: 'top'
+            markup: True
+            text:'The following screens will generate characters for different D100-related game systems, genres, races and professions'
         Button:
-            text:'Next'
-            on_press: root.manager.current = 'system_type'
+            text:'Next => Select System'
+            on_press: 
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'system_type'
         Button:
             text:'Quit'
             on_press: exit()
@@ -36,10 +48,12 @@
             group: 'system_group'
             on_active: root.coc_system(*args)
         Button:
-            text:'Back'
-            on_press: root.manager.current = 'welcome'
+            text:'Welcome Screen <= Back'
+            on_press: 
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'welcome'
         Button:
-            text:'Next'
+            text:'Next => Select Genre'
             on_press: root.manager.current = 'genre'
 
 <SelectGenre>:
@@ -71,11 +85,15 @@
             group: 'genre_group'
             on_active: root.genre = 'horror'
         Button:
-            text:'Back'
-            on_press: root.manager.current = 'welcome'
+            text:'Select System <= Back'
+            on_press: 
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'system_type'
         Button:
-            text:'Next'
-            on_press: root.choose_race_screen()
+            text:'Next => Choose Race'
+            on_press: 
+                root.manager.transition.direction = 'left'
+                root.choose_race_screen()
 
 <SelectRaceFantasy>:
     GridLayout:
@@ -111,11 +129,15 @@
             group: 'race_group'
             on_active: root.fantasy_halfling(*args)
         Button:
-            text:'Back'
-            on_press: root.manager.current = 'welcome'
+            text:'Select Genre <= Back'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'genre'
         Button:
-            text:'Next'
-            on_press: root.manager.current = 'profession_fantasy'
+            text:'Next => Fantasy Professions'
+            on_press:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'profession_fantasy'
 
 <SelectRaceSciFi>:
     GridLayout:
@@ -166,10 +188,12 @@
             group: 'race_group'
             on_active: root.scifi_zabrak(*args)
         Button:
-            text:'Back'
-            on_press: root.manager.current = 'welcome'
+            text:'Select Genre <= Back'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'genre'
         Button:
-            text:'Next'
+            text:'Next => SciFi Professions'
             on_press: root.manager.current = 'profession_scifi'
 
 <SelectRaceWildWest>:
@@ -201,10 +225,12 @@
             group: 'race_group'
             on_active: root.wildwest_lowlife(*args)
         Button:
-            text:'Back'
-            on_press: root.manager.current = 'welcome'
+            text:'Select Genre <= Back'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'genre'
         Button:
-            text:'Next'
+            text:'Next => Wild West Professions'
             on_press: root.manager.current = 'profession_wildwest'
 
 <SelectRaceHorror>:
@@ -241,45 +267,49 @@
             group: 'race_group'
             on_active: root.horror_lowlife(*args)
         Button:
-            text:'Back'
-            on_press: root.manager.current = 'welcome'
+            text:'Select Genre <= Back'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'genre'
         Button:
-            text:'Next'
+            text:'Next => Horror Professions'
             on_press: root.manager.current = 'profession_horror'
 
 <SelectRaceCyberpunk>:
     GridLayout:
         cols: 2
         Label:
-            text:'Cyber Human'
+            text:'Human'
         CheckBox:
             group: 'race_group'
             on_active: root.cyber_human(*args)
         Label:
-            text:'Cyber Elf'
+            text:'Elf'
         CheckBox:
             group: 'race_group'
             on_active: root.cyber_elf(*args)
         Label:
-            text:'Cyber Dwarf'
+            text:'Dwarf'
         CheckBox:
             group: 'race_group'
             on_active: root.cyber_dwarf(*args)
         Label:
-            text:'Cyber Orc'
+            text:'Orc'
         CheckBox:
             group: 'race_group'
             on_active: root.cyber_orc(*args)
         Label:
-            text:'Cyber Goblin'
+            text:'Goblin'
         CheckBox:
             group: 'race_group'
             on_active: root.cyber_goblin(*args)
         Button:
-            text:'Back'
-            on_press: root.manager.current = 'welcome'
+            text:'Select Genre <= Back'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'genre'
         Button:
-            text:'Next'
+            text:'Next => Cyberpunk Professions'
             on_press: root.manager.current = 'profession_cyberpunk'
 
 <SelectProfessionFantasy>:
@@ -346,10 +376,12 @@
             group: 'profession_group'
             on_active: root.hunter(*args)
         Button:
-            text:'Back'
-            on_press: root.manager.current = 'welcome'
+            text:'Fantasy Races <= Back'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'race_fantasy'
         Button:
-            text:'Next'
+            text:'Next => Display Your Character'
             on_press: root.manager.current = 'character_sheet'
 
 <SelectProfessionSciFi>:
@@ -406,10 +438,12 @@
             group: 'profession_group'
             on_active: root.trader(*args)
         Button:
-            text:'Back'
-            on_press: root.manager.current = 'welcome'
+            text:'SciFi Races <= Back'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'race_scifi'
         Button:
-            text:'Next'
+            text:'Next => Display Your Character'
             on_press: root.manager.current = 'character_sheet'
 
 <SelectProfessionWildWest>:
@@ -466,10 +500,12 @@
             group: 'profession_group'
             on_active: root.frontiersman(*args)
         Button:
-            text:'Back'
-            on_press: root.manager.current = 'welcome'
+            text:'Wild West Races <= Back'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'race_wildwest'
         Button:
-            text:'Next'
+            text:'Next => Display Your Character'
             on_press: root.manager.current = 'character_sheet'
 
 <SelectProfessionHorror>:
@@ -526,10 +562,12 @@
             group: 'profession_group'
             on_active: root.doctor(*args)
         Button:
-            text:'Back'
-            on_press: root.manager.current = 'welcome'
+            text:'Horror Races <= Back'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'race_horror'
         Button:
-            text:'Next'
+            text:'Next => Display Your Character'
             on_press: root.manager.current = 'character_sheet'
 
 <SelectProfessionCyberpunk>:
@@ -586,10 +624,12 @@
             group: 'profession_group'
             on_active: root.media(*args)
         Button:
-            text:'Back'
-            on_press: root.manager.current = 'welcome'
+            text:'Cyberpunk Races <= Back'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'race_cyberpunk'
         Button:
-            text:'Next'
+            text:'Next => Display Your Character'
             on_press: root.manager.current = 'character_sheet'
 
 <CharacterSheet>:
