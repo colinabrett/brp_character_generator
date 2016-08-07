@@ -96,3 +96,27 @@ def scb(incoming_stats):
         'Physical': sb['pDEX'] + sb['sSTR'] + sb['sCON'] - sb['sSIZ']
     }
     return skill_groups
+
+import math
+def damage_bonus(str,siz):
+    """calculate damage bonus from STR and SIZ, return string damage bonus"""
+    db = "None"
+    combined = int(str) + int(siz)
+    if combined <= 40 :
+        if combined <= 12:
+            db = '-1D6'
+        elif combined <= 16:
+            db = '-1D4'
+        elif combined <= 24:
+            db = 'None'
+        elif combined <= 32:
+            db = '+1D4'
+        elif combined <= 40:
+            db = '+1D6'
+        else:
+            db = 'None'
+    else:
+        #add dice 6 per 16
+        n = 1 + math.ceil((combined-40)/16)
+        db = '+{0}D6'.format(n)
+    return db
