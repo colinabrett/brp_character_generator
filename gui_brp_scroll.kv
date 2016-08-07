@@ -1,0 +1,830 @@
+#:kivy 1.9.1
+
+<WelcomeScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text_size: self.size
+            halign: 'center'
+            valign: 'top'
+            markup: True
+            text:'[b]Welcome To The BRP/D100 Character Generator[/b]'
+        Label:
+            text_size: self.size
+            halign: 'center'
+            valign: 'top'
+            markup: True
+            text:'The following screens will generate characters for different D100-related game systems, genres, races and professions'
+        Button:
+            text:'Next => Select System'
+            on_press: 
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'system_type'
+        Button:
+            text:'Quit'
+            on_press: exit()
+
+<SelectSystem>:
+    GridLayout:
+        cols: 2
+        Label:
+            text:'Basic Roleplaying (BGB)'
+        CheckBox:
+            group: 'system_group'
+            on_active: root.brp_system(*args)
+        Label:
+            text:'Magic World'
+        CheckBox:
+            group: 'system_group'
+            on_active: root.mw_system(*args)
+        Label:
+            text:'Mythras Imperative'
+        CheckBox:
+            group: 'system_group'
+            on_active: root.mi_system(*args)
+        Label:
+            text:'Call of Cthulhu'
+        CheckBox:
+            group: 'system_group'
+            on_active: root.coc_system(*args)
+        Button:
+            text:'Welcome Screen <= Back'
+            on_press: 
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'welcome'
+        Button:
+            text:'Next => Select Genre'
+            on_press: root.manager.current = 'genre'
+
+<SelectGenre>:
+    GridLayout:
+        cols: 2
+        Label:
+            text:'Fantasy'
+        CheckBox:
+            group: 'genre_group'
+            on_active: root.genre = 'fantasy'
+        Label:
+            text:'Sci-Fi'
+        CheckBox:
+            group: 'genre_group'
+            on_active: root.genre = 'scifi'
+        Label:
+            text:'Cyberpunk'
+        CheckBox:
+            group: 'genre_group'
+            on_active: root.genre = 'cyberpunk'
+        Label:
+            text:'Wild West'
+        CheckBox:
+            group: 'genre_group'
+            on_active: root.genre = 'wildwest'
+        Label:
+            text:'Horror'
+        CheckBox:
+            group: 'genre_group'
+            on_active: root.genre = 'horror'
+        Button:
+            text:'Select System <= Back'
+            on_press: 
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'system_type'
+        Button:
+            text:'Next => Choose Race'
+            on_press: 
+                root.manager.transition.direction = 'left'
+                root.choose_race_screen()
+
+<SelectRaceFantasy>:
+    GridLayout:
+        cols: 2
+        Label:
+            text:'Human'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.fantasy_human(*args)
+        Label:
+            text:'Elf'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.fantasy_elf(*args)
+        Label:
+            text:'Dwarf'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.fantasy_dwarf(*args)
+        Label:
+            text:'Orc'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.fantasy_orc(*args)
+        Label:
+            text:'Goblin'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.fantasy_goblin(*args)
+        Label:
+            text:'Halfling'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.fantasy_halfling(*args)
+        Button:
+            text:'Select Genre <= Back'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'genre'
+        Button:
+            text:'Next => Fantasy Professions'
+            on_press:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'profession_fantasy'
+
+<SelectRaceSciFi>:
+    GridLayout:
+        cols: 2
+        Label:
+            text:'Human'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.scifi_human(*args)
+        Label:
+            text:'Eldar'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.scifi_eldar(*args)
+        Label:
+            text:'Squat'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.scifi_squat(*args)
+        Label:
+            text:'Ork'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.scifi_ork(*args)
+        Label:
+            text:'Gretchin'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.scifi_gretchin(*args)
+        Label:
+            text:'Wookiee'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.scifi_wookiee(*args)
+        Label:
+            text:'Grey'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.scifi_grey(*args)
+        Label:
+            text:'Gungan'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.scifi_gungan(*args)
+        Label:
+            text:'Zabrak'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.scifi_zabrak(*args)
+        Button:
+            text:'Select Genre <= Back'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'genre'
+        Button:
+            text:'Next => SciFi Professions'
+            on_press: root.manager.current = 'profession_scifi'
+
+<SelectRaceWildWest>:
+    GridLayout:
+        cols: 2
+        Label:
+            text:'Human'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.wildwest_human(*args)
+        Label:
+            text:'American Indian'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.wildwest_amerindian(*args)
+        Label:
+            text:'Brawn Over Brains'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.wildwest_brawn(*args)
+        Label:
+            text:'Brains Over Brawn'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.wildwest_brains(*args)
+        Label:
+            text:'Lowlife Scum'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.wildwest_lowlife(*args)
+        Button:
+            text:'Select Genre <= Back'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'genre'
+        Button:
+            text:'Next => Wild West Professions'
+            on_press: root.manager.current = 'profession_wildwest'
+
+<SelectRaceHorror>:
+    GridLayout:
+        cols: 2
+        Label:
+            text:'Horror Human'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.horror_human(*args)
+        Label:
+            text:'Ghoul'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.horror_ghoul(*args)
+        Label:
+            text:'Vampire'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.horror_vampire(*args)
+        Label:
+            text:'Brawn Over Brains'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.horror_brawn(*args)
+        Label:
+            text:'Brains Over Brawn'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.horror_brains(*args)
+        Label:
+            text:'Lowlife Scum'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.horror_lowlife(*args)
+        Button:
+            text:'Select Genre <= Back'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'genre'
+        Button:
+            text:'Next => Horror Professions'
+            on_press: root.manager.current = 'profession_horror'
+
+<SelectRaceCyberpunk>:
+    GridLayout:
+        cols: 2
+        Label:
+            text:'Human'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.cyber_human(*args)
+        Label:
+            text:'Elf'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.cyber_elf(*args)
+        Label:
+            text:'Dwarf'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.cyber_dwarf(*args)
+        Label:
+            text:'Orc'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.cyber_orc(*args)
+        Label:
+            text:'Goblin'
+        CheckBox:
+            group: 'race_group'
+            on_active: root.cyber_goblin(*args)
+        Button:
+            text:'Select Genre <= Back'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'genre'
+        Button:
+            text:'Next => Cyberpunk Professions'
+            on_press: root.manager.current = 'profession_cyberpunk'
+
+<SelectProfessionFantasy>:
+    ScrollView:
+        size_hint_x: 1
+        do_scroll_x: True
+        do_scroll_y: True
+        bar_width: 10
+        bar_color: [.1, .1, .9, .9]
+        GridLayout:
+            size_hint_y:  None
+            height: self.minimum_height
+            cols: 2
+            Label:
+                text:'Warrior'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.warrior(*args)
+            Label:
+                text:'Rogue'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.rogue(*args)
+            Label:
+                text:'Wizard'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.wizard(*args)
+            Label:
+                text:'Priest'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.priest(*args)
+            Label:
+                text:'Explorer'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.explorer(*args)
+            Label:
+                text:'Noble'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.noble(*args)
+            Label:
+                text:'Assassin'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.assassin(*args)
+            Label:
+                text:'Beggar'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.beggar(*args)
+            Label:
+                text:'Artisan'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.artisan(*args)
+            Label:
+                text:'Merchant'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.merchant(*args)
+            Label:
+                text:'Shaman'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.shaman(*args)
+            Label:
+                text:'Hunter'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.hunter(*args)
+            Button:
+                text:'Fantasy Races <= Back'
+                size_hint_y: None
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'race_fantasy'
+            Button:
+                size_hint_y: None
+                text:'Next => Display Your Character'
+                on_press: root.manager.current = 'character_sheet'
+
+<SelectProfessionSciFi>:
+    ScrollView:
+        size_hint_x: 1
+        do_scroll_x: True
+        do_scroll_y: True
+        bar_width: 10
+        bar_color: [.1, .1, .9, .9]
+        GridLayout:
+            size_hint_y:  None
+            height: self.minimum_height
+            cols: 2
+            Label:
+                text:'Warrior'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.warrior(*args)
+            Label:
+                text:'Psyker'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.psyker(*args)
+            Label:
+                text:'Jedi'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.jedi(*args)
+            Label:
+                text:'Rogue'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.rogue(*args)
+            Label:
+                text:'Smuggler'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.smuggler(*args)
+            Label:
+                text:'Noble'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.noble(*args)
+            Label:
+                text:'Technician'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.technician(*args)
+            Label:
+                text:'Agent'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.agent(*args)
+            Label:
+                text:'Gambler'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.gambler(*args)
+            Label:
+                text:'Trader'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.trader(*args)
+            Button:
+                text:'SciFi Races <= Back'
+                size_hint_y: None
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'race_scifi'
+            Button:
+                size_hint_y: None
+                text:'Next => Display Your Character'
+                on_press: root.manager.current = 'character_sheet'
+
+<SelectProfessionWildWest>:
+    ScrollView:
+        size_hint_x: 1
+        do_scroll_x: True
+        do_scroll_y: True
+        bar_width: 10
+        bar_color: [.1, .1, .9, .9]
+        GridLayout:
+            cols: 2
+            size_hint_y:  None
+            height: self.minimum_height
+            Label:
+                text:'Soldier'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.soldier(*args)
+            Label:
+                text:'Occultist'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.occultist(*args)
+            Label:
+                text:'Preacher'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.preacher(*args)
+            Label:
+                text:'Criminal'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.criminal(*args)
+            Label:
+                text:'Mad Scientist'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.madscientist(*args)
+            Label:
+                text:'Gambler'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.gambler(*args)
+            Label:
+                text:'Sheriff'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.sheriff(*args)
+            Label:
+                text:'Doctor'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.doctor(*args)
+            Label:
+                text:'Tribesman'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.tribesman(*args)
+            Label:
+                text:'Frontiersman'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.frontiersman(*args)
+            Button:
+                text:'Wild West Races <= Back'
+                size_hint_y: None
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'race_wildwest'
+            Button:
+                text:'Next => Display Your Character'
+                size_hint_y: None
+                on_press: root.manager.current = 'character_sheet'
+
+<SelectProfessionHorror>:
+    ScrollView:
+        size_hint_x: 1
+        do_scroll_x: True
+        do_scroll_y: True
+        bar_width: 10
+        bar_color: [.1, .1, .9, .9]
+        GridLayout:
+            cols: 2
+            size_hint_y:  None
+            height: self.minimum_height
+            Label:
+                text:'Mercenary'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.mercenary(*args)
+            Label:
+                text:'Occultist'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.occultist(*args)
+            Label:
+                text:'Priest'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.priest(*args)
+            Label:
+                text:'Criminal'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.criminal(*args)
+            Label:
+                text:'Journalist'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.journalist(*args)
+            Label:
+                text:'Spy'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.spy(*args)
+            Label:
+                text:'Scientist'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.scientist(*args)
+            Label:
+                text:'Gambler'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.gambler(*args)
+            Label:
+                text:'Detective'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.detective(*args)
+            Label:
+                text:'Doctor'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.doctor(*args)
+            Button:
+                text:'Horror Races <= Back'
+                size_hint_y: None
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'race_horror'
+            Button:
+                text:'Next => Display Your Character'
+                size_hint_y: None
+                on_press: root.manager.current = 'character_sheet'
+
+<SelectProfessionCyberpunk>:
+    ScrollView:
+        size_hint_x: 1
+        do_scroll_x: True
+        do_scroll_y: True
+        bar_width: 10
+        bar_color: [.1, .1, .9, .9]
+        GridLayout:
+            cols: 2
+            size_hint_y:  None
+            height: self.minimum_height
+            Label:
+                text:'Solo'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.solo(*args)
+            Label:
+                text:'Fixer'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.fixer(*args)
+            Label:
+                text:'Rocker'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.rocker(*args)
+            Label:
+                text:'Techie'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.techie(*args)
+            Label:
+                text:'Corporate'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.corporate(*args)
+            Label:
+                text:'Cop'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.cop(*args)
+            Label:
+                text:'Nomad'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.nomad(*args)
+            Label:
+                text:'MedTech'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.medtech(*args)
+            Label:
+                text:'Netrunner'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.netrunner(*args)
+            Label:
+                text:'Media'
+                size_hint_y: None
+            CheckBox:
+                group: 'profession_group'
+                on_active: root.media(*args)
+            Button:
+                text:'Cyberpunk Races <= Back'
+                size_hint_y: None
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'race_cyberpunk'
+            Button:
+                text:'Next => Display Your Character'
+                size_hint_y: None
+                on_press: root.manager.current = 'character_sheet'
+
+<CharacterSheet>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text_size: self.size
+            halign: 'left'
+            markup: True
+            text: '[b]System Type[/b]'
+        Label:
+            text_size: self.size
+            halign: 'left'
+            text: root.ruleset
+        Label:
+            text_size: self.size
+            halign: 'left'
+            markup: True
+            text: '[b]Genre[/b]'
+        Label:
+            text_size: self.size
+            halign: 'left'
+            text: root.genre
+        Label:
+            text_size: self.size
+            halign: 'left'
+            markup: True
+            text: '[b]Race[/b]'
+        Label:
+            text_size: self.size
+            halign: 'left'
+            text: root.race
+        Label:
+            text_size: self.size
+            halign: 'left'
+            markup: True
+            text: '[b]Profession[/b]'
+        Label:
+            text_size: self.size
+            halign: 'left'
+            text: root.profession
+        Label:
+            text_size: self.size
+            halign: 'left'
+            markup: True
+            text:'[b]Characteristics[/b]'
+        Label:
+            text_size: self.size
+            halign: 'left'
+            text: root.mysb
+        Label:
+            text_size: self.size
+            halign: 'left'
+            markup: True
+            text:'[b]Characteristic Rolls[/b]'
+        Label:
+            text_size: self.size
+            halign: 'left'
+            text: root.mycr
+        Label:
+            text_size: self.size
+            halign: 'left'
+            markup: True
+            text:'[b]MW Skill Category Modifiers[/b]'
+        Label:
+            text_size: self.size
+            halign: 'left'
+            text: root.myscm
+        Label:
+            text_size: self.size
+            halign: 'left'
+            markup: True
+            text:'[b]BRP Skill Category Bonuses[/b]'
+        Label:
+            text_size: self.size
+            halign: 'left'
+            text: root.myscb
+        Label:
+            text_size: self.size
+            halign: 'left'
+            markup: True
+            text:'[b]Skills[/b]'
+# CB Added text wrapping
+        Label:
+            size_hint_y: None
+            text_size: self.width, None
+            height: self.texture_size[1]
+            halign: 'left'
+            text: root.skills
+        Button:
+            text:'Quit'
+            on_press: exit()
+        Button:
+            text:'Back to Start'
+            on_press: root.manager.current = 'welcome'
+

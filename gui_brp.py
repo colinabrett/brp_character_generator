@@ -11,6 +11,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.button import Button
 from kivy.uix.widget import Widget
 from kivy.uix.gridlayout import GridLayout
+from kivy.uix.scrollview import ScrollView
 from kivy.properties import StringProperty, ListProperty
 
 #
@@ -35,7 +36,7 @@ from dice_roller import *
 # Import KV file
 #
 
-Builder.load_file("gui_brp.kv")
+Builder.load_file("gui_brp_scroll.kv")
 
 class WelcomeScreen(Screen):
     pass
