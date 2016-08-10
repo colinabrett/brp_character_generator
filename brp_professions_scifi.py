@@ -9,7 +9,7 @@ def skills_and_scores(skills,scores):
         skills_string = skills_string + s + " " + ss + "% "
     return skills_string
 
-def scifi_warrior_skillset():
+def scifi_warrior_skillset(raw=False):
     skill_list = [
         'Melee Weapon', 
         'Energy Weapon', 
@@ -33,9 +33,12 @@ def scifi_warrior_skillset():
         'Martial Art (Style)': 30,
         'Repair (Mechanical)': 30 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def scifi_psyker_skillset():
+def scifi_psyker_skillset(raw=False):
     skill_list = [
         'Projection', 
         'Knowledge (Psionics)', 
@@ -59,9 +62,12 @@ def scifi_psyker_skillset():
         'Spot': 30,
         'Listen': 30 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def scifi_jedi_skillset():
+def scifi_jedi_skillset(raw=False):
     skill_list = [
         'Melee Weapon (Energy Sword)', 
         'Command', 
@@ -85,9 +91,12 @@ def scifi_jedi_skillset():
         'Insight': 30,
         'Spot': 30 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def scifi_rogue_skillset():
+def scifi_rogue_skillset(raw=False):
     skill_list = [
         'Energy Weapon', 
         'Spot', 
@@ -111,9 +120,12 @@ def scifi_rogue_skillset():
         'Technical Skill (Electronic Security)': 30,
         'Insight': 30 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def scifi_smuggler_skillset():
+def scifi_smuggler_skillset(raw=False):
     skill_list = [
         'Pilot (Starship)', 
         'Hide', 
@@ -137,9 +149,12 @@ def scifi_smuggler_skillset():
         'Knowledge (Law)': 30,
         'Technical Skill (Electronic Security)': 30 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def scifi_noble_skillset():
+def scifi_noble_skillset(raw=False):
     skill_list = [
         'Etiquette', 
         'Language (Alien)', 
@@ -163,9 +178,12 @@ def scifi_noble_skillset():
         'Appraise': 30,
         'Persuade': 30 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def scifi_technician_skillset():
+def scifi_technician_skillset(raw=False):
     skill_list = [
         'Repair (Electrical)', 
         'Repair (Mechanical)', 
@@ -189,9 +207,12 @@ def scifi_technician_skillset():
         'Research': 30,
         'Heavy Machinery': 30 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def scifi_agent_skillset():
+def scifi_agent_skillset(raw=False):
     skill_list = [
         'Energy Weapon', 
         'Knowledge (Espionage)', 
@@ -215,9 +236,12 @@ def scifi_agent_skillset():
         'Disguise': 30,
         'Technical Skill (Electronic Security)': 30 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def scifi_gambler_skillset():
+def scifi_gambler_skillset(raw=False):
     skill_list = [
         'Gaming', 
         'Fast Talk', 
@@ -241,9 +265,12 @@ def scifi_gambler_skillset():
         'Science (Mathematics)': 30,
         'Spot': 30 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def scifi_trader_skillset():
+def scifi_trader_skillset(raw=False):
     skill_list = [
         'Appraise', 
         'Bargain', 
@@ -267,5 +294,8 @@ def scifi_trader_skillset():
         'Insight': 30,
         'Pilot (Freighter)': 30 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
