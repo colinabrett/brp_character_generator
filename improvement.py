@@ -32,9 +32,21 @@ class ProfessionImprovement(Improvement):
         """Decide how the skill points will be divided between the available skills"""
         # allocate (allocate skill points proportionally to profession skills)
         self.categoriseSkills()
-        ratio = [0.5, 0.3, 0.2]
-        pass
-
+        types = ['Primary', 'Secondary', 'Other']
+        ratio = [0.4, 0.35, 0.25]
+        types_ratio = dict(zip(types,ratio))
+        for type in types:
+            points = int(round((self.points * types_ratio[type])/len(self.categorised_skills[type]),0))
+            skill_list = self.categorised_skills.get(type)
+            for skill in skill_list:
+                self.skills[skill] = points
+            
+        #primary = round((self.points * ratio[0])/len(self.categorised_skills['Primary']),0)
+        #secondary = round((self.points * ratio[1])/len(self.categorised_skills['Secondary']),0)
+        #other = round((self.points * ratio[2])/len(self.categorised_skills['Other']),0)
+        #for skill in self.categorised_skills.get('Primary'):
+            
+                                                      
     def categoriseSkills(self):
         """put available skills into categories primary, secondary, other"""
         self.categorised_skills = {'Primary' : [], 'Secondary' : [], 'Other' : []}
@@ -42,7 +54,7 @@ class ProfessionImprovement(Improvement):
         shuffle(skill_names)
         n_pri = straight_dice(1,3,0)
         n_sec = straight_dice(1,4,1)
-        print(n_pri, n_sec)
+        print(n_pri, n_sec) #debug
         for i in range(0, (n_pri)):
             try:
                 self.categorised_skills['Primary'].append(skill_names.pop())
