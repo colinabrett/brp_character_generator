@@ -5,14 +5,16 @@
 from dice_roller import *
 from brp_stats import *
 from decimal import Decimal, ROUND_HALF_UP
+from improvement import *
 
 class GameSystem():
         def __init__(self):
                 self.statblock = {}
                 self.derived = {}
                 self.skills = {}
+                self.modified_skills = {}
                 self.suppressed_skills = []
-                self.suppressed_stats = {}
+                self.suppressed_stats = []
                 self.bonuses = {}
 
         def calculateStats(self, statslist):
@@ -33,6 +35,7 @@ class GameSystem():
                 """calculate skill bonuses"""
                 return
 
+
         def modifySkill(self, skill, modifier) :
                 """change the value of a known skill, or add a new skill and base value to the list"""
                 return
@@ -49,6 +52,10 @@ class GameSystem():
                         self.suppressed_stats.append(ustat)
                 return
 
+        def improve(improvement):
+                """Apply the skills of an Improvement to the modified skills attribute"""
+                pass
+        
 class Brp(GameSystem):
         def __init__(self):
                 """constructor for BRP character"""
@@ -131,6 +138,7 @@ class Brp(GameSystem):
                                'Track' : 10 }
                 self.suppressed_stats = []
                 self.bonuses = {}
+                self.improvements = []
 
         def calculateBonuses(self):
                 """calculate BRP skill category bonuses"""
