@@ -13,7 +13,6 @@ from random import shuffle
 class Improvement():
     def __init__(self, skills_dict):
         self.skills = skills_dict
-
     
     def getSkills():
         return self.skills
@@ -41,12 +40,6 @@ class ProfessionImprovement(Improvement):
             for skill in skill_list:
                 self.skills[skill] = points
             
-        #primary = round((self.points * ratio[0])/len(self.categorised_skills['Primary']),0)
-        #secondary = round((self.points * ratio[1])/len(self.categorised_skills['Secondary']),0)
-        #other = round((self.points * ratio[2])/len(self.categorised_skills['Other']),0)
-        #for skill in self.categorised_skills.get('Primary'):
-            
-                                                      
     def categoriseSkills(self):
         """put available skills into categories primary, secondary, other"""
         self.categorised_skills = {'Primary' : [], 'Secondary' : [], 'Other' : []}
@@ -54,7 +47,6 @@ class ProfessionImprovement(Improvement):
         shuffle(skill_names)
         n_pri = straight_dice(1,3,0)
         n_sec = straight_dice(1,4,1)
-        print(n_pri, n_sec) #debug
         for i in range(0, (n_pri)):
             try:
                 self.categorised_skills['Primary'].append(skill_names.pop())
