@@ -5,15 +5,18 @@
 from dice_roller import *
 from brp_stats import *
 from decimal import Decimal, ROUND_HALF_UP
+from improvement import *
 
 class GameSystem():
         def __init__(self):
                 self.statblock = {}
                 self.derived = {}
                 self.skills = {}
+                self.modified_skills = {}
                 self.suppressed_skills = []
-                self.suppressed_stats = {}
+                self.suppressed_stats = []
                 self.bonuses = {}
+                self.skill_points = 0
 
         def calculateStats(self, statslist):
                 """modify STATS if they exist in the statblock eg. statslist {'STR':'2d6', 'EDU':'2d8'}"""
@@ -33,7 +36,8 @@ class GameSystem():
                 """calculate skill bonuses"""
                 return
 
-        def modifySkill(self, skill, modifier) :
+
+        def modifyBaseSkill(self, skill, modifier) :
                 """change the value of a known skill, or add a new skill and base value to the list"""
                 return
 
@@ -49,9 +53,31 @@ class GameSystem():
                         self.suppressed_stats.append(ustat)
                 return
 
+        def improve(self, improvement):
+                """Apply the skills of an Improvement to the modified skills attribute"""
+                # allocate the skill points first if it's a ProfessionImprovement
+                if hasattr(improvement, "allocateSkillPoints") and callable(getattr(improvement, "allocateSkillPoints")):
+                        improvement.allocateSkillPoints(self.skill_points)
+                for skill, value in improvement.getSkills().items():
+                        # ignore subskills - everything after a '('
+                        if '(' in skill:
+                                essential_skill = skill.rpartition('(')[0].strip()
+                        else:
+                                essential_skill = skill
+                        if self.modified_skills.get(skill) and self.modified_skills.get(skill) > self.skills.get(essential_skill):
+                                self.modified_skills[skill] += value
+                        else:
+                                self.modified_skills[skill] = self.skills.get(essential_skill) + value  
+        
 class Brp(GameSystem):
-        def __init__(self):
+        def __init__(self, power_level='Normal'):
                 """constructor for BRP character"""
+                power_levels = {
+                        'Normal' : { 'points' : 250, 'EDU' : 20},
+                        'Super' : { 'points' : 350, 'EDU' : 25},
+                        'Epic' : { 'points' : 500, 'EDU' : 30}
+                }
+                self.power_level = power_levels.get( power_level, 'Normal')
                 self.statblock = {
                         'STR':0,\
                         'CON':0,\
@@ -91,7 +117,7 @@ class Brp(GameSystem):
                                'Hide' : 10,\
                                'Insight' : 5,\
                                'Jump' : 25,\
-                               'Knowledge Common'  : 5,\
+                               'Knowledge'  : 5,\
                                'Knowledge Rare'  : 1,\
                                'Language Other' : 0,\
                                'Language Own' : 0,\
@@ -131,7 +157,16 @@ class Brp(GameSystem):
                                'Track' : 10 }
                 self.suppressed_stats = []
                 self.bonuses = {}
+                self.improvements = []
+                self.modified_skills = {}
 
+        def calculateSkillPoints(self):
+                """Skill points are derived from campaign power level and EDU if it's present; otherwise a fixed pool based on campaign power level"""
+                if 'EDU' not in self.suppressed_stats:
+                        self.skill_points = self.statblock['EDU'] * self.power_level['EDU']
+                else:
+                        self.skill_points = self.power_level['points']
+        
         def calculateBonuses(self):
                 """calculate BRP skill category bonuses"""
                 skill_groups = {

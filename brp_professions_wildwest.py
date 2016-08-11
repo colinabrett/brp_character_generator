@@ -9,7 +9,7 @@ def skills_and_scores(skills,scores):
         skills_string = skills_string + s + " " + ss + "% "
     return skills_string
 
-def wildwest_soldier_skillset():
+def wildwest_soldier_skillset(raw=False):
     skill_list = [ 
         'Firearms (Rifle)', 
         'Brawl', 
@@ -33,9 +33,12 @@ def wildwest_soldier_skillset():
         'Heavy Weapon': 40,
         'Demolition': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def wildwest_occultist_skillset():
+def wildwest_occultist_skillset(raw=False):
     skill_list = [ 
         'Knowledge (Occult)', 
         'Perform (Rituals)', 
@@ -59,9 +62,12 @@ def wildwest_occultist_skillset():
         'Craft (Any)': 40,
         'Knowledge (Blasphemous)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def wildwest_preacher_skillset():
+def wildwest_preacher_skillset(raw=False):
     skill_list = [ 
         'Knowledge (Religion)', 
         'Perform (Rituals)', 
@@ -85,9 +91,12 @@ def wildwest_preacher_skillset():
         'Research': 40,
         'Knowledge (Philosophy)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def wildwest_criminal_skillset():
+def wildwest_criminal_skillset(raw=False):
     skill_list = [ 
         'Bargain', 
         'Brawl', 
@@ -111,9 +120,12 @@ def wildwest_criminal_skillset():
         'Spot': 40,
         'Fine Manipulation': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def wildwest_madscientist_skillset():
+def wildwest_madscientist_skillset(raw=False):
     skill_list = [ 
         'Science 1', 
         'Science 2', 
@@ -137,9 +149,12 @@ def wildwest_madscientist_skillset():
         'Science 3': 40,
         'Status': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def wildwest_gambler_skillset():
+def wildwest_gambler_skillset(raw=False):
     skill_list = [ 
         'Gaming', 
         'Fast Talk', 
@@ -163,9 +178,12 @@ def wildwest_gambler_skillset():
         'Knowledge (Accounting)': 40,
         'Dodge': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def wildwest_sheriff_skillset():
+def wildwest_sheriff_skillset(raw=False):
     skill_list = [ 
         'Firearms (Pistol)', 
         'Knowledge (Law)', 
@@ -189,9 +207,12 @@ def wildwest_sheriff_skillset():
         'Research': 40,
         'Etiquette (Street)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def wildwest_doctor_skillset():
+def wildwest_doctor_skillset(raw=False):
     skill_list = [ 
         'First Aid', 
         'Medicine', 
@@ -215,9 +236,12 @@ def wildwest_doctor_skillset():
         'Status': 40,
         'Language (Other)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def wildwest_tribesman_skillset():
+def wildwest_tribesman_skillset(raw=False):
     skill_list = [ 
         'Craft (Any)', 
         'Dodge', 
@@ -241,9 +265,12 @@ def wildwest_tribesman_skillset():
         'Melee Weapon': 40,
         'Missile Weapon': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def wildwest_frontiersman_skillset():
+def wildwest_frontiersman_skillset(raw=False):
     skill_list = [ 
         'Track',  
         'Hide',  
@@ -267,4 +294,7 @@ def wildwest_frontiersman_skillset():
         'Melee Weapon': 40,
         'Knowledge (Region)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores

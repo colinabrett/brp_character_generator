@@ -2,9 +2,9 @@
 # Skills list for BRP based games
 #
 
-def skill_bases():
+def brp_skill_bases():
 
-    skill_dict = {
+    brp_skill_dict = {
         'Appraise' : 15,
         'Art' : 5,
         'Artillery' : 0,
@@ -15,7 +15,7 @@ def skill_bases():
         'Craft'  : 5,
         'Demolition' : 1,
         'Disguise' : 1,
-        'Dodge' : $xstats[5] * 2,
+        'Dodge' : self.statblock["DEX"] * 2,
         'Drive Common' : 20,
         'Drive Rare' : 1,
         'Energy Weapon' : 0,
@@ -24,9 +24,9 @@ def skill_bases():
         'Fine Manipulation' : 5,
         'Firearm' : 0,
         'First Aid' : 30,
-        'Fly Gear' : $xstats[5] / 2,
-        'Fly Wings' : $xstats[5] * 4,
-        'Gaming' : $xstats[3] + $xstats[4],
+        'Fly Gear' : self.statblock["DEX"] / 2,
+        'Fly Wings' : self.statblock["DEX"] * 4,
+        'Gaming' : self.statblock["INT"] + self.statblock["POW"],
         'Grapple' : 25,
         'Heavy Machine'  : 1,
         'Heavy Weapon'  : 0,
@@ -38,9 +38,9 @@ def skill_bases():
         'Language Other' : 0,
         'Language Own' : 0,
         'Listen' : 25,
-        'Literacy INT' : $xstats[3] * 4,
-        'Literacy EDU' : $xstats[4] * 4,
-        'Martial Arts' : 01,
+        'Literacy INT' : self.statblock["INT"] * 4,
+        'Literacy EDU' : self.statblock["POW"] * 4,
+        'Martial Arts' : 1,
         'Medicine Modern' : 5,
         'Medicine Ancient' : 0,
         'Melee Weapon' :  0,
@@ -50,7 +50,7 @@ def skill_bases():
         'Perform'  : 5,
         'Persuade' : 15,
         'Pilot'  : 1,
-        'Projection' : $xstats[5] * 2,
+        'Projection' : self.statblock["DEX"] * 2,
         'Psychotherapy Common' : 1,
         'Psychotherapy Rare' : 0,
         'Repair' :  15,

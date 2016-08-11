@@ -9,7 +9,7 @@ def skills_and_scores(skills,scores):
         skills_string = skills_string + s + " " + ss + "% "
     return skills_string
 
-def fantasy_warrior_skillset():
+def fantasy_warrior_skillset(raw=False):
     skill_list = [
         'First Melee Weapon', 
         'Second Melee Weapon', 
@@ -33,9 +33,12 @@ def fantasy_warrior_skillset():
         'Stealth': 30,
         'Ride': 30 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def fantasy_rogue_skillset():
+def fantasy_rogue_skillset(raw=False):
     skill_list = [ 
         'Stealth', 
         'Hide', 
@@ -59,9 +62,12 @@ def fantasy_rogue_skillset():
         'Brawl': 50,
         'Melee Weapon': 30 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def fantasy_wizard_skillset():
+def fantasy_wizard_skillset(raw=False):
     skill_list = [ 
         'Knowledge (Occult)', 
         'Perform (Rituals)', 
@@ -85,9 +91,12 @@ def fantasy_wizard_skillset():
         'Research': 30,
         'Literacy': 30 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def fantasy_priest_skillset():
+def fantasy_priest_skillset(raw=False):
     skill_list = [ 
         'Knowledge (Religion)', 
         'Perform (Rituals)', 
@@ -111,9 +120,12 @@ def fantasy_priest_skillset():
         'Fast Talk': 40,
         'Literacy': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def fantasy_explorer_skillset():
+def fantasy_explorer_skillset(raw=False):
     skill_list = [ 
         'Track',  
         'Hide',  
@@ -137,9 +149,12 @@ def fantasy_explorer_skillset():
         'Melee Weapon': 40,
         'Knowledge (Region)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def fantasy_noble_skillset():
+def fantasy_noble_skillset(raw=False):
     skill_list = [ 
         'Status',  
         'Etiquette',  
@@ -163,9 +178,12 @@ def fantasy_noble_skillset():
         'Insight': 40,
         'Craft (Any)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def fantasy_assassin_skillset():
+def fantasy_assassin_skillset(raw=False):
     skill_list = [ 
         'Stealth',  
         'Hide',  
@@ -189,9 +207,12 @@ def fantasy_assassin_skillset():
         'Knowledge (Poisons)': 40,
         'Track': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def fantasy_beggar_skillset():
+def fantasy_beggar_skillset(raw=False):
     skill_list = [ 
         'Bargain',  
         'Fast Talk',  
@@ -215,9 +236,12 @@ def fantasy_beggar_skillset():
         'Spot': 40,
         'Stealth': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def fantasy_artisan_skillset():
+def fantasy_artisan_skillset(raw=False):
     skill_list = [ 
         'Craft Skill 1',  
         'Craft Skill 2',  
@@ -241,9 +265,12 @@ def fantasy_artisan_skillset():
         'Status': 40,
         'Fine Manipulation': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def fantasy_merchant_skillset():
+def fantasy_merchant_skillset(raw=False):
     skill_list = [ 
         'Bargain',  
         'Appraise',  
@@ -267,9 +294,12 @@ def fantasy_merchant_skillset():
         'Insight': 40,
         'Literacy': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def fantasy_shaman_skillset():
+def fantasy_shaman_skillset(raw=False):
     skill_list = [ 
         'Perform (Rituals)',  
         'Knowledge (Occult)',  
@@ -293,9 +323,12 @@ def fantasy_shaman_skillset():
         'Craft (Any)': 40,
         'Science (Natural History)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def fantasy_hunter_skillset():
+def fantasy_hunter_skillset(raw=False):
     skill_list = [ 
         'Track',  
         'Hide',  
@@ -319,5 +352,8 @@ def fantasy_hunter_skillset():
         'Melee Weapon': 40,
         'Knowledge (Region)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 

@@ -1,3 +1,4 @@
+
 #
 # BRP Professions Horror
 #
@@ -9,7 +10,7 @@ def skills_and_scores(skills,scores):
         skills_string = skills_string + s + " " + ss + "% "
     return skills_string
 
-def horror_mercenary_skillset():
+def horror_mercenary_skillset(raw=False):
     skill_list = [ 
         'Firearms (Rifle)', 
         'Brawl', 
@@ -33,9 +34,12 @@ def horror_mercenary_skillset():
         'Heavy Weapon': 40,
         'Demolition': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def horror_occultist_skillset():
+def horror_occultist_skillset(raw=False):
     skill_list = [ 
         'Knowledge (Occult)', 
         'Perform (Rituals)', 
@@ -59,9 +63,12 @@ def horror_occultist_skillset():
         'Craft (Any)': 40,
         'Knowledge (Blasphemous)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def horror_priest_skillset():
+def horror_priest_skillset(raw=False):
     skill_list = [ 
         'Knowledge (Religion)', 
         'Perform (Rituals)', 
@@ -85,9 +92,12 @@ def horror_priest_skillset():
         'Research': 40,
         'Knowledge (Philosophy)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def horror_criminal_skillset():
+def horror_criminal_skillset(raw=False):
     skill_list = [ 
         'Bargain', 
         'Brawl', 
@@ -111,9 +121,12 @@ def horror_criminal_skillset():
         'Spot': 40,
         'Fine Manipulation': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def horror_journalist_skillset():
+def horror_journalist_skillset(raw=False):
     skill_list = [ 
         'Persuade', 
         'Research', 
@@ -137,9 +150,12 @@ def horror_journalist_skillset():
         'Disguise': 40,
         'Language (Other)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def horror_spy_skillset():
+def horror_spy_skillset(raw=False):
     skill_list = [ 
         'Knowledge (Espionage)', 
         'Research', 
@@ -163,9 +179,12 @@ def horror_spy_skillset():
         'Disguise': 40,
         'Technical Skill (Electronic Security)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def horror_scientist_skillset():
+def horror_scientist_skillset(raw=False):
     skill_list = [ 'Science 1', 'Science 2', 'Technical Skill 1', 'Fine Manipulation', 'Persuade', 
                    'Research', 'Technical Skill (Computer Use)', 'Technical Skill 2', 'Science 3', 'Status']
     base_skill_scores = {
@@ -180,9 +199,12 @@ def horror_scientist_skillset():
         'Science 3': 40,
         'Status': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def horror_gambler_skillset():
+def horror_gambler_skillset(raw=False):
     skill_list = [ 
         'Gaming', 
         'Fast Talk', 
@@ -206,9 +228,12 @@ def horror_gambler_skillset():
         'Knowledge (Accounting)': 40,
         'Dodge': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def horror_detective_skillset():
+def horror_detective_skillset(raw=False):
     skill_list = [ 
         'Firearms (Pistol)', 
         'Knowledge (Law)', 
@@ -232,9 +257,12 @@ def horror_detective_skillset():
         'Research': 40,
         'Etiquette (Street)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def horror_doctor_skillset():
+def horror_doctor_skillset(raw=False):
     skill_list = [ 
         'First Aid', 
         'Medicine', 
@@ -258,4 +286,7 @@ def horror_doctor_skillset():
         'Status': 40,
         'Language (Other)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores

@@ -9,7 +9,7 @@ def skills_and_scores(skills,scores):
         skills_string = skills_string + s + " " + ss + "% "
     return skills_string
 
-def cyber_solo_skillset():
+def cyber_solo_skillset(raw=False):
     skill_list = [
         'Firearms (Pistol)', 
         'Firearms (SMG)', 
@@ -33,9 +33,12 @@ def cyber_solo_skillset():
         'Listen': 30,
         'Technical Skill (WeaponsTech)': 30 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def cyber_fixer_skillset():
+def cyber_fixer_skillset(raw=False):
     skill_list = [ 
         'Etiquette (Street)', 
         'Bargain', 
@@ -59,9 +62,12 @@ def cyber_fixer_skillset():
         'Fine Manipulation': 50,
         'Firearms (Pistol)': 30 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def cyber_rocker_skillset():
+def cyber_rocker_skillset(raw=False):
     skill_list = [ 
         'Perform (Play Instrument)', 
         'Perform (Sing)', 
@@ -85,9 +91,12 @@ def cyber_rocker_skillset():
         'Disguise': 30,
         'Persuade': 30 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def cyber_techie_skillset():
+def cyber_techie_skillset(raw=False):
     skill_list = [ 
         'Repair (Electrical)', 
         'Repair (Mechanical)', 
@@ -111,9 +120,12 @@ def cyber_techie_skillset():
         'Research': 40,
         'Heavy Machinery': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def cyber_corporate_skillset():
+def cyber_corporate_skillset(raw=False):
     skill_list = [ 
         'Status', 
         'Knowledge (Stock Market)', 
@@ -137,9 +149,12 @@ def cyber_corporate_skillset():
         'Knowledge (Business)': 40,
         'Drive (Car)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def cyber_cop_skillset():
+def cyber_cop_skillset(raw=False):
     skill_list = [ 
         'Spot', 
         'Status', 
@@ -163,9 +178,12 @@ def cyber_cop_skillset():
         'Persuade': 40,
         'Drive (Car)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def cyber_nomad_skillset():
+def cyber_nomad_skillset(raw=False):
     skill_list = [ 
         'Drive (Car)', 
         'Ride (Motorcycle)', 
@@ -189,9 +207,12 @@ def cyber_nomad_skillset():
         'Navigate': 40,
         'Knowledge (Survival)': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def cyber_medtech_skillset():
+def cyber_medtech_skillset(raw=False):
     skill_list = [ 
         'Medicine', 
         'First Aid', 
@@ -215,9 +236,12 @@ def cyber_medtech_skillset():
         'Persuade': 40,
         'Research': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def cyber_netrunner_skillset():
+def cyber_netrunner_skillset(raw=False):
     skill_list = [ 
         'Technical Skill (Computer Use)', 
         'Technical Skill (Computer Programming)', 
@@ -241,9 +265,12 @@ def cyber_netrunner_skillset():
         'Spot': 40,
         'Persuade': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
 
-def cyber_media_skillset():
+def cyber_media_skillset(raw=False):
     skill_list = [ 
         'Persuade', 
         'Perform (Orate)', 
@@ -267,4 +294,7 @@ def cyber_media_skillset():
         'Technical Skill (Photo and Film)': 40,
         'Status': 50 }
     skill_set = skills_and_scores(skill_list,base_skill_scores)
-    return skill_set
+    if not raw:
+        return skill_set
+    else:
+        return base_skill_scores
