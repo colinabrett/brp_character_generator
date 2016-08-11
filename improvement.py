@@ -14,7 +14,8 @@ class Improvement():
     def __init__(self, skills_dict):
         self.skills = skills_dict
     
-    def getSkills():
+    def getSkills(self):
+        """return the skills dictionary"""
         return self.skills
 
 class ProfessionImprovement(Improvement):
@@ -22,10 +23,15 @@ class ProfessionImprovement(Improvement):
         self.skills = skills_dict
         self.points = 0
         self.categorised_skills = {}
+        
+    def getSkills(self):
+        """return the skills dictionary"""
+        return self.skills
 
     def allocateSkillPoints(self, skill_points):
         """Allocate a number of points to be divided in some way between the skills"""
         self.points = int(math.floor(skill_points))
+        self.chooseSkills()
 
     def chooseSkills(self):
         """Decide how the skill points will be divided between the available skills"""
