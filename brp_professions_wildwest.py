@@ -6,7 +6,7 @@ def skills_and_scores(skills,scores):
     skills_string = ''
     for s in skills:
         ss = str(scores[s])
-        skills_string = skills_string + s + " " + ss + "% "
+        skills_string = skills_string + s + " " + ss + "%\n"
     return skills_string
 
 def wildwest_soldier_skillset():

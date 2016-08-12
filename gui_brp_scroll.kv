@@ -404,7 +404,7 @@
             Button:
                 size_hint_y: None
                 text:'Next => Display Your Character'
-                on_press: root.manager.current = 'character_sheet'
+                on_press: root.manager.current = 'character_sheet_page1'
 
 <SelectProfessionSciFi>:
     ScrollView:
@@ -486,7 +486,7 @@
             Button:
                 size_hint_y: None
                 text:'Next => Display Your Character'
-                on_press: root.manager.current = 'character_sheet'
+                on_press: root.manager.current = 'character_sheet_page1'
 
 <SelectProfessionWildWest>:
     ScrollView:
@@ -568,7 +568,7 @@
             Button:
                 text:'Next => Display Your Character'
                 size_hint_y: None
-                on_press: root.manager.current = 'character_sheet'
+                on_press: root.manager.current = 'character_sheet_page1'
 
 <SelectProfessionHorror>:
     ScrollView:
@@ -650,7 +650,7 @@
             Button:
                 text:'Next => Display Your Character'
                 size_hint_y: None
-                on_press: root.manager.current = 'character_sheet'
+                on_press: root.manager.current = 'character_sheet_page1'
 
 <SelectProfessionCyberpunk>:
     ScrollView:
@@ -732,11 +732,17 @@
             Button:
                 text:'Next => Display Your Character'
                 size_hint_y: None
-                on_press: root.manager.current = 'character_sheet'
+                on_press: root.manager.current = 'character_sheet_page1'
 
-<CharacterSheet>:
+<CharacterSheetPage1>:
     BoxLayout:
         orientation: 'vertical'
+        Label:
+            text_size: self.size
+            halign: 'center'
+            markup: True
+            font_size: '30sp'
+            text: '[b]Character Sheet (Page 1)[/b]'
         Label:
             text_size: self.size
             halign: 'left'
@@ -744,7 +750,7 @@
             text: '[b]System Type[/b]'
         Label:
             text_size: self.size
-            halign: 'left'
+            halign: 'center'
             text: root.ruleset
         Label:
             text_size: self.size
@@ -753,8 +759,24 @@
             text: '[b]Genre[/b]'
         Label:
             text_size: self.size
-            halign: 'left'
+            halign: 'center'
             text: root.genre
+        Button:
+            text:'Quit'
+            on_press: exit()
+        Button:
+            text:'Page 2'
+            on_press: root.manager.current = 'character_sheet_page2'
+
+<CharacterSheetPage2>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text_size: self.size
+            halign: 'center'
+            markup: True
+            font_size: '30sp'
+            text: '[b]Character Sheet (Page 2)[/b]'
         Label:
             text_size: self.size
             halign: 'left'
@@ -762,7 +784,7 @@
             text: '[b]Race[/b]'
         Label:
             text_size: self.size
-            halign: 'left'
+            halign: 'center'
             text: root.race
         Label:
             text_size: self.size
@@ -771,7 +793,7 @@
             text: '[b]Profession[/b]'
         Label:
             text_size: self.size
-            halign: 'left'
+            halign: 'center'
             text: root.profession
         Label:
             text_size: self.size
@@ -780,7 +802,7 @@
             text:'[b]Characteristics[/b]'
         Label:
             text_size: self.size
-            halign: 'left'
+            halign: 'center'
             text: root.mysb
         Label:
             text_size: self.size
@@ -789,17 +811,30 @@
             text:'[b]Characteristic Rolls[/b]'
         Label:
             text_size: self.size
-            halign: 'left'
+            halign: 'center'
             text: root.mycr
         Label:
-            text_size: self.size
-            halign: 'left'
-            markup: True
-            text:'[b]MW Skill Category Modifiers[/b]'
+            size_hint_y: None
+            text_size: self.width, None
+            height: self.texture_size[1]
+            halign: 'center'
+            text: root.skills
+        Button:
+            text:'Page 3'
+            on_press: root.manager.current = 'character_sheet_page3'
+        Button:
+            text:'Page 1'
+            on_press: root.manager.current = 'character_sheet_page1'
+
+<CharacterSheetPage3>:
+    BoxLayout:
+        orientation: 'vertical'
         Label:
             text_size: self.size
-            halign: 'left'
-            text: root.myscm
+            halign: 'center'
+            markup: True
+            font_size: '30sp'
+            text: '[b]Character Sheet (Page 3)[/b]'
         Label:
             text_size: self.size
             halign: 'left'
@@ -807,23 +842,35 @@
             text:'[b]BRP Skill Category Bonuses[/b]'
         Label:
             text_size: self.size
-            halign: 'left'
+            halign: 'center'
             text: root.myscb
         Label:
             text_size: self.size
             halign: 'left'
             markup: True
+            text:'[b]MW Skill Category Modifiers[/b]'
+        Label:
+            text_size: self.size
+            halign: 'center'
+            text: root.myscm
+        Label:
+            text_size: self.size
+            halign: 'left'
+            markup: True
             text:'[b]Skills[/b]'
-# CB Added text wrapping
         Label:
             size_hint_y: None
             text_size: self.width, None
             height: self.texture_size[1]
-            halign: 'left'
+            halign: 'center'
             text: root.skills
         Button:
             text:'Quit'
             on_press: exit()
         Button:
+            text:'Page 2'
+            on_press: root.manager.current = 'character_sheet_page2'
+        Button:
             text:'Back to Start'
             on_press: root.manager.current = 'welcome'
+

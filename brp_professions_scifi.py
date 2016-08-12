@@ -6,7 +6,7 @@ def skills_and_scores(skills,scores):
     skills_string = ''
     for s in skills:
         ss = str(scores[s])
-        skills_string = skills_string + s + " " + ss + "% "
+        skills_string = skills_string + s + " " + ss + "%\n"
     return skills_string
 
 def scifi_warrior_skillset():
@@ -52,7 +52,7 @@ def scifi_psyker_skillset():
         'Knowledge (Psionics)': 40,
         'Knowledge (Galactic)': 40,
         'Sense': 30,
-        'Languge (Alien)': 30,
+        'Language (Alien)': 30,
         'Research': 30,
         'Insight': 30,
         'Psychotherapy': 30,
