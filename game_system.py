@@ -43,6 +43,9 @@ class GameSystem():
 
         def suppressSkill(self, skill):
                 """remove a skill from the base list for a particular genre"""
+                if skill in self.skills.keys():
+                        print(skill," exists")
+                        self.suppressed_skills.append(skill.title())
                 return
 
         def suppressStat(self, stat):
@@ -70,6 +73,11 @@ class GameSystem():
                         else:
                                 self.modified_skills[skill] = self.skills.get(essential_skill, 0) + value
 
+        def randomSkill(self):
+                """pick a random skill from those available."""
+                skill_list = set(self.skills.keys()) - set(self.suppressed_skills)
+                skill = random.sample(skill_list, 1)
+                return skill[0]
                 
         
 class Brp(GameSystem):
@@ -164,6 +172,7 @@ class Brp(GameSystem):
                 self.bonuses = {}
                 self.improvements = []
                 self.modified_skills = {}
+                self.suppressed_skills = []
 
         def calculateSkillPoints(self):
                 """Skill points are derived from campaign power level and EDU if it's present; otherwise a fixed pool based on campaign power level"""
@@ -246,8 +255,4 @@ class Brp(GameSystem):
                                 
                 self.improve(Improvement(final_dict))
 
-        def randomSkill(self):
-                """pick a random skill from those available."""
-                skill_list = list(self.skills.keys())
-                skill = random.choice(skill_list)
-                return skill
+        
