@@ -828,8 +828,28 @@
             halign: 'left'
             text: root.skills
         Button:
-            text:'Quit'
-            on_press: exit()
+            text: 'Save This Character'
+            on_press: root.manager.current = 'character_save_as_pdf'
         Button:
             text:'Back to Start'
             on_press: root.manager.current = 'welcome'
+        Button:
+            text:'Quit'
+            on_press: exit()
+
+<CharacterSaveAsPDF>:
+    BoxLayout:
+        orientation: 'vertical'
+        cols: 2
+        TextInput:
+            id: character_name
+            text: ''
+        Button:
+            text: 'Save'
+            on_press: root.character_pdf(self,character_name.text)
+        Button:
+            text: 'Back to Start'
+            on_press: root.manager.current = 'welcome'
+        Button:
+            text:'Quit'
+            on_press: exit()

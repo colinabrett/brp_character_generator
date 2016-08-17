@@ -1,7 +1,6 @@
 #
 # Import Kivy Modules
 #
-
 import kivy
 import sys
 from kivy.app import App
@@ -12,12 +11,25 @@ from kivy.uix.button import Button
 from kivy.uix.widget import Widget
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
+from kivy.uix.textinput import TextInput
 from kivy.properties import StringProperty, ListProperty
+
+#
+# Import ReportLab Modules
+#
+from reportlab.pdfgen.canvas import Canvas
+from reportlab.lib.pagesizes import letter, A4
+from reportlab.lib.units import cm, mm, inch, pica
+from reportlab.platypus import Paragraph
+
+#
+# Import PyPDF2 Modules
+#
+from PyPDF2 import PdfFileMerger
 
 #
 # Import custom modules
 #
-
 from brp_stats import *
 #from brp_skills import *
 from brp_professions_fantasy import *
@@ -93,8 +105,7 @@ class SelectRaceFantasy(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
     def fantasy_elf(self,a,b):
         if b==True:
@@ -103,7 +114,7 @@ class SelectRaceFantasy(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
             sm.get_screen("character_sheet").printrace(race)
 
     def fantasy_dwarf(self,a,b):
@@ -113,8 +124,7 @@ class SelectRaceFantasy(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
     def fantasy_orc(self,a,b):
         if b==True:
@@ -123,9 +133,7 @@ class SelectRaceFantasy(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
-#           sm.current = 'profession_fantasy'
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
     def fantasy_goblin(self,a,b):
         if b==True:
@@ -134,8 +142,7 @@ class SelectRaceFantasy(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
     def fantasy_halfling(self,a,b):
         if b==True:
@@ -144,8 +151,7 @@ class SelectRaceFantasy(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
 class SelectRaceSciFi(Screen):
 
@@ -156,7 +162,7 @@ class SelectRaceSciFi(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
             sm.get_screen("character_sheet").printrace(race)
 
     def scifi_eldar(self,a,b):
@@ -166,8 +172,7 @@ class SelectRaceSciFi(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
     def scifi_squat(self,a,b):
         if b==True:
@@ -176,8 +181,7 @@ class SelectRaceSciFi(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
     def scifi_ork(self,a,b):
         if b==True:
@@ -186,8 +190,7 @@ class SelectRaceSciFi(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
     def scifi_gretchin(self,a,b):
         if b==True:
@@ -196,7 +199,7 @@ class SelectRaceSciFi(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
             sm.get_screen("character_sheet").printrace(race)
 
     def scifi_wookiee(self,a,b):
@@ -206,8 +209,7 @@ class SelectRaceSciFi(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
     def scifi_grey(self,a,b):
         if b==True:
@@ -216,8 +218,7 @@ class SelectRaceSciFi(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
     def scifi_gungan(self,a,b):
         if b==True:
@@ -226,8 +227,7 @@ class SelectRaceSciFi(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
     def scifi_zabrak(self,a,b):
         if b==True:
@@ -236,8 +236,7 @@ class SelectRaceSciFi(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
 class SelectRaceWildWest(Screen):
 
@@ -248,7 +247,7 @@ class SelectRaceWildWest(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
             sm.get_screen("character_sheet").printrace(race)
 
     def wildwest_amerindian(self,a,b):
@@ -258,8 +257,7 @@ class SelectRaceWildWest(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
     def wildwest_brawn(self,a,b):
         if b==True:
@@ -268,8 +266,7 @@ class SelectRaceWildWest(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
     def wildwest_brains(self,a,b):
         if b==True:
@@ -278,8 +275,7 @@ class SelectRaceWildWest(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
     def wildwest_lowlife(self,a,b):
         if b==True:
@@ -288,8 +284,7 @@ class SelectRaceWildWest(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
 
 class SelectRaceHorror(Screen):
@@ -301,8 +296,7 @@ class SelectRaceHorror(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
     def horror_ghoul(self,a,b):
         if b==True:
@@ -311,8 +305,7 @@ class SelectRaceHorror(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
     def horror_vampire(self,a,b):
         if b==True:
@@ -321,8 +314,7 @@ class SelectRaceHorror(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
     def horror_brawn(self,a,b):
         if b==True:
@@ -331,7 +323,7 @@ class SelectRaceHorror(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
             sm.get_screen("character_sheet").printrace(race)
 
     def horror_brains(self,a,b):
@@ -341,8 +333,7 @@ class SelectRaceHorror(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
     def horror_lowlife(self,a,b):
         if b==True:
@@ -351,8 +342,7 @@ class SelectRaceHorror(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
 
 class SelectRaceCyberpunk(Screen):
@@ -364,8 +354,7 @@ class SelectRaceCyberpunk(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
     def cyber_elf(self,a,b):
         if b==True:
@@ -374,8 +363,7 @@ class SelectRaceCyberpunk(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
     def cyber_dwarf(self,a,b):
         if b==True:
@@ -384,8 +372,7 @@ class SelectRaceCyberpunk(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
     def cyber_orc(self,a,b):
         if b==True:
@@ -394,8 +381,7 @@ class SelectRaceCyberpunk(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
     def cyber_goblin(self,a,b):
         if b==True:
@@ -404,8 +390,7 @@ class SelectRaceCyberpunk(Screen):
             characteristic_rolls = rolls(statblock)
             skill_category_modifiers = scm(statblock)
             skill_category_bonuses = scb(statblock)
-            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
-            sm.get_screen("character_sheet").printrace(race)
+            sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses,race)
 
 
 
@@ -737,6 +722,9 @@ class CharacterSheet(Screen):
     profession = StringProperty()
     skills = StringProperty()
 
+#   def gather_stats(self,rs):
+#      print(rs)
+
     def print_stats(self,mystats):
         stat_string = ''
         statlist = [ 'STR' , 'CON' , 'SIZ' , 'INT' , 'POW' , 'DEX' , 'APP' , 'EDU' ]
@@ -770,27 +758,22 @@ class CharacterSheet(Screen):
             scb_string = scb_string + s + " " + zz + "% "
         return scb_string
 
-    def printcharacter(self,my_sb,my_cr,my_scm,my_scb):
-
-        self.mysb = self.print_stats(my_sb)
-        self.mycr = self.print_rolls(my_cr)
-        self.myscm = self.print_scm(my_scm)
-        self.myscb = self.print_scb(my_scb)
-
     def printrules(self,rs):
         ruleset = str(rs)
         self.ruleset = str(rs)
+        sm.get_screen("character_save_as_pdf").print_rules_to_pdf(self.ruleset)
         return ruleset
+
+    def printgenre(self,rg):
+        genre = str(rg)
+        self.genre = str(rg)
+#       sm.get_screen("character_save_as_pdf").print_rules_to_pdf(self.genre)
+        return genre
 
     def printrace(self,rc):
         race = str(rc)
         self.race = str(rc)
         return race
-
-    def printgenre(self,rg):
-        genre = str(rg)
-        self.genre = str(rg)
-        return genre
 
     def printprofession(self,p):
         profession = str(p)
@@ -802,6 +785,77 @@ class CharacterSheet(Screen):
         skills = p
         self.skills = p
         return skills
+
+    def printcharacter(self,my_sb,my_cr,my_scm,my_scb,my_race):
+        self.mysb = self.print_stats(my_sb)
+        self.mycr = self.print_rolls(my_cr)
+        self.myscm = self.print_scm(my_scm)
+        self.myscb = self.print_scb(my_scb)
+        self.race = self.printrace(my_race)
+        sm.get_screen("character_save_as_pdf").print_character_to_pdf(self.mysb,self.mycr,self.myscm,self.myscb,self.race)
+
+class CharacterSaveAsPDF(Screen):
+#   pass
+
+    character_name = TextInput()
+
+    def print_pdf():
+        merger = PdfFileMerger()
+        input1 = open("character1.pdf", "rb")
+        input2 = open("character2.pdf", "rb")
+        merger.append(fileobj = input1)
+        merger.append(fileobj = input2)
+        output = open("document-output.pdf", "wb")
+        merger.write(output)
+
+    def print_rules_to_pdf(self,rs):
+        ruleset = str(rs)
+        self.ruleset = str(rs)
+        print(ruleset)
+        pdf = Canvas("character1.pdf")
+        pdf.setFillColorRGB(0,0,0)
+        pdf.setFont("Helvetica-Bold",20)
+        pdf.drawString(10,800,"System Type")
+        pdf.setFont("Helvetica",16)
+        pdf.drawString(10, 750, self.ruleset)
+        pdf.showPage()
+        pdf.save()
+        return ruleset
+
+    def print_character_to_pdf(self,sb,cr,scm,scb,race):
+        self.statblock = str(sb)
+        self.characteristic_rolls = str(cr)
+        self.sc_modifiers = str(scm)
+        self.sc_bonuses = str(scb)
+        self.pc_race = str(race)
+        pdf = Canvas("character2.pdf")
+        pdf.setFillColorRGB(0,0,0)
+        pdf.setFont("Helvetica-Bold",20)
+        pdf.drawString(10, 750, "Race")
+        pdf.setFont("Helvetica",16)
+        pdf.drawString(10, 700, self.pc_race)
+        pdf.setFont("Helvetica-Bold",20)
+        pdf.drawString(10, 650, "Characteristics")
+        pdf.setFont("Helvetica",16)
+        pdf.drawString(10, 600, self.statblock)
+        pdf.setFont("Helvetica-Bold",20)
+        pdf.drawString(10, 550, "Characteristic Rolls")
+        pdf.setFont("Helvetica",16)
+        pdf.drawString(10, 500, self.characteristic_rolls)
+        pdf.setFont("Helvetica-Bold",20)
+        pdf.drawString(10, 450, "MW Skill Category Modifiers")
+        pdf.setFont("Helvetica",16)
+        pdf.drawString(10, 400, self.sc_modifiers)
+        pdf.setFont("Helvetica-Bold",20)
+        pdf.drawString(10, 350, "BRP Skill Category Bonuses")
+        pdf.setFont("Helvetica",16)
+        pdf.drawString(10, 300, self.sc_bonuses)
+        pdf.showPage()
+        pdf.save()
+        CharacterSaveAsPDF.print_pdf()
+
+    def character_pdf(self,a,charname):
+        print(charname)
 
 sm = ScreenManager()
 sm.add_widget(WelcomeScreen(name='welcome'))
@@ -818,6 +872,7 @@ sm.add_widget(SelectProfessionCyberpunk(name='profession_cyberpunk'))
 sm.add_widget(SelectProfessionWildWest(name='profession_wildwest'))
 sm.add_widget(SelectProfessionHorror(name='profession_horror'))
 sm.add_widget(CharacterSheet(name='character_sheet'))
+sm.add_widget(CharacterSaveAsPDF(name='character_save_as_pdf'))
 
 class GuiBrp(App):
 
