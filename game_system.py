@@ -6,7 +6,9 @@ from dice_roller import *
 from brp_stats import *
 from decimal import Decimal, ROUND_HALF_UP
 from improvement import *
-
+from brp_skills import *
+#from coc_skills import *
+#from mw_skills import *
 class GameSystem():
         def __init__(self):
                 self.statblock = {}
@@ -44,9 +46,7 @@ class GameSystem():
         def suppressSkill(self, skill):
                 """remove a skill from the base list for a particular genre"""
                 if skill in self.skills.keys():
-                        print(skill," exists")
                         self.suppressed_skills.append(skill.title())
-                return
 
         def suppressStat(self, stat):
                 """remove a stat from the base list for a particular genre eg. no EDU in a fantasy game"""
@@ -91,81 +91,81 @@ class Brp(GameSystem):
                 }
                 self.power_level = power_levels.get( power_level, 'Normal')
                 self.statblock = {
-                        'STR':0,\
-                        'CON':0,\
-                        'SIZ':0,\
-                        'INT':0,\
-                        'POW':0,\
-                        'DEX':0,\
-                        'APP':0,\
+                        'STR':0,
+                        'CON':0,
+                        'SIZ':0,
+                        'INT':0,
+                        'POW':0,
+                        'DEX':0,
+                        'APP':0,
                         'EDU':0
                 }
                 # note these are lifted straight from brp_skills.py
-                self.skills = {'Appraise' : 15,\
-                               'Art' : 5,\
-                               'Artillery' : 0,\
-                               'Bargain' :  5,\
-                               'Brawl' : 25,\
-                               'Climb' : 40,\
-                               'Command' : 5,\
-                               'Craft'  : 5,\
-                               'Demolition' : 1,\
-                               'Disguise' : 1,\
-                               'Dodge' : self.statblock["DEX"] * 2,\
-                               'Drive' : 20,\
-                               'Drive Rare' : 1,\
-                               'Energy Weapon' : 0,\
-                               'Etiquette' : 5,\
-                               'Fast Talk' : 5,\
-                               'Fine Manipulation' : 5,\
-                               'Firearm' : 0,\
-                               'First Aid' : 30,\
-                               'Fly Gear' : self.statblock["DEX"] / 2,\
-                               'Fly Wings' : self.statblock["DEX"] * 4,\
-                               'Gaming' : self.statblock["INT"] + self.statblock["POW"],\
-                               'Grapple' : 25,\
-                               'Heavy Machine'  : 1,\
-                               'Heavy Weapon'  : 0,\
-                               'Hide' : 10,\
-                               'Insight' : 5,\
-                               'Jump' : 25,\
-                               'Knowledge'  : 5,\
-                               'Knowledge Rare'  : 1,\
-                               'Language Other' : 0,\
-                               'Language Own' : 0,\
-                               'Listen' : 25,\
-                               'Literacy INT' : self.statblock["INT"] * 4,\
-                               'Literacy EDU' : self.statblock["POW"] * 4,\
-                               'Martial Arts' : 1,\
-                               'Medicine Modern' : 5,\
-                               'Medicine Ancient' : 0,\
-                               'Melee Weapon' :  0,\
-                               'Missile Weapon' :  0,\
-                               'Navigate' : 10,\
-                               'Parry'  : 0,\
-                               'Perform'  : 5,\
-                               'Persuade' : 15,\
-                               'Pilot'  : 1,\
-                               'Projection' : self.statblock["DEX"] * 2,\
-                               'Psychotherapy' : 1,\
-                               'Psychotherapy Rare' : 0,\
-                               'Repair' :  15,\
-                               'Research' : 25,\
-                               'Ride' :  5,\
-                               'Science' : 1,\
-                               'Sense' :  10,\
-                               'Shield' : 0,\
-                               'Sleight of Hand' : 5,\
-                               'Spot' : 25,\
-                               'Status' : 15,\
-                               'Stealth' : 10,\
-                               'Strategy' : 1,\
-                               'Swim' : 25,\
-                               'Teach' : 10,\
-                               'Technical Skill Ancient' :  0,\
-                               'Technical Skill Rare' :  1,\
-                               'Technical Skill' :  5,\
-                               'Throw' : 25,\
+                self.skills = {'Appraise' : 15,
+                               'Art' : 5,
+                               'Artillery' : 0,
+                               'Bargain' :  5,
+                               'Brawl' : 25,
+                               'Climb' : 40,
+                               'Command' : 5,
+                               'Craft'  : 5,
+                               'Demolition' : 1,
+                               'Disguise' : 1,
+                               'Dodge' : self.statblock["DEX"] * 2,
+                               'Drive' : 20,
+                               'Drive Rare' : 1,
+                               'Energy Weapon' : 0,
+                               'Etiquette' : 5,
+                               'Fast Talk' : 5,
+                               'Fine Manipulation' : 5,
+                               'Firearm' : 0,
+                               'First Aid' : 30,
+                               'Fly Gear' : self.statblock["DEX"] / 2,
+                               'Fly Wings' : self.statblock["DEX"] * 4,
+                               'Gaming' : self.statblock["INT"] + self.statblock["POW"],
+                               'Grapple' : 25,
+                               'Heavy Machine'  : 1,
+                               'Heavy Weapon'  : 0,
+                               'Hide' : 10,
+                               'Insight' : 5,
+                               'Jump' : 25,
+                               'Knowledge'  : 5,
+                               'Knowledge Rare'  : 1,
+                               'Language Other' : 0,
+                               'Language Own' : 0,
+                               'Listen' : 25,
+                               'Literacy INT' : self.statblock["INT"] * 4,
+                               'Literacy EDU' : self.statblock["POW"] * 4,
+                               'Martial Arts' : 1,
+                               'Medicine Modern' : 5,
+                               'Medicine Ancient' : 0,
+                               'Melee Weapon' :  0,
+                               'Missile Weapon' :  0,
+                               'Navigate' : 10,
+                               'Parry'  : 0,
+                               'Perform'  : 5,
+                               'Persuade' : 15,
+                               'Pilot'  : 1,
+                               'Projection' : self.statblock["DEX"] * 2,
+                               'Psychotherapy' : 1,
+                               'Psychotherapy Rare' : 0,
+                               'Repair' :  15,
+                               'Research' : 25,
+                               'Ride' :  5,
+                               'Science' : 1,
+                               'Sense' :  10,
+                               'Shield' : 0,
+                               'Sleight of Hand' : 5,
+                               'Spot' : 25,
+                               'Status' : 15,
+                               'Stealth' : 10,
+                               'Strategy' : 1,
+                               'Swim' : 25,
+                               'Teach' : 10,
+                               'Technical Skill Ancient' :  0,
+                               'Technical Skill Rare' :  1,
+                               'Technical Skill' :  5,
+                               'Throw' : 25,
                                'Track' : 10 }
                 self.skill_points = 0
                 self.suppressed_stats = []
@@ -174,6 +174,9 @@ class Brp(GameSystem):
                 self.modified_skills = {}
                 self.suppressed_skills = []
 
+        def calculateBaseSkills(self):
+                self.skills = brp_skill_bases()
+                
         def calculateSkillPoints(self):
                 """Skill points are derived from campaign power level and EDU if it's present; otherwise a fixed pool based on campaign power level"""
                 if 'EDU' not in self.suppressed_stats:
@@ -184,11 +187,11 @@ class Brp(GameSystem):
         def calculateBonuses(self):
                 """calculate BRP skill category bonuses"""
                 skill_groups = {
-                'Combat' : {'primary' : ['DEX'], 'secondary' : ['INT','STR'], 'negative' : []},\
-                'Communication' : {'primary' : ['INT'], 'secondary' : ['POW','APP'], 'negative' : []},\
-                'Manipulation': {'primary' : ['DEX'], 'secondary' : ['INT','STR'], 'negative' : []},\
-                'Mental': {'primary' : ['INT'], 'secondary' : ['POW'], 'negative' : []},\
-                'Perception': {'primary' : ['INT'], 'secondary' : ['POW','CON'], 'negative' : []},\
+                'Combat' : {'primary' : ['DEX'], 'secondary' : ['INT','STR'], 'negative' : []},
+                'Communication' : {'primary' : ['INT'], 'secondary' : ['POW','APP'], 'negative' : []},
+                'Manipulation': {'primary' : ['DEX'], 'secondary' : ['INT','STR'], 'negative' : []},
+                'Mental': {'primary' : ['INT'], 'secondary' : ['POW'], 'negative' : []},
+                'Perception': {'primary' : ['INT'], 'secondary' : ['POW','CON'], 'negative' : []},
                 'Physical': {'primary' : ['DEX'], 'secondary' : ['STR','CON'], 'negative' : ['SIZ']}
                 }
                 if 'EDU' not in self.suppressed_stats:
@@ -210,15 +213,15 @@ class Brp(GameSystem):
         def calculateDerived(self):
                 """calculate rolls and stats derived from attributes. Supercedes rolls() in brp_stats"""
                 self.derived = {
-                        'Damage Bonus': damage_bonus(self.statblock['STR'], self.statblock['SIZ']),\
-                        'Hit Points' : int(Decimal((self.statblock['CON'] + self.statblock['SIZ'])/2).quantize(0, ROUND_HALF_UP)),\
-                        'Experience Bonus' : int(Decimal(self.statblock['INT']/2).quantize(0, ROUND_HALF_UP)),\
-                        'Effort Roll' : self.statblock['STR'] * 5,\
-                        'Stamina Roll' : self.statblock['CON'] * 5,\
-                        'Idea Roll' : self.statblock['INT'] * 5,\
-                        'Luck Roll' : self.statblock['POW'] * 5,\
-                        'Agility Roll' : self.statblock['DEX'] *5,\
-                        'Charisma Roll' : self.statblock['APP'] *5\
+                        'Damage Bonus': damage_bonus(self.statblock['STR'], self.statblock['SIZ']),
+                        'Hit Points' : int(Decimal((self.statblock['CON'] + self.statblock['SIZ'])/2).quantize(0, ROUND_HALF_UP)),
+                        'Experience Bonus' : int(Decimal(self.statblock['INT']/2).quantize(0, ROUND_HALF_UP)),
+                        'Effort Roll' : self.statblock['STR'] * 5,
+                        'Stamina Roll' : self.statblock['CON'] * 5,
+                        'Idea Roll' : self.statblock['INT'] * 5,
+                        'Luck Roll' : self.statblock['POW'] * 5,
+                        'Agility Roll' : self.statblock['DEX'] *5,
+                        'Charisma Roll' : self.statblock['APP'] *5
                         }
                 self.derived['Major Wound level'] = int(Decimal(self.derived['Hit Points']/2).quantize(0, ROUND_HALF_UP))
                 if 'EDU' not in self.suppressed_stats:
