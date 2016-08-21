@@ -55,7 +55,7 @@ def scifi_psyker_skillset(raw=False):
         'Knowledge (Psionics)': 40,
         'Knowledge (Galactic)': 40,
         'Sense': 30,
-        'Languge (Alien)': 30,
+        'Language (Alien)': 30,
         'Research': 30,
         'Insight': 30,
         'Psychotherapy': 30,

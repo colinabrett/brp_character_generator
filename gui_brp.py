@@ -1,7 +1,11 @@
 #
+# Import IO as workaround for "file" not existing in Python3
+#
+from io import FileIO as file
+
+#
 # Import Kivy Modules
 #
-
 import kivy
 import sys
 from kivy.app import App
@@ -12,12 +16,26 @@ from kivy.uix.button import Button
 from kivy.uix.widget import Widget
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
+from kivy.uix.textinput import TextInput
 from kivy.properties import StringProperty, ListProperty
+
+#
+# Import ReportLab Modules
+#
+from reportlab.pdfgen.canvas import Canvas
+from reportlab.lib.pagesizes import letter, A4
+from reportlab.lib.units import cm, mm, inch, pica
+from reportlab.platypus import Paragraph
+from reportlab.lib.utils import simpleSplit
+
+#
+# Import PyPDF2 Modules
+#
+from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
 
 #
 # Import custom modules
 #
-
 from brp_stats import *
 #from brp_skills import *
 from brp_professions_fantasy import *
@@ -125,7 +143,6 @@ class SelectRaceFantasy(Screen):
             skill_category_bonuses = scb(statblock)
             sm.get_screen("character_sheet").printcharacter(statblock,characteristic_rolls,skill_category_modifiers,skill_category_bonuses)
             sm.get_screen("character_sheet").printrace(race)
-#           sm.current = 'profession_fantasy'
 
     def fantasy_goblin(self,a,b):
         if b==True:
@@ -770,38 +787,179 @@ class CharacterSheet(Screen):
             scb_string = scb_string + s + " " + zz + "% "
         return scb_string
 
-    def printcharacter(self,my_sb,my_cr,my_scm,my_scb):
-
-        self.mysb = self.print_stats(my_sb)
-        self.mycr = self.print_rolls(my_cr)
-        self.myscm = self.print_scm(my_scm)
-        self.myscb = self.print_scb(my_scb)
-
     def printrules(self,rs):
         ruleset = str(rs)
         self.ruleset = str(rs)
+        sm.get_screen("character_save_as_pdf").print_rules_to_pdf(self.ruleset)
         return ruleset
-
-    def printrace(self,rc):
-        race = str(rc)
-        self.race = str(rc)
-        return race
 
     def printgenre(self,rg):
         genre = str(rg)
         self.genre = str(rg)
+        sm.get_screen("character_save_as_pdf").print_genre_to_pdf(self.genre)
         return genre
+
+    def printrace(self,rc):
+        race = str(rc)
+        self.race = str(rc)
+        sm.get_screen("character_save_as_pdf").print_race_to_pdf(self.race)
+        return race
 
     def printprofession(self,p):
         profession = str(p)
         self.profession = str(p)
+        sm.get_screen("character_save_as_pdf").print_profession_to_pdf(self.profession)
         return profession
 
     def printskills(self,p):
         skills_string = ''
         skills = p
         self.skills = p
+        sm.get_screen("character_save_as_pdf").print_skills_to_pdf(self.skills)
         return skills
+
+    def printcharacter(self,my_sb,my_cr,my_scm,my_scb):
+        self.mysb = self.print_stats(my_sb)
+        self.mycr = self.print_rolls(my_cr)
+        self.myscm = self.print_scm(my_scm)
+        self.myscb = self.print_scb(my_scb)
+        sm.get_screen("character_save_as_pdf").print_character_to_pdf(self.mysb,self.mycr,self.myscm,self.myscb)
+
+class CharacterSaveAsPDF(Screen):
+#   pass
+
+    character_name = TextInput()
+
+    def print_pdf(self,charname):
+        character_file = charname + ".pdf"
+        output = PdfFileWriter()
+        input1 = PdfFileReader(file("page1.pdf", "rb"))
+        input2 = PdfFileReader(file("page2.pdf", "rb"))
+        input3 = PdfFileReader(file("page3.pdf", "rb"))
+        input4 = PdfFileReader(file("page4.pdf", "rb"))
+        input5 = PdfFileReader(file("page5.pdf", "rb"))
+        input6 = PdfFileReader(file("page6.pdf", "rb"))
+        input7 = PdfFileReader(file("page7.pdf", "rb"))
+        page = input1.getPage(0)
+        page.mergePage(input2.getPage(0))
+        page.mergePage(input3.getPage(0))
+        page.mergePage(input4.getPage(0))
+        page.mergePage(input5.getPage(0))
+        page.mergePage(input6.getPage(0))
+        page.mergePage(input7.getPage(0))
+        output.addPage(page)
+        outputStream = file(character_file, "wb")
+        output.write(outputStream)
+        outputStream.close()
+
+    def print_rules_to_pdf(self,rs):
+        ruleset = str(rs)
+        self.ruleset = str(rs)
+        pdf = Canvas("page1.pdf")
+        pdf.setFillColorRGB(0,0,0)
+        pdf.setFont("Helvetica-Bold",16)
+        pdf.drawCentredString(A4[0]/2,800,"Character Sheet")
+        pdf.setFont("Helvetica",12)
+        pdf.drawCentredString(A4[0]/2,775,self.ruleset)
+        pdf.showPage()
+        pdf.save()
+
+    def print_name_to_pdf(self,n):
+        charname = str(n)
+        self.charname = str(n)
+        pdf = Canvas("page2.pdf")
+        pdf.setFillColorRGB(0,0,0)
+        pdf.setFont("Helvetica-Bold",16)
+        pdf.drawCentredString(A4[0]/2,750,"Name")
+        pdf.setFont("Helvetica",12)
+        pdf.drawCentredString(A4[0]/2,725,self.charname)
+        pdf.showPage()
+        pdf.save()
+        CharacterSaveAsPDF.print_pdf(self,self.charname)
+
+    def print_genre_to_pdf(self,g):
+        genre = str(g)
+        self.genre = str(g)
+        pdf = Canvas("page3.pdf")
+        pdf.setFillColorRGB(0,0,0)
+        pdf.setFont("Helvetica-Bold",16)
+        pdf.drawString(10,700,"Genre")
+        pdf.setFont("Helvetica",12)
+        pdf.drawString(10,675, self.genre)
+        pdf.showPage()
+        pdf.save()
+
+    def print_race_to_pdf(self,r):
+        race = str(r)
+        self.race = str(r)
+        pdf = Canvas("page7.pdf")
+        pdf.setFillColorRGB(0,0,0)
+        pdf.setFont("Helvetica-Bold",16)
+        pdf.drawString(10,650,"Race")
+        pdf.setFont("Helvetica",12)
+        pdf.drawString(10,625, self.race)
+        pdf.showPage()
+        pdf.save()
+
+    def print_profession_to_pdf(self,p):
+        profession = str(p)
+        self.profession = str(p)
+        pdf = Canvas("page5.pdf")
+        pdf.setFillColorRGB(0,0,0)
+        pdf.setFont("Helvetica-Bold",16)
+        pdf.drawString(10,600,"Profession")
+        pdf.setFont("Helvetica",12)
+        pdf.drawString(10,575, self.profession)
+        pdf.showPage()
+        pdf.save()
+
+    def print_character_to_pdf(self,sb,cr,scm,scb):
+        self.statblock = str(sb)
+        self.characteristic_rolls = str(cr)
+        self.sc_modifiers = str(scm)
+        self.sc_bonuses = str(scb)
+        pdf = Canvas("page4.pdf")
+        pdf.setFillColorRGB(0,0,0)
+        pdf.setFont("Helvetica-Bold",16)
+        pdf.drawString(10, 550, "Characteristics")
+        pdf.setFont("Helvetica",12)
+        pdf.drawString(10, 525, self.statblock)
+        pdf.setFont("Helvetica-Bold",16)
+        pdf.drawString(10, 500, "Characteristic Rolls")
+        pdf.setFont("Helvetica",12)
+        pdf.drawString(10, 475, self.characteristic_rolls)
+        pdf.setFont("Helvetica-Bold",16)
+        pdf.drawString(10, 450, "MW Skill Category Modifiers")
+        pdf.setFont("Helvetica",12)
+        pdf.drawString(10, 425, self.sc_modifiers)
+        pdf.setFont("Helvetica-Bold",16)
+        pdf.drawString(10, 400, "BRP Skill Category Bonuses")
+        pdf.setFont("Helvetica",12)
+        pdf.drawString(10, 375, self.sc_bonuses)
+        pdf.showPage()
+        pdf.save()
+
+    def print_skills_to_pdf(self,p):
+        skills = str(p)
+        self.skills = str(p)
+        pdf = Canvas("page6.pdf")
+        pdf.setFillColorRGB(0,0,0)
+        pdf.setFont("Helvetica-Bold",16)
+        pdf.drawString(10,350,"Skills")
+        pdf.setFont("Helvetica",12)
+        y = 325
+        L = simpleSplit(self.skills,"Helvetica",12,500)
+        print(L)
+        for t in L:
+            print(t)
+            pdf.drawString(10,y,t)
+            y -= 20
+#           pdf.drawString(10,325, self.skills)
+        pdf.showPage()
+        pdf.save()
+
+    def character_pdf(self,a,charname):
+        CharacterSaveAsPDF.print_name_to_pdf(self,charname)
 
 sm = ScreenManager()
 sm.add_widget(WelcomeScreen(name='welcome'))
@@ -818,6 +976,7 @@ sm.add_widget(SelectProfessionCyberpunk(name='profession_cyberpunk'))
 sm.add_widget(SelectProfessionWildWest(name='profession_wildwest'))
 sm.add_widget(SelectProfessionHorror(name='profession_horror'))
 sm.add_widget(CharacterSheet(name='character_sheet'))
+sm.add_widget(CharacterSaveAsPDF(name='character_save_as_pdf'))
 
 class GuiBrp(App):
 
