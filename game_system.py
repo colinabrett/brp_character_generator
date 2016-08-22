@@ -227,6 +227,19 @@ class Brp(GameSystem):
                 if 'EDU' not in self.suppressed_stats:
                                 self.derived['Know Roll'] = self.statblock['EDU'] * 5
 
+        def calculateImprovements(self, profession_skill_dict):
+                """BRP has a profession and other skills"""
+                # profession is a ProfessionImprovement
+                # other skills an ProfessionImprovement with points divided between 1d4+1 random skills
+                # process each Improvement then
+                # finish with finalise, to even out skills
+                other_points = self.statblock['INT'] * 10
+                other_skills = []
+                n = straight_dice(1,4,1)
+                for x in range(1, n):
+                        other_skills.append(randomSkill())
+                improvement_list = [ProfessionImprovement(profession_skill_dict)]
+
         def finalise(self):
                 """make sure no skills are above the Power level for the campaign. Re-allocate skills which are too high"""
                 # go through the modified skills
@@ -259,3 +272,72 @@ class Brp(GameSystem):
                 self.improve(Improvement(final_dict))
 
         
+class MagicWorld(GameSystem):
+        def __init__(self, power_level='Normal'):
+                """constructor for Magic World character"""
+                power_levels = {
+                        'Normal' : {'profession' : [(1,60), (3,40), (4,20)], 'other' : [(1,40), (3,20)], 'POW' :0, 'stats' : 0, 'spells' : 3},
+                        'Veteran' : {'profession' : [(2,60), (3,40), (3,20)], 'other' : [(3,40), (6,20)], 'POW' : 1, 'stats': 1, 'spells' : 6},
+                        'Heroic' : {'profession' : [(1,80), (2,60), (2,40), (3,20)], 'other' : [(4,40), (6,20)], 'POW' : 2, 'stats' : 2, 'spells' : 9},
+                        'Legendary' : {'profession' : [(2,80), (3,60) (3,40)], 'other' : [(5,40), (8,20)], 'POW' : 3, 'stats' : 4, 'spells' : 12}
+                }
+                self.power_level = power_levels.get(power_level, 'Normal')
+                self.statblock = {
+                        'STR' : 0,
+                        'CON' : 0,
+                        'POW' : 0,
+                        'DEX' : 0,
+                        'APP' : 0,
+                        'INT' : 0,
+                        'SIZ' : 0
+                }
+                self.skills = {
+                        'Art' : 5,
+                        'Bargain' :  15,
+                        'Brawl' : 20,
+                        'Climb' : 40,
+                        'Conceal Object'  : 25,
+                        'Craft'  : 5,
+                        'Disguise' : 15,
+                        'Dodge' : self.statblock["DEX"] * 2,
+                        'Evaluate' : 15,
+                        'Fast Talk' : 5,
+                        'Hide' : 20,
+                        'Insight' : 15,
+                        'Jump' : 5,
+                        'Listen' : 25,
+                        'Lore' : 15,
+                        'Lore Rare' : 0,
+                        'Move Quietly' : 20,
+                        'Nature' : 25,
+                        'Navigate' : 10,
+                        'Oratory'  : 5,
+                        'Other Language'  : 0,
+                        'Own Language'  : self.statblock["INT"] * 5,
+                        'Physik'  : 30,
+                        'Pick Lock'  : 5,
+                        'Potions' : 0,
+                        'Repair/Devise' : self.statblock["DEX"] * 4,
+                        'Ride' :  35,
+                        'Sailing' : 15,
+                        'Scribe' : 0,
+                        'Search' : 20,
+                        'Sense' : 15,
+                        'Swim' : 25,
+                        'Throw' : 25,
+                        'Track' : 10,
+                        'Trap' : 5,
+                        'Weapon Skill' :  0,
+                        'World Lore' : 15,
+                        'Wrestle' : 25
+                }
+                self.skill_points = 0
+                self.suppressed_stats = []
+                self.bonuses = {}
+                self.improvements = []
+                self.modified_skills = {}
+                self.suppressed_skills = []
+                
+        def calculateSkillPoints(self):
+                """easy in Magic World, based on power level"""
+                
