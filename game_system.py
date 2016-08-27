@@ -56,11 +56,13 @@ class GameSystem():
                         self.suppressed_stats.append(ustat)
                 return
 
-        def improve(self, improvement):
+        def improve(self, improvement, skill_points=0):
                 """Apply the skills of an Improvement to the modified skills attribute"""
                 # allocate the skill points first if it's a ProfessionImprovement
+                if skill_points == 0:
+                        skill_points = self.skill_points
                 if hasattr(improvement, "allocateSkillPoints") and callable(getattr(improvement, "allocateSkillPoints")):
-                        improvement.allocateSkillPoints(self.skill_points)
+                        improvement.allocateSkillPoints(skill_points)
                 for skill, value in improvement.getSkills().items():
                         # ignore subskills - everything after a '('
                         if '(' in skill:
@@ -100,6 +102,24 @@ class Brp(GameSystem):
                         'APP':0,
                         'EDU':0
                 }
+                self.skill_points = 0
+                self.suppressed_stats = []
+                self.bonuses = {}
+                self.improvements = []
+                self.skills = {}
+                self.modified_skills = {}
+                self.suppressed_skills = []
+
+        def calculateStats(self, statslist):
+                """ assign stats as parent, then recalculate other things """
+                super(Brp, self).calculateStats(statslist)
+                self.calculateBaseSkills()
+                self.calculateSkillPoints()
+                self.calculateBonuses()
+                self.calculateDerived()
+
+        def calculateBaseSkills(self):
+                """Not all of these require calculation. This should be performed after calculateStats"""
                 # note these are lifted straight from brp_skills.py
                 self.skills = {'Appraise' : 15,
                                'Art' : 5,
@@ -167,15 +187,6 @@ class Brp(GameSystem):
                                'Technical Skill' :  5,
                                'Throw' : 25,
                                'Track' : 10 }
-                self.skill_points = 0
-                self.suppressed_stats = []
-                self.bonuses = {}
-                self.improvements = []
-                self.modified_skills = {}
-                self.suppressed_skills = []
-
-        def calculateBaseSkills(self):
-                self.skills = brp_skill_bases()
                 
         def calculateSkillPoints(self):
                 """Skill points are derived from campaign power level and EDU if it's present; otherwise a fixed pool based on campaign power level"""
@@ -234,11 +245,15 @@ class Brp(GameSystem):
                 # process each Improvement then
                 # finish with finalise, to even out skills
                 other_points = self.statblock['INT'] * 10
-                other_skills = []
+                other_skills = {}
                 n = straight_dice(1,4,1)
                 for x in range(1, n):
-                        other_skills.append(randomSkill())
-                improvement_list = [ProfessionImprovement(profession_skill_dict)]
+                        other_skills[self.randomSkill()] = 0
+                self.calculateSkillPoints()
+                improvement_list = [(ProfessionImprovement(profession_skill_dict), self.skill_points), (ProfessionImprovement(other_skills), other_points)]
+                for i in improvement_list:
+                        self.improve(i[0], i[1]) 
+                self.finalise()
 
         def finalise(self):
                 """make sure no skills are above the Power level for the campaign. Re-allocate skills which are too high"""
@@ -262,7 +277,6 @@ class Brp(GameSystem):
                 y = abs(x)
                 # pick a number of skills and add 10 points to each
                 while y > 0:
-                        print(y)
                         addvalue = y if y < 10 else 10
                         addskill = self.randomSkill()
                         if self.modified_skills.get(addskill, 0) < (self.power_level['max'] - 10):
