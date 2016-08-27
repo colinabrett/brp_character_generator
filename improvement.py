@@ -47,10 +47,12 @@ class ProfessionImprovement(Improvement):
         ratio = [0.4, 0.35, 0.25]
         types_ratio = dict(zip(types,ratio))
         for type in types:
-            points = int(round((self.points * types_ratio[type])/len(self.categorised_skills[type]),0))
-            skill_list = self.categorised_skills.get(type)
-            for skill in skill_list:
-                self.skills[skill] = points
+            if len(self.categorised_skills[type]) > 0:
+                points = int(round((self.points * types_ratio[type])/len(self.categorised_skills[type]),0))
+                skill_list = self.categorised_skills.get(type)
+                for skill in skill_list:
+                    self.skills[skill] = points
+
             
     def categoriseSkills(self):
         """put available skills into categories primary, secondary, other"""
