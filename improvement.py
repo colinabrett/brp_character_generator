@@ -41,11 +41,21 @@ class ProfessionImprovement(Improvement):
 
     def chooseSkills(self):
         """Decide how the skill points will be divided between the available skills"""
-        # allocate (allocate skill points proportionally to profession skills)
         self.categoriseSkills()
         types = ['Primary', 'Secondary', 'Other']
         ratio = [0.4, 0.35, 0.25]
         types_ratio = dict(zip(types,ratio))
+        # if categories empty, re-allocate ratio
+        reallocate = 0
+        for key, skills in self.categorised_skills.items():
+            if len(skills) == 0:
+                reallocate += types_ratio[key]
+                types_ratio.pop(key, None)
+        if reallocate > 0:
+            newratio = reallocate / len(types_ratio)
+            for key, value in types_ratio.items():
+                value += newratio
+        # allocate (allocate skill points proportionally to profession skills)
         for type in types:
             if len(self.categorised_skills[type]) > 0:
                 points = int(round((self.points * types_ratio[type])/len(self.categorised_skills[type]),0))
