@@ -415,8 +415,6 @@ class MagicWorld(GameSystem):
                 # pick n skills from the set of skills which are *not* professional
                 while len(other_skills) < n:
                         other_skills[self.randomSkill(professional_skills)] = 0
-                print("Other skills: ", len(other_skills))
-                print("Should be ", n)
                 improvement_list = [
                         (ProfessionImprovementMW(profession_skill_dict), self.power_level['profession']),
                         (ProfessionImprovementMW(other_skills), self.power_level['other'])

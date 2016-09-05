@@ -125,7 +125,6 @@ class ProfessionImprovementMW(Improvement):
         for category in self.points:
             self.categorised_skills[category] = []
 
-        print(skill_names)
         for category in (self.categorised_skills.keys()):
             for x in range(0, category[0]):
                 self.categorised_skills[category].append(skill_names.pop())
