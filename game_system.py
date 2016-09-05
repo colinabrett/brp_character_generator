@@ -73,7 +73,7 @@ class GameSystem():
                         
                         if self.modified_skills.get(skill) and self.modified_skills.get(skill) > self.skills.get(essential_skill, 0):
                                 self.modified_skills[skill] += value
-                        else:
+                        elif value > 0:
                                 self.modified_skills[skill] = self.skills.get(essential_skill, 0) + value
 
         def randomSkill(self, except_skills = None):
@@ -390,7 +390,7 @@ class MagicWorld(GameSystem):
                 self.derived = {
                         'Damage Bonus': damage_bonus(self.statblock['STR'], self.statblock['SIZ']),
                         'Hit Points' : int(Decimal((self.statblock['CON'] + self.statblock['SIZ'])/2).quantize(0, ROUND_HALF_UP)),
-                        'Experience Bonus' : int(Decimal(self.statblock['INT']/2).quantize(0, ROUND_HALF_UP)),
+                        'Magic Points' : self.statblock['POW'],
                         'Effort Roll' : self.statblock['STR'] * 5,
                         'Stamina Roll' : self.statblock['CON'] * 5,
                         'Idea Roll' : self.statblock['INT'] * 5,
@@ -401,7 +401,7 @@ class MagicWorld(GameSystem):
                 self.derived['Major Wound level'] = int(Decimal(self.derived['Hit Points']/2).quantize(0, ROUND_HALF_UP))
 
         def calculateImprovements(self, profession_skill_dict):
-                """MagicWorld has a minimum of profession and other skills"""
+                """MagicWorld has a minimum of culltural, profession and other skills"""
                 # profession is a ProfessionImprovementMW
                 # other skills an ProfessionImprovementMW
                 # process each Improvement
@@ -415,10 +415,24 @@ class MagicWorld(GameSystem):
                 # pick n skills from the set of skills which are *not* professional
                 while len(other_skills) < n:
                         other_skills[self.randomSkill(professional_skills)] = 0
+                cultural = self.chooseCultureImprovement()
                 improvement_list = [
+                        (cultural, [(3,10)]),
                         (ProfessionImprovementMW(profession_skill_dict), self.power_level['profession']),
                         (ProfessionImprovementMW(other_skills), self.power_level['other'])
                 ]
                 for i in improvement_list:
                         self.improve(i[0], i[1])
 
+                
+
+        def chooseCultureImprovement(self):
+                cultural = {
+                        'Band' : {'Craft' : 0, 'Move Quietly' : 0, 'Nature' : 0, 'Oratory' : 0, 'Swim' : 0, 'Track' : 0},
+                        'Tribe' : {'Craft' : 0, 'Move Quietly' : 0, 'Nature' : 0, 'Oratory' : 0, 'Ride' : 0, 'Swim' : 0, 'Track' : 0},
+                        'Chiefdom' : {'Craft' : 0, 'Evaluate' : 0, 'Nature' : 0, 'Navigate' : 0, 'Oratory' : 0, 'Ride' : 0, 'Sailing' : 0, 'Swim' : 0, 'Track' : 0},
+                        'State' : {'Art' : 0, 'Craft' : 0, 'Bargain' : 0, 'Oratory' : 0, 'Other Language' : 0, 'Ride' : 0, 'Sailing' : 0, 'Scribe' : 0, 'World Lore' : 0}
+                }
+                pick = random.choice(list(cultural.keys()))
+                culture = ProfessionImprovementMW(cultural[pick])
+                return culture
