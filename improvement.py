@@ -84,7 +84,7 @@ class ProfessionImprovement(Improvement):
         while skill_names:
             self.categorised_skills['Other'].append(skill_names.pop())
             
-class ProfesssionImprovementMW(Improvement):
+class ProfessionImprovementMW(Improvement):
     """As ProfessionImprovement, except that the allocation method is by tuples of (number of skills, points to allocate), rather than a ratio and a pool of points."""
     def __init__(self, skills_dict):
         self.skills = skills_dict
@@ -124,8 +124,9 @@ class ProfesssionImprovementMW(Improvement):
         shuffle(skill_names)
         for category in self.points:
             self.categorised_skills[category] = []
-            
-        for category in self.categorised_skills.keys():
+
+        print(skill_names)
+        for category in (self.categorised_skills.keys()):
             for x in range(0, category[0]):
                 self.categorised_skills[category].append(skill_names.pop())
         

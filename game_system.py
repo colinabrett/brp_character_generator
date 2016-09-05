@@ -7,6 +7,7 @@ from brp_stats import *
 from decimal import Decimal, ROUND_HALF_UP
 from improvement import *
 from brp_skills import *
+from improvement import *
 #from coc_skills import *
 #from mw_skills import *
 class GameSystem():
@@ -75,9 +76,11 @@ class GameSystem():
                         else:
                                 self.modified_skills[skill] = self.skills.get(essential_skill, 0) + value
 
-        def randomSkill(self):
-                """pick a random skill from those available."""
+        def randomSkill(self, except_skills = None):
+                """pick a random skill from those available. 'except_skills' is a list of skill names to be ignored, like self.supressed_skills but on a per-call basis"""
                 skill_list = set(self.skills.keys()) - set(self.suppressed_skills)
+                if except_skills:
+                        skill_list -= set(except_skills)
                 skill = random.sample(skill_list, 1)
                 return skill[0]
                 
@@ -289,11 +292,13 @@ class Brp(GameSystem):
 class MagicWorld(GameSystem):
         def __init__(self, power_level='Normal'):
                 """constructor for Magic World character"""
+                # power levels 'POW' is the amount added to POW;
+                # 'stats' are points added to non-POW stats (probably also not SIZ)
                 power_levels = {
                         'Normal' : {'profession' : [(1,60), (3,40), (4,20)], 'other' : [(1,40), (3,20)], 'POW' :0, 'stats' : 0, 'spells' : 3},
                         'Veteran' : {'profession' : [(2,60), (3,40), (3,20)], 'other' : [(3,40), (6,20)], 'POW' : 1, 'stats': 1, 'spells' : 6},
                         'Heroic' : {'profession' : [(1,80), (2,60), (2,40), (3,20)], 'other' : [(4,40), (6,20)], 'POW' : 2, 'stats' : 2, 'spells' : 9},
-                        'Legendary' : {'profession' : [(2,80), (3,60) (3,40)], 'other' : [(5,40), (8,20)], 'POW' : 3, 'stats' : 4, 'spells' : 12}
+                        'Legendary' : {'profession' : [(2,80), (3,60), (3,40)], 'other' : [(5,40), (8,20)], 'POW' : 3, 'stats' : 4, 'spells' : 12}
                 }
                 self.power_level = power_levels.get(power_level, 'Normal')
                 self.statblock = {
@@ -305,6 +310,29 @@ class MagicWorld(GameSystem):
                         'INT' : 0,
                         'SIZ' : 0
                 }
+                self.skills = {}
+                self.skill_points = 0
+                self.suppressed_stats = []
+                self.bonuses = {}
+                self.improvements = []
+                self.modified_skills = {}
+                self.suppressed_skills = []
+                
+        def calculateStats(self, statslist):
+                """ assign stats as parent, then recalculate other things """
+                super(MagicWorld, self).calculateStats(statslist)
+                # adjust stats for power level
+                self.statblock['POW'] += self.power_level['POW']
+                nonpow = ['STR', 'CON', 'DEX', 'APP', 'INT', 'SIZ']
+                for x in range(0, self.power_level['stats']):
+                        self.statblock[random.choice(nonpow)] += 1
+                self.calculateBaseSkills()
+                self.calculateBonuses()
+                self.calculateDerived()
+
+        def calculateBaseSkills(self):
+                """not all of these require calculation, but it should be run after calculateStats"""
+                # note these are lifted straight from mw_skills.py
                 self.skills = {
                         'Art' : 5,
                         'Bargain' :  15,
@@ -344,14 +372,55 @@ class MagicWorld(GameSystem):
                         'Weapon Skill' :  0,
                         'World Lore' : 15,
                         'Wrestle' : 25
+                }  
+                
+
+        def calculateBonuses(self):
+                """Calculate skill modifiers, based on attributes (like scm function)"""
+                self.bonuses = {
+                        'Physical' : int(Decimal(self.statblock['STR'] / 2).quantize(0, ROUND_HALF_UP)),
+                        'Communication' : int(Decimal(self.statblock['APP'] / 2).quantize(0, ROUND_HALF_UP)),
+                        'Knowledge' : int(Decimal(self.statblock['INT'] / 2).quantize(0, ROUND_HALF_UP)),
+                        'Manipulation' : int(Decimal(self.statblock['DEX'] / 2).quantize(0, ROUND_HALF_UP)),
+                        'Perception' : int(Decimal(self.statblock['CON'] / 2).quantize(0, ROUND_HALF_UP))
                 }
-                self.skill_points = 0
-                self.suppressed_stats = []
-                self.bonuses = {}
-                self.improvements = []
-                self.modified_skills = {}
-                self.suppressed_skills = []
-                
-        def calculateSkillPoints(self):
-                """easy in Magic World, based on power level"""
-                
+
+        def calculateDerived(self):
+                """calculate rolls and stats derived from attributes. Supercedes rolls() in brp_stats"""
+                self.derived = {
+                        'Damage Bonus': damage_bonus(self.statblock['STR'], self.statblock['SIZ']),
+                        'Hit Points' : int(Decimal((self.statblock['CON'] + self.statblock['SIZ'])/2).quantize(0, ROUND_HALF_UP)),
+                        'Experience Bonus' : int(Decimal(self.statblock['INT']/2).quantize(0, ROUND_HALF_UP)),
+                        'Effort Roll' : self.statblock['STR'] * 5,
+                        'Stamina Roll' : self.statblock['CON'] * 5,
+                        'Idea Roll' : self.statblock['INT'] * 5,
+                        'Luck Roll' : self.statblock['POW'] * 5,
+                        'Agility Roll' : self.statblock['DEX'] *5,
+                        'Charisma Roll' : self.statblock['APP'] *5
+                        }
+                self.derived['Major Wound level'] = int(Decimal(self.derived['Hit Points']/2).quantize(0, ROUND_HALF_UP))
+
+        def calculateImprovements(self, profession_skill_dict):
+                """MagicWorld has a minimum of profession and other skills"""
+                # profession is a ProfessionImprovementMW
+                # other skills an ProfessionImprovementMW
+                # process each Improvement
+                # Other skills are explicitly not professional skills
+                other_skills = {}
+                professional_skills = profession_skill_dict.keys()
+                # find number of skills from tuple
+                n = 0
+                for points in self.power_level['other']:
+                        n += points[0]
+                # pick n skills from the set of skills which are *not* professional
+                while len(other_skills) < n:
+                        other_skills[self.randomSkill(professional_skills)] = 0
+                print("Other skills: ", len(other_skills))
+                print("Should be ", n)
+                improvement_list = [
+                        (ProfessionImprovementMW(profession_skill_dict), self.power_level['profession']),
+                        (ProfessionImprovementMW(other_skills), self.power_level['other'])
+                ]
+                for i in improvement_list:
+                        self.improve(i[0], i[1])
+
