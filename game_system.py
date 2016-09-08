@@ -84,7 +84,98 @@ class GameSystem():
                 skill = random.sample(skill_list, 1)
                 return skill[0]
                 
-        
+class MythrasImperative(GameSystem):
+        def __init__(self, power_level='Normal'):
+                """constructor for Mythras character"""
+                power_levels = {
+                        'Normal' : { 'culture' : 100, 'career' : 100, 'bonus' : 150 }
+                }
+                self.power_level = power_levels.get( power_level, 'Normal')
+                self.statblock = {
+                        'STR':0,
+                        'CON':0,
+                        'DEX':0,
+                        'POW':0,
+                        'CHA':0,
+                        'INT':0,
+                        'SIZ':0
+                }
+                self.skills = {}
+                self.modified_skills = {}
+                self.improvements = []
+                
+        def calculateStats(self, statslist):
+                """ assign stats as parent, then recalculate other things """
+                super(Brp, self).calculateStats(statslist)
+                self.calculateBaseSkills()
+                self.calculateSkillPoints()
+                self.calculateBonuses()
+                self.calculateDerived()
+        def damageModifier(self, str, siz):
+                """calculate damage bonus from STR and SIZ, return string damage modifier"""
+                dice_seq = [2, 4, 6, 8, 10, 12]
+                db = "+0"
+                combined = int(str) + int(siz)
+                if combined <= 90 :
+                        if combined <= 5:
+                                db = '-1D8'
+                        elif combined <= 10:
+                                db = '-1D6'
+                        elif combined <= 15:
+                                db = '-1D4'
+                        elif combined <= 20:
+                                db = '-1D2'
+                        elif combined <= 25:
+                                db = '+0'
+                        elif combined <= 30:
+                                db = '+1D2'
+                        elif combined <= 35:
+                                db = '+1D4'
+                        elif combined <= 40:
+                                db = '+1D6'
+                        elif combined <= 45:
+                                db = '+1D8'
+                        elif combined <= 50:
+                                db = '+1D10'
+                        elif combined <= 60:
+                                db = '+1D12'
+                        elif combined <= 70:
+                                db = '+2D6'
+                        elif combined <= 80:
+                                db = '+1D8+1D6'
+                        else:
+                                # ie. combined <=90
+                                db = '+2D8'
+                else:
+                        # Thanks to skoll on BRP central for stopping me wasting more time on this
+                        step = int(combined/10)
+                        d10s = int(step/5)   # Amount of d10's
+                        remainder = step%5   # Anything else in addition to d10's?
+                        if remainder:
+                                db = '+{d10s}D10+1D{remainder}'.format(d10s=d10s, remainder=(remainder*2))
+                        else:
+                                db = '+{d10s}D10'.format(d10s=d10s)
+                return db
+
+        def calculateDerived(self):
+                """calculate rolls and stats derived from attributes"""
+                self.derived = {
+                        'Action Points' : 2,
+                        'Damage Modifier' : self.damage_modifier(self.statblock['STR'], self.statblock['SIZ']), 
+                        'Damage Bonus' : damage_bonus(self.statblock['STR'], self.statblock['SIZ']),
+                        'Hit Points' : int(Decimal((self.statblock['CON'] + self.statblock['SIZ'])/2).quantize(0, ROUND_HALF_UP)),
+                        'Experience Bonus' : int(Decimal(self.statblock['INT']/2).quantize(0, ROUND_HALF_UP)),
+                        'Effort Roll' : self.statblock['STR'] * 5,
+                        'Stamina Roll' : self.statblock['CON'] * 5,
+                        'Idea Roll' : self.statblock['INT'] * 5,
+                        'Luck Roll' : self.statblock['POW'] * 5,
+                        'Agility Roll' : self.statblock['DEX'] *5,
+                        'Charisma Roll' : self.statblock['APP'] *5
+                        }
+                self.derived['Major Wound level'] = int(Decimal(self.derived['Hit Points']/2).quantize(0, ROUND_HALF_UP))
+                if 'EDU' not in self.suppressed_stats:
+                                self.derived['Know Roll'] = self.statblock['EDU'] * 5
+                
 class Brp(GameSystem):
         def __init__(self, power_level='Normal'):
                 """constructor for BRP character"""
