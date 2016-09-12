@@ -106,10 +106,10 @@ class MythrasImperative(GameSystem):
                 
         def calculateStats(self, statslist):
                 """ assign stats as parent, then recalculate other things """
-                super(Brp, self).calculateStats(statslist)
-                self.calculateBaseSkills()
-                self.calculateSkillPoints()
-                self.calculateBonuses()
+                super(MythrasImperative, self).calculateStats(statslist)
+                # self.calculateBaseSkills()
+                # self.calculateSkillPoints()
+                # self.calculateBonuses()
                 self.calculateDerived()
         def damageModifier(self, str, siz):
                 """calculate damage bonus from STR and SIZ, return string damage modifier"""
@@ -161,20 +161,14 @@ class MythrasImperative(GameSystem):
                 """calculate rolls and stats derived from attributes"""
                 self.derived = {
                         'Action Points' : 2,
-                        'Damage Modifier' : self.damage_modifier(self.statblock['STR'], self.statblock['SIZ']), 
-                        'Damage Bonus' : damage_bonus(self.statblock['STR'], self.statblock['SIZ']),
+                        'Damage Modifier' : self.damageModifier(self.statblock['STR'], self.statblock['SIZ']),
+                        'Experience Modifier' : int((self.statblock['CHA']-1)/6)-1,
+                        'Healing Rate' : int((self.statblock['CON']-1)/6)+1,
                         'Hit Points' : int(Decimal((self.statblock['CON'] + self.statblock['SIZ'])/2).quantize(0, ROUND_HALF_UP)),
-                        'Experience Bonus' : int(Decimal(self.statblock['INT']/2).quantize(0, ROUND_HALF_UP)),
-                        'Effort Roll' : self.statblock['STR'] * 5,
-                        'Stamina Roll' : self.statblock['CON'] * 5,
-                        'Idea Roll' : self.statblock['INT'] * 5,
-                        'Luck Roll' : self.statblock['POW'] * 5,
-                        'Agility Roll' : self.statblock['DEX'] *5,
-                        'Charisma Roll' : self.statblock['APP'] *5
+                        'Initiative Bonus' : int(Decimal((self.statblock['DEX'] + self.statblock['INT'])/2).quantize(0, ROUND_HALF_UP)),
+                        'Luck Points' : int((self.statblock['POW']-1)/6)+1,
+                        'Magic Points' : self.statblock['POW'],
                         }
-                self.derived['Major Wound level'] = int(Decimal(self.derived['Hit Points']/2).quantize(0, ROUND_HALF_UP))
-                if 'EDU' not in self.suppressed_stats:
-                                self.derived['Know Roll'] = self.statblock['EDU'] * 5
                 
 class Brp(GameSystem):
         def __init__(self, power_level='Normal'):
