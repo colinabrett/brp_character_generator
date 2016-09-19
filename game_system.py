@@ -156,6 +156,19 @@ class MythrasImperative(GameSystem):
                         else:
                                 db = '+{d10s}D10'.format(d10s=d10s)
                 return db
+        def calculateHitPoints(self, con, siz):
+                """Mythras uses hit point locations. Returns a dict of hit point values based on STR and SIZ"""
+                hp = {}
+                combined = int(con) + int(siz)
+                base = int(combined / 5) +1 if combined % 5 else int(combined / 5)
+                hp["Left Leg"] = base
+                hp["Right Leg"] = base
+                hp["Abdomen"] = base + 1
+                hp["Chest"] = base +2
+                hp["Left Arm"] = 1 if combined - 1 < 1 else base - 1
+                hp["Right Arm"] = 1 if combined - 1 < 1 else base - 1
+                hp["Head"] = base
+                return hp
 
         def calculateDerived(self):
                 """calculate rolls and stats derived from attributes"""
@@ -164,7 +177,7 @@ class MythrasImperative(GameSystem):
                         'Damage Modifier' : self.damageModifier(self.statblock['STR'], self.statblock['SIZ']),
                         'Experience Modifier' : int((self.statblock['CHA']-1)/6)-1,
                         'Healing Rate' : int((self.statblock['CON']-1)/6)+1,
-                        'Hit Points' : int(Decimal((self.statblock['CON'] + self.statblock['SIZ'])/2).quantize(0, ROUND_HALF_UP)),
+                        'Hit Points' : self.calculateHitPoints(self.statblock['CON'], self.statblock['SIZ']),
                         'Initiative Bonus' : int(Decimal((self.statblock['DEX'] + self.statblock['INT'])/2).quantize(0, ROUND_HALF_UP)),
                         'Luck Points' : int((self.statblock['POW']-1)/6)+1,
                         'Magic Points' : self.statblock['POW'],
