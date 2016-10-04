@@ -107,7 +107,7 @@ class MythrasImperative(GameSystem):
         def calculateStats(self, statslist):
                 """ assign stats as parent, then recalculate other things """
                 super(MythrasImperative, self).calculateStats(statslist)
-                # self.calculateBaseSkills()
+                self.calculateBaseSkills()
                 # self.calculateSkillPoints()
                 # self.calculateBonuses()
                 self.calculateDerived()
@@ -249,6 +249,82 @@ class MythrasImperative(GameSystem):
                         'Teach' : self.statblock["INT"] + self.statblock["CHA"],
                         'Track' : self.statblock["INT"] + self.statblock["CON"]
                 }
+                self.skill_categories = {
+                        'Standard' : [
+                                'Athletics',
+                                'Boating',
+                                'Brawn',
+                                'Combat Style',
+                                'Conceal',
+                                'Customs',
+                                'Dance',
+                                'Deceit',
+                                'Drive',
+                                'Endurance',
+                                'Evade',
+                                'First Aid',
+                                'Influence',
+                                'Insight',
+                                'Locale',
+                                'Native Tongue',
+                                'Perception',
+                                'Ride',
+                                'Sing',
+                                'Stealth',
+                                'Swim',
+                                'Unarmed',
+                                'Willpower'
+                        ],
+                        'Professional' : [
+                                'Art',
+                                'Astrogation',
+                                'Bureaucracy',
+                                'Commerce',
+                                'Comms',
+                                'Computers',
+                                'Courtesy',
+                                'Craft',
+                                'Culture',
+                                'Demolitions',
+                                'Disguise',
+                                'Electronics',
+                                'Engineering',
+                                'Forgery',
+                                'Gambling',
+                                'Healing',
+                                'Language (Specific Language)',
+                                'Literacy (Specific Language)',
+                                'Lockpicking',
+                                'Lore',
+                                'Mechanisms',
+                                'Musicianship',
+                                'Navigation',
+                                'Oratory',
+                                'Pilot',
+                                'Politics',
+                                'Research',
+                                'Science',
+                                'Seamanship',
+                                'Seduction',
+                                'Sensors',
+                                'Sleight',
+                                'Streetwise',
+                                'Survival',
+                                'Teach',
+                                'Track',
+                        ]
+                }
+        def calculateImprovements(self, profession_skill_dict):
+                """Mythras Imperative has a culture, career and bonus skills"""
+                # Culture: Barbarian, Civilised, Nomadic, Primitive
+                # pick three professional skills for the culture
+                # allocate 100 points to the three or standard
+                # Career: pick 3 professional skills; can allocate 100 points to those three
+                # plus the listed standard skills for the career
+                # Bonus: 150 points to any standard skill or professional skills from Culture or Career
+                # basically ProfessionImprovements
+                pass
+        
 class Brp(GameSystem):
         def __init__(self, power_level='Normal'):
                 """constructor for BRP character"""
