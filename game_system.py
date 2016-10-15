@@ -76,14 +76,22 @@ class GameSystem():
                         elif value > 0:
                                 self.modified_skills[skill] = self.skills.get(essential_skill, 0) + value
 
-        def randomSkill(self, except_skills = None):
-                """pick a random skill from those available. 'except_skills' is a list of skill names to be ignored, like self.supressed_skills but on a per-call basis"""
-                skill_list = set(self.skills.keys()) - set(self.suppressed_skills)
+        def randomSkill(self, except_skills = None, instead_skills = None, sample = 1):
+                """pick a random skill from all of those available. 'except_skills' is a list of skill names to be ignored, like self.supressed_skills but on a per-call basis. 'instead_skills' substitutes a different list of skills (a subset of all skills). If sample is greater than 1, returns a list"""
+                if not instead_skills:
+                        skill_list = set(self.skills.keys()) - set(self.suppressed_skills)
+                else:
+                        skill_list = set(instead_skills) - set(self.suppressed_skills)
                 if except_skills:
                         skill_list -= set(except_skills)
-                skill = random.sample(skill_list, 1)
-                return skill[0]
-                
+                skill = random.sample(skill_list, sample)
+                if sample == 1:
+                        return skill[0]
+                else :
+                        return skill
+
+from mi_cultures import *
+from mi_professions import *
 class MythrasImperative(GameSystem):
         def __init__(self, power_level='Normal'):
                 """constructor for Mythras character"""
@@ -101,6 +109,7 @@ class MythrasImperative(GameSystem):
                         'SIZ':0
                 }
                 self.skills = {}
+                self.suppressed_skills = []
                 self.modified_skills = {}
                 self.improvements = []
                 
@@ -250,7 +259,7 @@ class MythrasImperative(GameSystem):
                         'Track' : self.statblock["INT"] + self.statblock["CON"]
                 }
                 self.skill_categories = {
-                        'Standard' : [
+                        'standard' : [
                                 'Athletics',
                                 'Boating',
                                 'Brawn',
@@ -275,7 +284,7 @@ class MythrasImperative(GameSystem):
                                 'Unarmed',
                                 'Willpower'
                         ],
-                        'Professional' : [
+                        'professional' : [
                                 'Art',
                                 'Astrogation',
                                 'Bureaucracy',
@@ -319,12 +328,36 @@ class MythrasImperative(GameSystem):
                 # Culture: Barbarian, Civilised, Nomadic, Primitive
                 # pick three professional skills for the culture
                 # allocate 100 points to the three or standard
+
+                # basically ProfessionImprovements
+                # for Mythras, skills are divided into "professional" and "standard" groupings
+                # Cultural Improvement
+                allcultural = getCulture() # a random culture
+                culture_professional = random.sample(allcultural["professional"].keys(), 3)
+                culture_skill_dict = allcultural["standard"]
+                for cp in culture_professional:
+                        culture_skill_dict.update({cp : 0})
+                improvement_list = [(ProfessionImprovement(culture_skill_dict),100)]
+                # career Improvement
                 # Career: pick 3 professional skills; can allocate 100 points to those three
                 # plus the listed standard skills for the career
+                career_professional = random.sample(profession_skill_dict["professional"].keys(), 3)
+                career_dict = profession_skill_dict["standard"]
+                for car in career_professional:
+                        career_dict.update({car : 0 })
+                improvement_list.append((ProfessionImprovement(career_dict),100))
+                # Bonus Improvement
                 # Bonus: 150 points to any standard skill or professional skills from Culture or Career
-                # basically ProfessionImprovements
-                pass
-        
+                # 3d3 random skills from those
+                bonus_skills_list = list(culture_skill_dict) + list(career_dict) + self.skill_categories["standard"]
+                bonus_dict = {}
+                picked_bonus_skills = self.randomSkill(instead_skills = bonus_skills_list, sample = straight_dice(3,3,0))
+                for picked in picked_bonus_skills:
+                        bonus_dict[picked] = 0
+                improvement_list.append((ProfessionImprovement(bonus_dict),150))
+                for i in improvement_list:
+                        self.improve(i[0], i[1])
+                
 class Brp(GameSystem):
         def __init__(self, power_level='Normal'):
                 """constructor for BRP character"""
