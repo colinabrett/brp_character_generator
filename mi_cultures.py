@@ -2,6 +2,7 @@
 # skills are categorised as standard or professional
 from dice_roller import *
 def barbarian():
+    """barbarian cultural skills"""
     skill_list = {
         "standard" : {
             "Athletics" : 0,
@@ -31,6 +32,7 @@ def barbarian():
     return skill_list
 
 def civilised():
+    """civilised cultural skills"""
     skill_list = {
         "standard" : {
             "Conceal" : 0,
@@ -56,11 +58,7 @@ def civilised():
     return skill_list
 
 def nomadic():
-    """; Standard and two Skills: of the , Athletics, , , , , , Drive or Ride. Combat Style
- Professional Skills: Craft (any), Culture (any), Language
- (any), Lore (any), Musicianship, Navigate, Survival, Track
- Primitive
- """
+    """Nomadic culture skills """
     skill_list = {
         "standard" : {
             "Endurance" : 0,
@@ -118,5 +116,17 @@ def primitive():
     for skill in extras:
         skill_list["standard"][skill] = 0
     return skill_list
-    
 
+def getCulture(culture=None):
+    """returns the results of the named culture, or a random one if culture is None"""
+    culture_dict = {"barbarian" : barbarian(),
+                    "civilised" : civilised(),
+                    "nomadic" : nomadic(),
+                    "primitive" : primitive()
+    }
+    if culture in culture_dict.keys():
+        return culture_dict[culture]
+    else:
+        culture2 = random.sample(culture_dict.keys(), 1)
+        return culture_dict[culture2[0]]
+    
