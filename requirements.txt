@@ -1,0 +1,6 @@
+Cython==0.24.1
+Kivy==1.9.1
+Kivy-Garden==0.1.4
+PySDL2==0.9.4
+pygame==1.9.2b1
+requests==2.10.0

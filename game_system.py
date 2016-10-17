@@ -76,15 +76,288 @@ class GameSystem():
                         elif value > 0:
                                 self.modified_skills[skill] = self.skills.get(essential_skill, 0) + value
 
-        def randomSkill(self, except_skills = None):
-                """pick a random skill from those available. 'except_skills' is a list of skill names to be ignored, like self.supressed_skills but on a per-call basis"""
-                skill_list = set(self.skills.keys()) - set(self.suppressed_skills)
+        def randomSkill(self, except_skills = None, instead_skills = None, sample = 1):
+                """pick a random skill from all of those available. 'except_skills' is a list of skill names to be ignored, like self.supressed_skills but on a per-call basis. 'instead_skills' substitutes a different list of skills (a subset of all skills). If sample is greater than 1, returns a list"""
+                if not instead_skills:
+                        skill_list = set(self.skills.keys()) - set(self.suppressed_skills)
+                else:
+                        skill_list = set(instead_skills) - set(self.suppressed_skills)
                 if except_skills:
                         skill_list -= set(except_skills)
-                skill = random.sample(skill_list, 1)
-                return skill[0]
+                skill = random.sample(skill_list, sample)
+                if sample == 1:
+                        return skill[0]
+                else :
+                        return skill
+
+from mi_cultures import *
+from mi_professions import *
+class MythrasImperative(GameSystem):
+        def __init__(self, power_level='Normal'):
+                """constructor for Mythras character"""
+                power_levels = {
+                        'Normal' : { 'culture' : 100, 'career' : 100, 'bonus' : 150 }
+                }
+                self.power_level = power_levels.get( power_level, 'Normal')
+                self.statblock = {
+                        'STR':0,
+                        'CON':0,
+                        'DEX':0,
+                        'POW':0,
+                        'CHA':0,
+                        'INT':0,
+                        'SIZ':0
+                }
+                self.skills = {}
+                self.suppressed_skills = []
+                self.modified_skills = {}
+                self.improvements = []
                 
-        
+        def calculateStats(self, statslist):
+                """ assign stats as parent, then recalculate other things """
+                super(MythrasImperative, self).calculateStats(statslist)
+                self.calculateBaseSkills()
+                # self.calculateSkillPoints()
+                # self.calculateBonuses()
+                self.calculateDerived()
+        def damageModifier(self, str, siz):
+                """calculate damage bonus from STR and SIZ, return string damage modifier"""
+                dice_seq = [2, 4, 6, 8, 10, 12]
+                db = "+0"
+                combined = int(str) + int(siz)
+                if combined <= 90 :
+                        if combined <= 5:
+                                db = '-1D8'
+                        elif combined <= 10:
+                                db = '-1D6'
+                        elif combined <= 15:
+                                db = '-1D4'
+                        elif combined <= 20:
+                                db = '-1D2'
+                        elif combined <= 25:
+                                db = '+0'
+                        elif combined <= 30:
+                                db = '+1D2'
+                        elif combined <= 35:
+                                db = '+1D4'
+                        elif combined <= 40:
+                                db = '+1D6'
+                        elif combined <= 45:
+                                db = '+1D8'
+                        elif combined <= 50:
+                                db = '+1D10'
+                        elif combined <= 60:
+                                db = '+1D12'
+                        elif combined <= 70:
+                                db = '+2D6'
+                        elif combined <= 80:
+                                db = '+1D8+1D6'
+                        else:
+                                # ie. combined <=90
+                                db = '+2D8'
+                else:
+                        # Thanks to skoll on BRP central for stopping me wasting more time on this
+                        step = int(combined/10)
+                        d10s = int(step/5)   # Amount of d10's
+                        remainder = step%5   # Anything else in addition to d10's?
+                        if remainder:
+                                db = '+{d10s}D10+1D{remainder}'.format(d10s=d10s, remainder=(remainder*2))
+                        else:
+                                db = '+{d10s}D10'.format(d10s=d10s)
+                return db
+        def calculateHitPoints(self, con, siz):
+                """Mythras uses hit point locations. Returns a dict of hit point values based on STR and SIZ"""
+                hp = {}
+                combined = int(con) + int(siz)
+                base = int(combined / 5) +1 if combined % 5 else int(combined / 5)
+                hp["Left Leg"] = base
+                hp["Right Leg"] = base
+                hp["Abdomen"] = base + 1
+                hp["Chest"] = base +2
+                hp["Left Arm"] = 1 if combined - 1 < 1 else base - 1
+                hp["Right Arm"] = 1 if combined - 1 < 1 else base - 1
+                hp["Head"] = base
+                return hp
+
+        def calculateDerived(self):
+                """calculate rolls and stats derived from attributes"""
+                self.derived = {
+                        'Action Points' : 2,
+                        'Damage Modifier' : self.damageModifier(self.statblock['STR'], self.statblock['SIZ']),
+                        'Experience Modifier' : int((self.statblock['CHA']-1)/6)-1,
+                        'Healing Rate' : int((self.statblock['CON']-1)/6)+1,
+                        'Hit Points' : self.calculateHitPoints(self.statblock['CON'], self.statblock['SIZ']),
+                        'Initiative Bonus' : int(Decimal((self.statblock['DEX'] + self.statblock['INT'])/2).quantize(0, ROUND_HALF_UP)),
+                        'Luck Points' : int((self.statblock['POW']-1)/6)+1,
+                        'Magic Points' : self.statblock['POW'],
+                        }
+        def calculateBaseSkills(self):
+                """Not all of these require calculation. This should be performed after calculateStats"""
+                # note these are lifted from mi_skills.py
+                # Mythras distinguishes between Standard skills and Professional skills
+                self.skills = {
+                        'Athletics' : self.statblock["STR"] + self.statblock["DEX"],
+                        'Boating' : self.statblock["STR"] + self.statblock["CON"],
+                        'Brawn' : self.statblock["STR"] + self.statblock["SIZ"],
+                        'Combat Style' : self.statblock["STR"] + self.statblock["DEX"],
+                        'Conceal' : self.statblock["DEX"] + self.statblock["POW"],
+                        'Customs' : self.statblock["INT"] * 2 + 40,
+                        'Dance' : self.statblock["DEX"] + self.statblock["CHA"],
+                        'Deceit' : self.statblock["INT"] + self.statblock["CHA"],
+                        'Drive' : self.statblock["DEX"] + self.statblock["POW"],
+                        'Endurance' : self.statblock["CON"] * 2,
+                        'Evade' : self.statblock["DEX"] * 2,
+                        'First Aid' : self.statblock["INT"] + self.statblock["DEX"],
+                        'Influence' : self.statblock["CHA"] * 2,
+                        'Insight' : self.statblock["INT"] + self.statblock["POW"],
+                        'Locale' : self.statblock["INT"] * 2,
+                        'Native Tongue' : self.statblock["INT"] + self.statblock["CHA"] + 40,
+                        'Perception' : self.statblock["INT"] + self.statblock["POW"],
+                        'Ride' : self.statblock["DEX"] + self.statblock["POW"],
+                        'Sing' : self.statblock["CHA"] + self.statblock["POW"],
+                        'Stealth' : self.statblock["DEX"] + self.statblock["INT"],
+                        'Swim' : self.statblock["STR"] + self.statblock["CON"],
+                        'Unarmed' : self.statblock["STR"] + self.statblock["DEX"],
+                        'Willpower' : self.statblock["POW"] * 2,
+                        'Acting' : self.statblock["CHA"] * 2,
+                        'Acrobatics' : self.statblock["STR"] + self.statblock["DEX"],
+                        'Art' : self.statblock["POW"] + self.statblock["CHA"],
+                        'Astrogation' : self.statblock["INT"] * 2,
+                        'Bureaucracy' : self.statblock["INT"] * 2,
+                        'Commerce' : self.statblock["INT"] + self.statblock["CHA"],
+                        'Comms' : self.statblock["INT"] * 2,
+                        'Computers' : self.statblock["INT"] * 2,
+                        'Courtesy' : self.statblock["INT"] + self.statblock["CHA"],
+                        'Craft' : self.statblock["DEX"] + self.statblock["INT"],
+                        'Culture' : self.statblock["INT"] * 2,
+                        'Demolitions' : self.statblock["INT"] + self.statblock["POW"],
+                        'Disguise' : self.statblock["INT"] + self.statblock["CHA"],
+                        'Electronics' : self.statblock["DEX"] + self.statblock["INT"],
+                        'Engineering' : self.statblock["INT"] * 2,
+                        'Forgery' : self.statblock["DEX"] + self.statblock["INT"],
+                        'Gambling' : self.statblock["INT"] + self.statblock["POW"],
+                        'Healing' : self.statblock["INT"] + self.statblock["POW"],
+                        'Language (Specific Language)' : self.statblock["INT"] + self.statblock["CHA"],
+                        'Literacy (Specific Language)' : self.statblock["INT"] * 2,
+                        'Lockpicking' : self.statblock["DEX"] * 2,
+                        'Lore' : self.statblock["INT"] * 2,
+                        'Mechanisms' : self.statblock["DEX"] + self.statblock["INT"],
+                        'Musicianship' : self.statblock["DEX"] + self.statblock["CHA"],
+                        'Navigation' : self.statblock["INT"] + self.statblock["POW"],
+                        'Oratory' : self.statblock["POW"] + self.statblock["CHA"],
+                        'Pilot' : self.statblock["DEX"] + self.statblock["INT"],
+                        'Politics' : self.statblock["INT"] + self.statblock["CHA"],
+                        'Research' : self.statblock["INT"] + self.statblock["POW"],
+                        'Science' : self.statblock["INT"] * 2,
+                        'Seamanship' : self.statblock["INT"] + self.statblock["CON"],
+                        'Seduction' : self.statblock["INT"] + self.statblock["CHA"],
+                        'Sensors' : self.statblock["INT"] + self.statblock["POW"],
+                        'Sleight' : self.statblock["DEX"] + self.statblock["CHA"],
+                        'Streetwise' : self.statblock["POW"] + self.statblock["CHA"],
+                        'Survival' : self.statblock["CON"] + self.statblock["POW"],
+                        'Teach' : self.statblock["INT"] + self.statblock["CHA"],
+                        'Track' : self.statblock["INT"] + self.statblock["CON"]
+                }
+                self.skill_categories = {
+                        'standard' : [
+                                'Athletics',
+                                'Boating',
+                                'Brawn',
+                                'Combat Style',
+                                'Conceal',
+                                'Customs',
+                                'Dance',
+                                'Deceit',
+                                'Drive',
+                                'Endurance',
+                                'Evade',
+                                'First Aid',
+                                'Influence',
+                                'Insight',
+                                'Locale',
+                                'Native Tongue',
+                                'Perception',
+                                'Ride',
+                                'Sing',
+                                'Stealth',
+                                'Swim',
+                                'Unarmed',
+                                'Willpower'
+                        ],
+                        'professional' : [
+                                'Art',
+                                'Astrogation',
+                                'Bureaucracy',
+                                'Commerce',
+                                'Comms',
+                                'Computers',
+                                'Courtesy',
+                                'Craft',
+                                'Culture',
+                                'Demolitions',
+                                'Disguise',
+                                'Electronics',
+                                'Engineering',
+                                'Forgery',
+                                'Gambling',
+                                'Healing',
+                                'Language (Specific Language)',
+                                'Literacy (Specific Language)',
+                                'Lockpicking',
+                                'Lore',
+                                'Mechanisms',
+                                'Musicianship',
+                                'Navigation',
+                                'Oratory',
+                                'Pilot',
+                                'Politics',
+                                'Research',
+                                'Science',
+                                'Seamanship',
+                                'Seduction',
+                                'Sensors',
+                                'Sleight',
+                                'Streetwise',
+                                'Survival',
+                                'Teach',
+                                'Track',
+                        ]
+                }
+        def calculateImprovements(self, profession_skill_dict):
+                """Mythras Imperative has a culture, career and bonus skills"""
+                # Culture: Barbarian, Civilised, Nomadic, Primitive
+                # pick three professional skills for the culture
+                # allocate 100 points to the three or standard
+
+                # basically ProfessionImprovements
+                # for Mythras, skills are divided into "professional" and "standard" groupings
+                # Cultural Improvement
+                allcultural = getCulture() # a random culture
+                culture_professional = random.sample(allcultural["professional"].keys(), 3)
+                culture_skill_dict = allcultural["standard"]
+                for cp in culture_professional:
+                        culture_skill_dict.update({cp : 0})
+                improvement_list = [(ProfessionImprovement(culture_skill_dict),100)]
+                # career Improvement
+                # Career: pick 3 professional skills; can allocate 100 points to those three
+                # plus the listed standard skills for the career
+                career_professional = random.sample(profession_skill_dict["professional"].keys(), 3)
+                career_dict = profession_skill_dict["standard"]
+                for car in career_professional:
+                        career_dict.update({car : 0 })
+                improvement_list.append((ProfessionImprovement(career_dict),100))
+                # Bonus Improvement
+                # Bonus: 150 points to any standard skill or professional skills from Culture or Career
+                # 3d3 random skills from those
+                bonus_skills_list = list(culture_skill_dict) + list(career_dict) + self.skill_categories["standard"]
+                bonus_dict = {}
+                picked_bonus_skills = self.randomSkill(instead_skills = bonus_skills_list, sample = straight_dice(3,3,0))
+                for picked in picked_bonus_skills:
+                        bonus_dict[picked] = 0
+                improvement_list.append((ProfessionImprovement(bonus_dict),150))
+                for i in improvement_list:
+                        self.improve(i[0], i[1])
+                
 class Brp(GameSystem):
         def __init__(self, power_level='Normal'):
                 """constructor for BRP character"""
